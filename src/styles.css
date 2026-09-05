@@ -1,3 +1,101 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import 'tailwindcss';
+
+@theme {
+  /* Cor — ver docs/01-identidade-de-marca.md */
+  --color-brand-green-900: #0E3B31;
+  --color-brand-green-700: #164F42;
+  --color-brand-gold-500: #C7A24B;
+  --color-brand-gold-300: #DFC383;
+  --color-cream-50: #F7F3EC;
+  --color-white: #FFFFFF;
+  --color-ink-900: #101410;
+
+  /* Tipografia */
+  --font-display: "Instrument Serif", "Cormorant Garamond", serif;
+  --font-sans: "Manrope", "Geist", ui-sans-serif, system-ui, sans-serif;
+
+  /* Escala tipográfica fluida (clamp) */
+  --text-display-xl: clamp(3rem, 2rem + 5vw, 7rem);
+  --text-display-l: clamp(2.25rem, 1.6rem + 3.2vw, 4.5rem);
+  --text-display-m: clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem);
+  --text-heading: clamp(1.375rem, 1.2rem + 0.8vw, 1.875rem);
+  --text-body: 1.0625rem;
+  --text-small: 0.9375rem;
+  --text-caption: 0.75rem;
+
+  /* Spacing de secção (respirar) */
+  --space-section-y: clamp(4rem, 3rem + 5vw, 9rem);
+  --space-container-x: clamp(1.25rem, 1rem + 3vw, 5rem);
+
+  /* Motion durations/easing tokens — espelham docs/03-motion-system.md */
+  --ease-out-3: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-4: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-micro: 220ms;
+  --duration-ui: 550ms;
+  --duration-cinematic: 1200ms;
+
+  /* Radius */
+  --radius-card: 0.5rem;
+  --radius-pill: 999px;
+
+  /* Container widths */
+  --container-max: 1440px;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: var(--color-cream-50);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    line-height: 1.1;
+    font-weight: 400;
+  }
+
+  h1 { font-size: var(--text-display-xl); }
+  h2 { font-size: var(--text-display-l); }
+  h3 { font-size: var(--text-display-m); }
+  h4 { font-size: var(--text-heading); }
+  p { font-size: var(--text-body); line-height: 1.6; }
+}
+
+@layer utilities {
+  .section-y { padding-block: var(--space-section-y); }
+  .container-x { padding-inline: var(--space-container-x); }
+  .container-max {
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: var(--space-container-x);
+  }
+}
+
+@layer components {
+  .grain-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image: url('/textures/grain.svg');
+    background-size: 220px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
