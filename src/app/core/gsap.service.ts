@@ -21,14 +21,6 @@ export class GsapService {
     return ScrollTrigger;
   }
 
-  ticker(callback: (time: number) => void): void {
-    gsap.ticker.add(callback);
-  }
-
-  removeTicker(callback: (time: number) => void): void {
-    gsap.ticker.remove(callback);
-  }
-
   lagSmoothing(enabled: boolean): void {
     gsap.ticker.lagSmoothing(enabled ? 0 : 0.016);
   }

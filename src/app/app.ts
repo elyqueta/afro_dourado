@@ -35,8 +35,11 @@ export class App {
   constructor() {
     if (typeof window !== 'undefined') {
       this.smoothScroll.init();
-      this.gsap.ticker((time) => this.smoothScroll.raf(time));
       this.gsap.lagSmoothing(false);
+
+      this.smoothScroll.on('scroll', () => {
+        this.gsap.scrollTrigger.update();
+      });
     }
   }
 }
