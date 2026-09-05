@@ -60,8 +60,8 @@ import { SmartImageComponent } from '@app/media/smart-image/smart-image.componen
 })
 export class JournalPage {
   readonly articles = [
-    { title: 'Queda capilar: o que precisa de saber', excerpt: '[[PENDENTE-CLIENTE]]', image: '/media/journal-1.jpg', slug: 'queda-capilar' },
-    { title: 'Cuidados com cabelo afro no dia a dia', excerpt: '[[PENDENTE-CLIENTE]]', image: '/media/journal-2.jpg', slug: 'cuidados-cabelo-afro' },
-    { title: 'Tranças: estilo e protecção', excerpt: '[[PENDENTE-CLIENTE]]', image: '/media/journal-3.jpg', slug: 'trancas-estilo-proteccao' },
+    { title: 'Queda capilar: quando procurar ajuda', excerpt: 'Entenda os sinais que indicam a necessidade de uma avaliação tricológica.', image: 'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80', slug: 'queda-capilar' },
+    { title: 'Rotina de cuidados para cabelo afro no dia a dia', excerpt: 'Dicas práticas para manter a hidratação e definição entre consultas.', image: 'https://images.pexels.com/photos/3997979/pexels-photo-3997979.jpeg?auto=format&fit=crop&w=600&q=80', slug: 'cuidados-cabelo-afro' },
+    { title: 'Tranças: estilo, protecção e identidade', excerpt: 'Como os penteados protectivos podem fortalecer o cabelo e expressar cultura.', image: 'https://images.pexels.com/photos/3997991/pexels-photo-3997991.jpeg?auto=format&fit=crop&w=600&q=80', slug: 'trancas-estilo-proteccao' },
   ];
 }

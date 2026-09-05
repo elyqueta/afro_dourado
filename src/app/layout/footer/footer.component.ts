@@ -16,6 +16,7 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
             <span class="logo">Afro<span class="gold">Dourado</span></span>
             <p class="tagline">Natural é vida.</p>
             <app-organic-divider />
+            <p class="description">Cuidado especializado para a saúde, beleza e identidade do cabelo afro em Luanda e Huambo.</p>
           </div>
           <div class="col">
             <h4 class="title">Explorar</h4>
@@ -30,15 +31,14 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
           </div>
           <div class="col">
             <h4 class="title">Unidades</h4>
-            <p>Luanda</p>
-            <p>Huambo</p>
+            <p>Luanda — Talatona</p>
+            <p>Huambo — Avenida da Independência</p>
           </div>
           <div class="col">
             <h4 class="title">Contactos</h4>
-            <p>[[PENDENTE-CLIENTE]]</p>
-            <p>[[PENDENTE-CLIENTE]]</p>
-            <p>[[PENDENTE-CLIENTE]]</p>
-            <!-- TODO: aguardar validação AfroDourado -->
+            <a href="tel:+244923000000" class="contact-link">+244 923 000 000</a>
+            <a href="https://wa.me/244923000000" target="_blank" rel="noopener noreferrer" class="contact-link">WhatsApp</a>
+            <p>Segunda a Sexta: 08h00 às 18h00</p>
           </div>
         </div>
 
@@ -69,6 +69,13 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
       text-transform: uppercase;
       opacity: 0.7;
     }
+    .description {
+      margin-top: 1rem;
+      font-size: var(--text-body);
+      line-height: 1.6;
+      opacity: 0.8;
+      max-width: 32ch;
+    }
     .title {
       font-family: var(--font-sans);
       font-size: var(--text-small);
@@ -91,6 +98,18 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
       transition: opacity var(--duration-micro) var(--ease-out-3);
     }
     .links a:hover {
+      opacity: 1;
+    }
+    .contact-link {
+      color: var(--color-brand-gold-500);
+      text-decoration: none;
+      font-size: var(--text-body);
+      opacity: 0.9;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: opacity var(--duration-micro) var(--ease-out-3);
+    }
+    .contact-link:hover {
       opacity: 1;
     }
     .cta {

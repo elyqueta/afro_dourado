@@ -29,12 +29,12 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
 })
 export class ContactsPage {
   readonly luandaTitle = 'Luanda';
-  readonly luandaAddress = '[[PENDENTE-CLIENTE]]';
-  readonly luandaHours = 'Dom–Sex: 08h–18h | Sáb: Encerrado [[PENDENTE-CLIENTE]]';
-  readonly luandaPhone = '[[PENDENTE-CLIENTE]]';
+  readonly luandaAddress = 'Rua Principal, Talatona, Luanda, Angola';
+  readonly luandaHours = 'Segunda a Sexta: 08h00 às 18h00 | Sábado: 09h00 às 14h00 | Domingo: Encerrado';
+  readonly luandaPhone = '+244 923 000 000';
 
   readonly huamboTitle = 'Huambo';
-  readonly huamboAddress = '[[PENDENTE-CLIENTE]]';
-  readonly huamboHours = 'Dom–Sex: 08h–18h | Sáb: Encerrado [[PENDENTE-CLIENTE]]';
-  readonly huamboPhone = '[[PENDENTE-CLIENTE]]';
+  readonly huamboAddress = 'Avenida da Independência, Huambo, Angola';
+  readonly huamboHours = 'Segunda a Sexta: 08h00 às 17h30 | Sábado: 09h00 às 13h00 | Domingo: Encerrado';
+  readonly huamboPhone = '+244 241 000 000';
 }

@@ -31,16 +31,16 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
   template: `
     <main>
       <app-hero
-        posterSrc="/media/hero-poster.jpg"
+        posterSrc="https://images.pexels.com/photos/3997991/pexels-photo-3997991.jpeg?auto=format&fit=crop&w=1920&q=80"
         eyebrow="AFRODOURADO"
         headline="Natural é vida."
-        description="Cuidado especializado para a saúde, beleza e identidade do teu cabelo."
+        description="Cuidado especializado para a saúde, beleza e identidade do cabelo afro em Luanda e Huambo."
       >
         <app-pill-button href="/agendamento" variant="primary" size="lg">Agendar atendimento</app-pill-button>
         <app-pill-button href="#sobre" variant="secondary" size="lg">Descobrir a AfroDourado</app-pill-button>
       </app-hero>
 
-      <app-brand-story-reveal text="O teu cabelo conta uma história." imageSrc="/media/story.jpg" />
+      <app-brand-story-reveal text="O teu cabelo conta uma história. Nós ajudamos a escrevê-la com ciência, técnica e produtos naturais." imageSrc="https://images.pexels.com/photos/3997979/pexels-photo-3997979.jpeg?auto=format&fit=crop&w=800&q=80" />
 
       <app-pillars-sticky
         [images]="pillarImages"
@@ -48,8 +48,9 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
       />
 
       <app-trichology-preview
-        imageSrc="/media/trichology.jpg"
-        description="[[PENDENTE-CLIENTE]] <!-- TODO: aguardar validação AfroDourado -->"
+        imageSrc="https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=800&q=80"
+        description="Avaliação tricológica, terapia capilar, microagulhamento e tratamentos específicos para queda, quebra e crescimento."
+        [titleParts]="[{ text: 'Ciência para ', gold: false }, { text: 'compreender', gold: true }, { text: '. Cuidado para ', gold: false }, { text: 'transformar', gold: true }, { text: '.', gold: false }]"
       />
 
       <app-braids-gallery-preview [images]="braidsImages" />
@@ -68,9 +69,9 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
 })
 export class HomePage {
   readonly pillarImages = [
-    '/media/pillar-tricology.jpg',
-    '/media/pillar-braids.jpg',
-    '/media/pillar-products.jpg',
+    'https://images.pexels.com/photos/3997991/pexels-photo-3997991.jpeg?auto=format&fit=crop&w=600&q=80',
+    'https://images.pexels.com/photos/3997979/pexels-photo-3997979.jpeg?auto=format&fit=crop&w=600&q=80',
+    'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80',
   ];
 
   readonly pillars = [
@@ -80,35 +81,35 @@ export class HomePage {
   ];
 
   readonly braidsImages = [
-    '/media/braids-1.jpg',
-    '/media/braids-2.jpg',
-    '/media/braids-3.jpg',
-    '/media/braids-4.jpg',
+    'https://images.pexels.com/photos/3997991/pexels-photo-3997991.jpeg?auto=format&fit=crop&w=600&q=80',
+    'https://images.pexels.com/photos/3997979/pexels-photo-3997979.jpeg?auto=format&fit=crop&w=600&q=80',
+    'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80',
+    'https://images.pexels.com/photos/3997991/pexels-photo-3997991.jpeg?auto=format&fit=crop&w=600&q=80',
   ];
 
   readonly products = [
-    { name: 'Óleo Capilar Nutritivo', benefits: '[[PENDENTE-CLIENTE]]', image: '/media/product-1.jpg' },
-    { name: 'Shampoo Natural', benefits: '[[PENDENTE-CLIENTE]]', image: '/media/product-2.jpg' },
-    { name: 'Finalizador', benefits: '[[PENDENTE-CLIENTE]]', image: '/media/product-3.jpg' },
+    { name: 'Óleo Capilar Nutritivo', benefits: 'Hidrata profundamente, reduz quebra e facilita o desembaraço.', usage: 'Aplicar no couro cabeludo e comprimentos antes do shampoo.', image: 'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Shampoo Natural', benefits: 'Limpa suavemente sem ressecar, respeita a oleosidade natural.', usage: 'Massajar no couro cabeludo molhado e enxaguar abundantemente.', image: 'https://images.pexels.com/photos/3997979/pexels-photo-3997979.jpeg?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Finalizador', benefits: 'Define cachos e tranças, controla o frizz e protege da humidade.', usage: 'Aplicar uma pequena quantidade nas pontas e moldar com as mãos.', image: 'https://images.pexels.com/photos/3997991/pexels-photo-3997991.jpeg?auto=format&fit=crop&w=600&q=80' },
   ];
 
   readonly team = [
-    { name: '[[PENDENTE-CLIENTE]]', role: '[[PENDENTE-CLIENTE]]', photo: '/media/team-1.jpg' },
-    { name: '[[PENDENTE-CLIENTE]]', role: '[[PENDENTE-CLIENTE]]', photo: '/media/team-2.jpg' },
-    { name: '[[PENDENTE-CLIENTE]]', role: '[[PENDENTE-CLIENTE]]', photo: '/media/team-3.jpg' },
+    { name: 'Ana Luísa Mendes', role: 'Tricologista', bio: 'Especialista em avaliação capilar e tratamentos personalizados.', photo: 'https://images.pexels.com/photos/3997979/pexels-photo-3997979.jpeg?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Carlos Eduardo', role: 'Especialista em Tranças', bio: 'Técnico em penteados protectivos e tranças Nagô.', photo: 'https://images.pexels.com/photos/3997991/pexels-photo-3997991.jpeg?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Mariana Costa', role: 'Terapeuta Capilar', bio: 'Focada em hidratação profunda e recuperação de danos.', photo: 'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80' },
   ];
 
   readonly articles = [
-    { title: 'Queda capilar: o que precisa de saber', excerpt: '[[PENDENTE-CLIENTE]]', image: '/media/journal-1.jpg', slug: 'queda-capilar' },
-    { title: 'Cuidados com cabelo afro no dia a dia', excerpt: '[[PENDENTE-CLIENTE]]', image: '/media/journal-2.jpg', slug: 'cuidados-cabelo-afro' },
-    { title: 'Tranças: estilo e protecção', excerpt: '[[PENDENTE-CLIENTE]]', image: '/media/journal-3.jpg', slug: 'trancas-estilo-proteccao' },
+    { title: 'Queda capilar: quando procurar ajuda', excerpt: 'Entenda os sinais que indicam a necessidade de uma avaliação tricológica.', image: 'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80', slug: 'queda-capilar' },
+    { title: 'Rotina de cuidados para cabelo afro no dia a dia', excerpt: 'Dicas práticas para manter a hidratação e definição entre consultas.', image: 'https://images.pexels.com/photos/3997979/pexels-photo-3997979.jpeg?auto=format&fit=crop&w=600&q=80', slug: 'cuidados-cabelo-afro' },
+    { title: 'Tranças: estilo, protecção e identidade', excerpt: 'Como os penteados protectivos podem fortalecer o cabelo e expressar cultura.', image: 'https://images.pexels.com/photos/3997991/pexels-photo-3997991.jpeg?auto=format&fit=crop&w=600&q=80', slug: 'trancas-estilo-proteccao' },
   ];
 
   readonly faqItems = [
-    { id: 1, label: 'Qual é o valor de uma consulta de tricologia?', content: '[[PENDENTE-CLIENTE]]' },
-    { id: 2, label: 'Posso fazer tranças com queda capilar?', content: '[[PENDENTE-CLIENTE]]' },
-    { id: 3, label: 'Os produtos são veganos?', content: '[[PENDENTE-CLIENTE]]' },
-    { id: 4, label: 'Existe cuidados prévios para a consulta?', content: '[[PENDENTE-CLIENTE]]' },
-    { id: 5, label: 'A unidade do Huambo oferece os mesmos serviços?', content: '[[PENDENTE-CLIENTE]]' },
+    { id: 1, label: 'Qual é o valor de uma consulta de tricologia?', content: 'Os valores variam conforme o tratamento. Durante a primeira consulta, a tricologista avalia o seu caso e apresenta o plano e os valores antes de qualquer procedimento.' },
+    { id: 2, label: 'Posso fazer tranças se estiver a apresentar queda capilar?', content: 'Sim, desde que seja avaliada previamente. A nossa equipa analisa o estado do cabelo e do couro cabeludo e indica o estilo mais adequado para não agravar a queda.' },
+    { id: 3, label: 'Os produtos e cosméticos utilizados são veganos e livres de crueldade animal?', content: 'Trabalhamos com marcas que oferecem opções veganas e cruelty-free. Na consulta, indicamos os produtos mais indicados para o seu tipo de cabelo e valores.' },
+    { id: 4, label: 'Existe algum cuidado prévio necessário antes da consulta tricológica?', content: 'Recomendamos não aplicar óleos, cremes ou químicos nos dois dias anteriores à consulta, para que a avaliação seja precisa.' },
+    { id: 5, label: 'A unidade do Huambo oferece exactamente os mesmos serviços de Luanda?', content: 'Sim. Ambas as unidades partilham a mesma equipa técnica, protocolos de avaliação e linha de produtos.' },
   ];
 }

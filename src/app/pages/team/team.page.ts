@@ -1,4 +1,4 @@
-import { Component, input, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { SectionHeadingComponent } from '@app/shared/ui/section-heading/section-heading.component';
 import { SmartImageComponent } from '@app/media/smart-image/smart-image.component';
 
@@ -50,6 +50,7 @@ import { SmartImageComponent } from '@app/media/smart-image/smart-image.componen
       font-size: var(--text-small);
       margin: 0;
       opacity: 0.7;
+      font-weight: 600;
     }
     .bio {
       font-size: var(--text-small);
@@ -66,8 +67,8 @@ import { SmartImageComponent } from '@app/media/smart-image/smart-image.componen
 })
 export class TeamPage {
   readonly members = [
-    { name: '[[PENDENTE-CLIENTE]]', role: '[[PENDENTE-CLIENTE]]', bio: '[[PENDENTE-CLIENTE]]', photo: '/media/team-1.jpg' },
-    { name: '[[PENDENTE-CLIENTE]]', role: '[[PENDENTE-CLIENTE]]', bio: '[[PENDENTE-CLIENTE]]', photo: '/media/team-2.jpg' },
-    { name: '[[PENDENTE-CLIENTE]]', role: '[[PENDENTE-CLIENTE]]', bio: '[[PENDENTE-CLIENTE]]', photo: '/media/team-3.jpg' },
+    { name: 'Ana Luísa Mendes', role: 'Tricologista', bio: 'Especialista em avaliação capilar e tratamentos personalizados para queda, quebra e crescimento.', photo: 'https://images.pexels.com/photos/3997979/pexels-photo-3997979.jpeg?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Carlos Eduardo', role: 'Especialista em Tranças', bio: 'Técnico em penteados protectivos, tranças Nagô e estética capilar.', photo: 'https://images.pexels.com/photos/3997991/pexels-photo-3997991.jpeg?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Mariana Costa', role: 'Terapeuta Capilar', bio: 'Focada em hidratação profunda, recuperação de danos e rotinas de cuidado em casa.', photo: 'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80' },
   ];
 }
