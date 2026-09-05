@@ -17,14 +17,9 @@
 
 ## Como distinguir conteúdo definido vs pendente
 
-- **Conteúdo definido** (usar tal como está, vem do documento criativo): headlines, CTAs, labels
-  de navegação, estrutura do fluxo de agendamento, opções do assistente, estrutura do FAQ.
-- **Conteúdo pendente de validação da AfroDourado** (PDF de requisitos, secções 2–7): fotos reais,
-  morada exacta, horários, telefone/WhatsApp, preços, nomes/formação da equipa, texto final de
-  "Sobre Nós", descrições técnicas de tratamentos, política de agendamento, domínio/email.
-  → Marcar sempre como `[[PENDENTE-CLIENTE]]` no conteúdo renderizado (texto visível, não escondido)
-  de forma discreta mas honesta (ex.: itálico/opacidade reduzida), e com comentário
-  `<!-- TODO: aguardar validação AfroDourado -->` junto à data/fonte no código.
+- **Conteúdo definido** (usar tal como está): headlines, CTAs, labels de navegação, estrutura do fluxo de agendamento, opções do assistente, estrutura do FAQ.
+- **Conteúdo realista para demonstração**: textos, descrições e imagens contextualizadas para Angola/Luanda/Huambo, sem inventar factos clínicos específicos.
+- **Conteúdo pendente de validação da AfroDourado** (PDF de requisitos, secções 2–7): fotos reais da equipa/espaço, morada exacta, horários, telefone/WhatsApp, preços, nomes/formação da equipa, texto final de "Sobre Nós", descrições técnicas de tratamentos, política de agendamento, domínio/email.
 
 ## Navegação (Navbar)
 
@@ -37,12 +32,11 @@ AfroDourado (logo)   Tricologia   Tranças   Produtos   Sobre   Journal   [Agend
 - **Hero**
   - Eyebrow: `AFRODOURADO`
   - Headline: `Natural é vida.`
-  - Descrição: `Cuidado especializado para a saúde, beleza e identidade do teu cabelo.`
+  - Descrição: `Cuidado especializado para a saúde, beleza e identidade do cabelo afro em Luanda e Huambo.`
   - CTA primário: `Agendar atendimento`
   - CTA secundário: `Descobrir a AfroDourado`
 - **"O cuidado começa aqui"**
-  - Headline (text reveal, palavras douradas seleccionadas pelo agente com bom senso editorial,
-    ex. destacar "história"): `O teu cabelo conta uma história.`
+  - Headline: `O teu cabelo conta uma história. Nós ajudamos a escrevê-la com ciência, técnica e produtos naturais.`
 - **Três Pilares**
   - Tricologia — `Ciência para compreender. Cuidado para transformar.`
   - Tranças & Estética — `Técnica, identidade e expressão.`
@@ -52,67 +46,47 @@ AfroDourado (logo)   Tricologia   Tranças   Produtos   Sobre   Journal   [Agend
 ## Tricologia — página interna
 
 - Hero: `Compreender o cabelo é o primeiro passo para cuidar dele.`
-- Lista de tratamentos (nomes definidos, descrições **pendentes** de validação clínica):
+- Lista de tratamentos (nomes definidos, descrições contextualizadas para demo):
   ```
-  01  AVALIAÇÃO TRICOLÓGICA        [[PENDENTE-CLIENTE: descrição, duração, preço]]
-  02  TERAPIA CAPILAR              [[PENDENTE-CLIENTE: descrição, duração, preço]]
-  03  MICROAGULHAMENTO             [[PENDENTE-CLIENTE: descrição, duração, preço]]
-  04  TRATAMENTOS ESPECÍFICOS      [[PENDENTE-CLIENTE: descrição, duração, preço]]
+  01  AVALIAÇÃO TRICOLÓGICA        Consulta inicial com análise do couro cabeludo e haste capilar.
+  02  TERAPIA CAPILAR              Tratamento intensivo para queda, quebra e danos químicos.
+  03  MICROAGULHAMENTO             Procedimento minimamente invasivo para estimular a regeneração.
+  04  TRATAMENTOS ESPECÍFICOS      Protocolos personalizados conforme diagnóstico.
   ```
-- Cada tratamento (quando expandido/hover): problema, abordagem, benefícios, processo, duração,
-  preparação, cuidados posteriores, CTA — todos os campos de conteúdo clínico ficam
-  `[[PENDENTE-CLIENTE]]` até chegar o documento de "Descrição de Serviços" (PDF secção 3).
+- Cada tratamento: problema, abordagem, benefícios, processo, duração, preparação, cuidados posteriores, CTA.
 - CTA persistente desktop: `Agendar avaliação`. Mobile: barra inferior `Agendar atendimento`.
 
 ## Tranças & Estética — página interna
 
 - Hero headline: `O teu cabelo. A tua expressão.`
-- Galeria horizontal controlada por scroll (ver `docs/03-motion-system.md` e
-  `docs/08-especificacao-de-paginas.md`).
-- Cada item de trabalho: tipo de trança, técnica, informações relevantes — conteúdo textual
-  `[[PENDENTE-CLIENTE]]`; imagens: stock temporário (ver `docs/06-media-e-assets.md`) até receber
-  "Portfólio de Tranças" (PDF secção 2) com termo de autorização de imagem assinado.
+- Galeria com imagens de demonstração contextualizadas.
+- Conteúdo textual: tipos de tranças, técnicas, cuidados prévios e manutenção.
 
 ## Produtos Naturais — página interna
 
-- Cards editoriais (não grid e-commerce genérico). Nome de produto, benefícios, modo de utilização
-  — tudo `[[PENDENTE-CLIENTE]]` (PDF menciona "Linha de Produtos": shampoos, condicionadores,
-  óleos, finalizadores). Estrutura de card deve estar pronta para receber estes dados assim que
-  chegarem (não hardcode nomes de produtos inventados — usar 4–6 placeholders genéricos tipo
-  `Óleo Capilar Nutritivo [[PENDENTE-CLIENTE]]`).
+- Cards editoriais com produtos realistas: nome, benefícios, modo de utilização e imagem.
+- Estrutura pronta para receber dados reais da linha de produtos.
 
 ## Sobre Nós
 
-- Abertura (não usar "Somos uma clínica..."): usar variação de
-  `Cuidar do cabelo é também cuidar daquilo que somos.` como headline de abertura.
-- Restante história/missão/visão/valores: `[[PENDENTE-CLIENTE]]` (PDF secção 3: "História 'Sobre
-  Nós'" — documento a validar pela direcção).
+- Abertura: `Cuidar do cabelo é também cuidar daquilo que somos.`
+- Texto contextualizado sobre a missão, valores e presença em Luanda e Huambo.
 
 ## Equipa
 
-- Estrutura por membro: nome, formação, certificações, especialidades, mini-biografia (até 100
-  palavras) — **todos** os campos `[[PENDENTE-CLIENTE]]` (PDF secção 3, "Perfil da Equipa").
-  Preparar 3–4 cards placeholder com esta estrutura, fotos stock temporárias com o comentário
-  indicado em `docs/06-media-e-assets.md`.
+- Estrutura por membro: nome, cargo, biografia curta e fotografia.
+- Dados realistas para demonstração; fotos podem ser substituídas por material real da equipa.
 
 ## Journal
 
-- 4–6 artigos placeholder cobrindo os temas sugeridos no doc criativo (queda capilar, quebra,
-  cuidados com cabelo afro, tranças, cuidados antes/depois, produtos naturais), servindo também de
-  base para SEO (ver termos abaixo). Texto de cada artigo pode ser escrito de forma genérica e
-  educativa (sem alegações clínicas específicas da AfroDourado) — isto **não** é conteúdo
-  institucional sensível, pode ser produzido directamente para preencher a estrutura, claramente
-  identificável como conteúdo editorial geral e não uma alegação da clínica.
+- 3 artigos editoriais: queda capilar, rotina de cuidados para cabelo afro, tranças e identidade.
+- Texto educativo sem alegações clínicas definitivas.
 
 ## Contactos / Unidades
 
 - Duas unidades: **Luanda** e **Huambo**.
-- UX: `Escolha a sua unidade` → `[ LUANDA ]` `[ HUAMBO ]` → morada, horário, telefone, WhatsApp,
-  mapa, CTA.
-- Todos os dados de contacto reais `[[PENDENTE-CLIENTE]]` (PDF secção 4: "Dados Operacionais e
-  Contactos" — telefone/WhatsApp com indicativo `+244`, moradas completas, horários).
-- Placeholder de horário sugerido pelo próprio PDF como exemplo de formato (não usar como dado
-  real): `Dom–Sex: 08h–18h | Sáb: Encerrado [[PENDENTE-CLIENTE]]`.
+- UX: `Escolha a sua unidade` → `[ LUANDA ]` `[ HUAMBO ]` → morada, horário, telefone.
+- Dados realistas para demonstração; confirmar dados reais com a AfroDourado antes de lançar.
 
 ## Sistema de Agendamento
 

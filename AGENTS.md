@@ -56,7 +56,7 @@ visual tem de ser 100% autoral, feita com Tailwind + componentes próprios.
    em still de clínica genérica). Segue os termos de pesquisa dados em `docs/06-media-e-assets.md`
    (texturas de cabelo afro, produtos naturais, mãos, ambiente wellness/verde-dourado).
 3. **A cor dourada é acento, nunca fundo dominante.** Ver `docs/01-identidade-de-marca.md`.
-4. **Um único `SmoothScrollProvider`** (Lenis) — nunca instanciar Lenis mais que uma vez.
+4. **Um único `SmoothScrollService`** (Lenis) — nunca instanciar Lenis mais que uma vez.
 5. **`prefers-reduced-motion`** tem de ser respeitado em 100% das animações GSAP/CSS.
 6. **Mobile não é o desktop encolhido** — cada secção tem de ter o seu comportamento mobile definido
    (ver `docs/08-especificacao-de-paginas.md`).
@@ -66,6 +66,17 @@ visual tem de ser 100% autoral, feita com Tailwind + componentes próprios.
    nunca bloquear o LCP do Hero.
 10. Antes de dar uma tarefa por concluída, correr o checklist de qualidade em
     `docs/11-roadmap-de-execucao.md` secção "Definition of Done".
+
+## 3.1 Estado actual do projecto (versão de demonstração)
+
+- **Conteúdo**: replace de placeholders por copy realista contextualizada para Angola/Luanda/Huambo.
+- **Imagens**: URLs do Pexels (cabelo afro, produtos naturais, tricologia) para apresentação ao cliente.
+- **Contactos**: dados de demonstração (+244 923 000 000 / +244 241 000 000) até validação real.
+- **Equipa**: perfis realistas com fotos stock temporárias; substituir por fotos reais quando disponíveis.
+- **Journal**: 3 artigos editoriais com conteúdo educativo sem alegações clínicas definitivas.
+- **FAQ**: respostas curtas e seguras, terminando sempre com "fale com a nossa equipa".
+- **Scroll**: Lenis com loop RAF próprio, integrado com GSAP ScrollTrigger.
+- **Build**: `npm run build` compila sem erros; SSR activo em `dist/afro_dourado/server`.
 
 ## 4. Como trabalhar (fluxo recomendado)
 
