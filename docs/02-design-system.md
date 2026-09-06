@@ -11,16 +11,16 @@
 
 @theme {
   /* Cor — ver docs/01-identidade-de-marca.md */
-  --color-brand-green-900: #0E3B31;
-  --color-brand-green-700: #164F42;
-  --color-brand-gold-500: #C7A24B;
-  --color-brand-gold-300: #DFC383;
-  --color-cream-50: #F7F3EC;
+  --color-brand-green-900: #0e3b31;
+  --color-brand-green-700: #164f42;
+  --color-brand-gold-500: #c7a24b;
+  --color-brand-gold-300: #dfc383;
+  --color-cream-50: #f7f3ec;
   --color-ink-900: #101410;
 
   /* Tipografia */
-  --font-display: "Instrument Serif", "Cormorant Garamond", serif;
-  --font-sans: "Manrope", "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Instrument Serif', 'Cormorant Garamond', serif;
+  --font-sans: 'Manrope', 'Geist', ui-sans-serif, system-ui, sans-serif;
 
   /* Escala tipográfica fluida (clamp) */
   --text-display-xl: clamp(3rem, 2rem + 5vw, 7rem);
@@ -36,8 +36,8 @@
   --space-container-x: clamp(1.25rem, 1rem + 3vw, 5rem);
 
   /* Motion durations/easing tokens — espelham docs/03-motion-system.md */
-  --ease-out-3: cubic-bezier(0.22, 1, 0.36, 1);   /* power3.out equivalente */
-  --ease-out-4: cubic-bezier(0.16, 1, 0.3, 1);    /* power4.out / expo.out equivalente */
+  --ease-out-3: cubic-bezier(0.22, 1, 0.36, 1); /* power3.out equivalente */
+  --ease-out-4: cubic-bezier(0.16, 1, 0.3, 1); /* power4.out / expo.out equivalente */
   --duration-micro: 220ms;
   --duration-ui: 550ms;
   --duration-cinematic: 1200ms;
@@ -73,7 +73,9 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -104,10 +106,11 @@ Display M   → var(--text-display-m)   font-display  → Sub-título editorial
 Heading     → var(--text-heading)     font-sans/bold → título de card/serviço
 Body        → var(--text-body)        font-sans      → parágrafo
 Small       → var(--text-small)       font-sans      → legendas, meta info
-Caption     → var(--text-caption)     font-sans uppercase tracking-widest → eyebrow labels (ex. "AFRODOURADO", "01")
+Caption     → var(--text-caption)     font-sans uppercase tracking-widest → eyebrow labels (ex. "Afro Dourado", "01")
 ```
 
 Regras:
+
 - Títulos grandes (`Display *`) usam sempre `font-display` (serifada) — nunca a sans na hierarquia
   de destaque, para não perder o carácter editorial.
 - `line-height` generoso em display (`leading-[1.05]` a `leading-[1.15]`), nunca `leading-none`
@@ -122,7 +125,7 @@ Dois estilos apenas (não criar variantes extra sem necessidade):
 - **Primário** (`Agendar atendimento`): pill (`rounded-[var(--radius-pill)]`), fundo
   `brand-green-900`, texto creme, hover: fundo `brand-gold-500` + texto `ink-900`, transição
   `var(--duration-micro)` com `var(--ease-out-3)`.
-- **Secundário/outline** (`Falar com a AfroDourado`, `Descobrir a AfroDourado`): borda 1px
+- **Secundário/outline** (`Falar com a Afro Dourado`, `Descobrir a Afro Dourado`): borda 1px
   `brand-gold-500`, texto herda cor do fundo, hover: preenche fundo com opacidade baixa de dourado.
 
 CTA global mobile: barra fixa inferior, `safe-area-inset-bottom`, fundo `brand-green-900`,

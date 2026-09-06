@@ -13,6 +13,48 @@
   no `.ts`.
 - Texto sempre em português (Angola/Portugal) — nenhum i18n multi-idioma é pedido nesta fase.
 
+## Estrutura de assets e pasta `public/`
+
+Além de `public/` (favicons, PWA, ícones, manifest), o projecto inclui também a pasta `logo/`
+na raiz para ficheiros de marca de alta resolução. Ambas as pastas estão configuradas em
+`angular.json` como assets do build.
+
+```
+public/
+  favicon.ico
+  favicon-*.png
+  apple-touch-icon.png
+  icon-*.png
+  icon-*-maskable.png
+  site.webmanifest
+  textures/
+
+logo/
+  AfroDourado-logo-transparente.png
+  AfroDourado-simbolo-transparente.png
+```
+
+## Estrutura de assets e pasta `public/`
+
+Além de `public/` (favicons, PWA, ícones, manifest), o projecto inclui também a pasta `logo/`
+na raiz para ficheiros de marca de alta resolução. Ambas as pastas estão configuradas em
+`angular.json` como assets do build.
+
+```
+public/
+  favicon.ico
+  favicon-*.png
+  apple-touch-icon.png
+  icon-*.png
+  icon-*-maskable.png
+  site.webmanifest
+  textures/
+
+logo/
+  AfroDourado-logo-transparente.png
+  AfroDourado-simbolo-transparente.png
+```
+
 ## Estrutura de pastas (`src/app/`)
 
 ```

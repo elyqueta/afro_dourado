@@ -1,4 +1,13 @@
-import { Component, input, signal, inject, AfterViewInit, OnDestroy, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  input,
+  signal,
+  inject,
+  AfterViewInit,
+  OnDestroy,
+  ElementRef,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { SmoothScrollService } from '@app/core/smooth-scroll.service';
 import { GsapService } from '@app/core/gsap.service';
 import { SmartImageComponent } from '@app/media/smart-image/smart-image.component';
@@ -15,7 +24,7 @@ import { BadgeNumberComponent } from '@app/shared/ui/badge-number/badge-number.c
           <div class="media">
             <app-smart-image
               [src]="images()[activeIndex()]"
-              alt="Pilar AfroDourado"
+              alt="Pilar Afro Dourado"
               aspectRatio="3 / 4"
             />
           </div>
@@ -33,47 +42,49 @@ import { BadgeNumberComponent } from '@app/shared/ui/badge-number/badge-number.c
     </section>
   `,
   imports: [SmartImageComponent, BadgeNumberComponent],
-  styles: [`
-    .section {
-      background-color: var(--color-cream-50);
-    }
-    .sticky-wrap {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      align-items: start;
-    }
-    .media {
-      overflow: hidden;
-      border-radius: var(--radius-card);
-    }
-    .pillar {
-      padding-block: 2rem;
-      border-bottom: 1px solid rgba(14, 59, 49, 0.08);
-    }
-    .pillar.active .title {
-      color: var(--color-brand-gold-500);
-    }
-    .title {
-      font-family: var(--font-display);
-      font-size: var(--text-display-m);
-      margin: 0.5rem 0 0.75rem;
-      transition: color var(--duration-ui) var(--ease-out-3);
-    }
-    .desc {
-      font-size: var(--text-body);
-      line-height: 1.6;
-      margin: 0;
-      max-width: 56ch;
-    }
-    @media (min-width: 1024px) {
-      .sticky-wrap {
-        grid-template-columns: 1fr 1fr;
-        position: sticky;
-        top: 96px;
+  styles: [
+    `
+      .section {
+        background-color: var(--color-cream-50);
       }
-    }
-  `]
+      .sticky-wrap {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        align-items: start;
+      }
+      .media {
+        overflow: hidden;
+        border-radius: var(--radius-card);
+      }
+      .pillar {
+        padding-block: 2rem;
+        border-bottom: 1px solid rgba(14, 59, 49, 0.08);
+      }
+      .pillar.active .title {
+        color: var(--color-brand-gold-500);
+      }
+      .title {
+        font-family: var(--font-display);
+        font-size: var(--text-display-m);
+        margin: 0.5rem 0 0.75rem;
+        transition: color var(--duration-ui) var(--ease-out-3);
+      }
+      .desc {
+        font-size: var(--text-body);
+        line-height: 1.6;
+        margin: 0;
+        max-width: 56ch;
+      }
+      @media (min-width: 1024px) {
+        .sticky-wrap {
+          grid-template-columns: 1fr 1fr;
+          position: sticky;
+          top: 96px;
+        }
+      }
+    `,
+  ],
 })
 export class PillarsStickyComponent implements AfterViewInit, OnDestroy {
   private readonly gsap = inject(GsapService);
@@ -96,7 +107,7 @@ export class PillarsStickyComponent implements AfterViewInit, OnDestroy {
       onUpdate: (self) => {
         const idx = Math.min(
           Math.floor(self.progress * this.pillars().length),
-          this.pillars().length - 1
+          this.pillars().length - 1,
         );
         this.activeIndex.set(idx);
       },
@@ -104,7 +115,7 @@ export class PillarsStickyComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.gsap.scrollTrigger.getAll().forEach(t => t.kill());
+    this.gsap.scrollTrigger.getAll().forEach((t) => t.kill());
   }
 
   constructor(private readonly el: ElementRef<HTMLElement>) {}

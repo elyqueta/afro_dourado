@@ -13,8 +13,7 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
       <div class="container-max">
         <div class="grid">
           <div class="col">
-            <span class="logo">Afro<span class="gold">Dourado</span></span>
-            <p class="tagline">Natural é vida.</p>
+            <img src="/AfroDourado-logo-transparente.png" alt="AfroDourado" class="logo-img" />
             <app-organic-divider />
             <p class="description">Cuidado especializado para a saúde, beleza e identidade do cabelo afro em Luanda e Huambo.</p>
           </div>
@@ -54,20 +53,9 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
       grid-template-columns: repeat(2, 1fr);
       gap: 2.5rem;
     }
-    .logo {
-      font-family: var(--font-display);
-      font-size: var(--text-display-m);
-    }
-    .logo .gold {
-      color: var(--color-brand-gold-500);
-    }
-    .tagline {
-      margin-top: 0.5rem;
-      font-family: var(--font-sans);
-      font-size: var(--text-small);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      opacity: 0.7;
+    .logo-img {
+      height: 48px;
+      width: auto;
     }
     .description {
       margin-top: 1rem;

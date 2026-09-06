@@ -2,12 +2,12 @@
 
 ## Objectivo do produto
 
-Criar a presença digital da **AfroDourado**, clínica capilar e de estética (Tricologia, Tranças &
+Criar a presença digital da **Afro Dourado**, clínica capilar e de estética (Tricologia, Tranças &
 Estética, Produtos Naturais) com unidades em **Luanda** e **Huambo**. O website deve funcionar como
 motor de conversão (agendamentos) e como demonstração de autoridade/qualidade da marca.
 
-Fonte original da direcção criativa: documento interno *"AfroDourado — Direcção Criativa, UX/UI e
-Especificação de Experiência Digital"*. Este `docs/` é a tradução operacional desse documento para
+Fonte original da direcção criativa: documento interno _"Afro Dourado — Direcção Criativa, UX/UI e
+Especificação de Experiência Digital"_. Este `docs/` é a tradução operacional desse documento para
 a stack real do projecto (Angular 22 + SSR + Tailwind v4), pronta a ser executada por um agente.
 
 ## Os três testes de qualidade (aplicar a cada página)

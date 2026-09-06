@@ -38,9 +38,10 @@ rota. Páginas `Prerender` ficam como HTML estático servido via CDN da Vercel (
 
 ## Domínio
 
-O domínio final (`afrodourado.co.ao` ou `afrodourado.ao`, conforme PDF de requisitos secção 7)
-ainda não está definido/confirmado pela AfroDourado. Até lá, usar o domínio de preview da Vercel.
+O domínio final (`Afro Dourado.co.ao` ou `Afro Dourado.ao`, conforme PDF de requisitos secção 7)
+ainda não está definido/confirmado pela Afro Dourado. Até lá, usar o domínio de preview da Vercel.
 Quando o domínio for confirmado, associá-lo em Vercel → Settings → Domains, e actualizar:
+
 - `<link rel="canonical">` / URLs absolutos usados em SEO (`docs/09`)
 - `sitemap.xml` / `robots.txt`
 - Qualquer URL absoluta usada em Open Graph

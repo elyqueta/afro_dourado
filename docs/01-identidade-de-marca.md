@@ -2,7 +2,7 @@
 
 > Base: ficheiro de logótipo fornecido (`Afro Dourado — "NATURAL É VIDA!"`).
 > Estes valores são uma **extracção visual do logótipo enviado**, para servir de fundação imediata
-> ao design system. Se a AfroDourado fornecer um manual de marca oficial (o PDF de requisitos pede
+> ao design system. Se a Afro Dourado fornecer um manual de marca oficial (o PDF de requisitos pede
 > o ficheiro vectorial SVG/EPS/PDF do logótipo), estes tokens devem ser actualizados sem alterar a
 > estrutura do design system (ver `docs/02-design-system.md`).
 
@@ -28,15 +28,15 @@
 
 Usar como tokens CSS (`@theme` no Tailwind v4 — ver `docs/02-design-system.md`).
 
-| Token | Hex aproximado | Uso |
-|---|---|---|
-| `--color-brand-green-900` | `#0E3B31` | Verde profundo principal (símbolo, wordmark "Afro", fundos imersivos — ex. secção Tricologia) |
-| `--color-brand-green-700` | `#164F42` | Verde secundário, hovers, gradientes subtis sobre o verde 900 |
-| `--color-brand-gold-500` | `#C7A24B` | Dourado principal (wordmark "Dourado", acentos, linhas, CTAs secundários) |
-| `--color-brand-gold-300` | `#DFC383` | Dourado claro (hover de dourado sobre fundo escuro, texto dourado sobre verde) |
-| `--color-cream-50` | `#F7F3EC` | Fundo claro principal (secções editoriais, cards) — nunca branco puro |
-| `--color-white` | `#FFFFFF` | Fundos de produto/imagem isolada, nunca fundo de secção de texto longo |
-| `--color-ink-900` | `#101410` | "Preto suave" para texto em fundo claro (nunca `#000`) |
+| Token                     | Hex aproximado | Uso                                                                                           |
+| ------------------------- | -------------- | --------------------------------------------------------------------------------------------- |
+| `--color-brand-green-900` | `#0E3B31`      | Verde profundo principal (símbolo, wordmark "Afro", fundos imersivos — ex. secção Tricologia) |
+| `--color-brand-green-700` | `#164F42`      | Verde secundário, hovers, gradientes subtis sobre o verde 900                                 |
+| `--color-brand-gold-500`  | `#C7A24B`      | Dourado principal (wordmark "Dourado", acentos, linhas, CTAs secundários)                     |
+| `--color-brand-gold-300`  | `#DFC383`      | Dourado claro (hover de dourado sobre fundo escuro, texto dourado sobre verde)                |
+| `--color-cream-50`        | `#F7F3EC`      | Fundo claro principal (secções editoriais, cards) — nunca branco puro                         |
+| `--color-white`           | `#FFFFFF`      | Fundos de produto/imagem isolada, nunca fundo de secção de texto longo                        |
+| `--color-ink-900`         | `#101410`      | "Preto suave" para texto em fundo claro (nunca `#000`)                                        |
 
 **Regra de uso do dourado**: acento, nunca fundo dominante de secção inteira (linhas, ícones,
 texto em destaque, bordas finas, CTA secundário/outline). Fundos dominantes: verde profundo
@@ -66,6 +66,7 @@ texto em destaque, bordas finas, CTA secundário/outline). Fundos dominantes: ve
 
 Extrair/recriar em SVG um traço fino orgânico dourado com 1–2 folhas, inspirado no elemento do
 logótipo, para usar como:
+
 - separador de secção (fino, subtil, opacidade baixa);
 - elemento decorativo perto de headlines (nunca centrado a competir com o texto);
 - acento em states de loading inicial (ver `docs/03-motion-system.md`).

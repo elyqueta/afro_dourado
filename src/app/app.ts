@@ -30,7 +30,7 @@ export class App {
   private readonly smoothScroll = inject(SmoothScrollService);
   private readonly gsap = inject(GsapService);
 
-  readonly title = signal('AfroDourado');
+  readonly title = signal('Afro Dourado');
 
   constructor() {
     if (typeof window !== 'undefined') {

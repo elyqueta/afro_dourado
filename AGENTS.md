@@ -1,4 +1,4 @@
-# AGENTS.md — Instruções para o agente (Kilo Code) — Website AfroDourado
+# AGENTS.md — Instruções para o agente (Kilo Code) — Website Afro Dourado
 
 > Este ficheiro é o ponto de entrada para qualquer agente de IA (Kilo Code, Claude Code, etc.) que
 > trabalhe neste repositório. Lê este ficheiro por completo antes de escrever qualquer código.
@@ -9,10 +9,10 @@
 Actua como um **developer frontend sénior**, especialista em Angular, Tailwind CSS, motion design
 (GSAP + Lenis) e experiência de utilizador premium. O objectivo não é "um site bonito" — é uma
 **experiência digital de marca**, ao nível de um estúdio de branding/interactive, para a clínica
-capilar e de estética **AfroDourado** (Luanda + Huambo, Angola).
+capilar e de estética **Afro Dourado** (Luanda + Huambo, Angola).
 
 Frase-guia (ver `docs/00-visao-e-principios.md`): o utilizador deve sentir
-*"Isto não parece um site de uma clínica"* → *"Isto parece uma marca de luxo que entende cabelo"* → *"Quero marcar."*
+_"Isto não parece um site de uma clínica"_ → _"Isto parece uma marca de luxo que entende cabelo"_ → _"Quero marcar."_
 
 ## 1. Stack já instalada (não mudar sem necessidade)
 
@@ -49,9 +49,9 @@ visual tem de ser 100% autoral, feita com Tailwind + componentes próprios.
 ## 3. Regras não-negociáveis
 
 1. **Nunca inventar factos institucionais**: preços, morada exacta, horários, nomes da equipa,
-   certificações, resultados clínicos. Onde a informação não foi validada pela AfroDourado
+   certificações, resultados clínicos. Onde a informação não foi validada pela Afro Dourado
    (ver `docs/07-mapa-do-site-e-conteudo.md`), usar exactamente o texto placeholder marcado com
-   `[[PENDENTE-CLIENTE]]` e um comentário `<!-- TODO: aguardar validação AfroDourado -->` no código.
+   `[[PENDENTE-CLIENTE]]` e um comentário `<!-- TODO: aguardar validação Afro Dourado -->` no código.
 2. **Nunca usar fotos de stock genéricas "corporate"** (sorrisos de banco de imagem, mãos brancas
    em still de clínica genérica). Segue os termos de pesquisa dados em `docs/06-media-e-assets.md`
    (texturas de cabelo afro, produtos naturais, mãos, ambiente wellness/verde-dourado).

@@ -12,47 +12,62 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
   template: `
     <section class="section section-y">
       <div class="container-max">
-        <app-section-heading eyebrow="Tranças & Estética" title="O teu cabelo. A tua expressão." size="display-m" />
+        <app-section-heading
+          eyebrow="Tranças & Estética"
+          title="O teu cabelo. A tua expressão."
+          size="display-m"
+        />
         <div class="gallery">
           @for (img of images(); track $index) {
             <div class="item">
-              <app-smart-image [src]="img" alt="Galeria de tranças AfroDourado" aspectRatio="3 / 4" />
+              <app-smart-image
+                [src]="img"
+                alt="Galeria de tranças Afro Dourado"
+                aspectRatio="3 / 4"
+              />
             </div>
           }
         </div>
         <div class="cta">
-           <app-pill-button href="/trancas-estetica" variant="secondary" size="md" label="Ver galeria &rarr;"></app-pill-button>
+          <app-pill-button
+            href="/trancas-estetica"
+            variant="secondary"
+            size="md"
+            label="Ver galeria &rarr;"
+          ></app-pill-button>
         </div>
       </div>
     </section>
   `,
-  styles: [`
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin-top: 2rem;
-      overflow-x: auto;
-    }
-    .item {
-      border-radius: var(--radius-card);
-      overflow: hidden;
-    }
-    .item:first-child {
-      grid-column: span 2;
-    }
-    @media (min-width: 768px) {
+  styles: [
+    `
       .gallery {
-        grid-template-columns: repeat(4, 1fr);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-top: 2rem;
+        overflow-x: auto;
+      }
+      .item {
+        border-radius: var(--radius-card);
+        overflow: hidden;
       }
       .item:first-child {
         grid-column: span 2;
       }
-    }
-    .cta {
-      margin-top: 2rem;
-    }
-  `]
+      @media (min-width: 768px) {
+        .gallery {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .item:first-child {
+          grid-column: span 2;
+        }
+      }
+      .cta {
+        margin-top: 2rem;
+      }
+    `,
+  ],
 })
 export class BraidsGalleryPreviewComponent {
   readonly images = input.required<string[]>();

@@ -19,22 +19,22 @@
 
 - **Conteúdo definido** (usar tal como está): headlines, CTAs, labels de navegação, estrutura do fluxo de agendamento, opções do assistente, estrutura do FAQ.
 - **Conteúdo realista para demonstração**: textos, descrições e imagens contextualizadas para Angola/Luanda/Huambo, sem inventar factos clínicos específicos.
-- **Conteúdo pendente de validação da AfroDourado** (PDF de requisitos, secções 2–7): fotos reais da equipa/espaço, morada exacta, horários, telefone/WhatsApp, preços, nomes/formação da equipa, texto final de "Sobre Nós", descrições técnicas de tratamentos, política de agendamento, domínio/email.
+- **Conteúdo pendente de validação da Afro Dourado** (PDF de requisitos, secções 2–7): fotos reais da equipa/espaço, morada exacta, horários, telefone/WhatsApp, preços, nomes/formação da equipa, texto final de "Sobre Nós", descrições técnicas de tratamentos, política de agendamento, domínio/email.
 
 ## Navegação (Navbar)
 
 ```
-AfroDourado (logo)   Tricologia   Tranças   Produtos   Sobre   Journal   [Agendar]
+Afro Dourado (logo)   Tricologia   Tranças   Produtos   Sobre   Journal   [Agendar]
 ```
 
 ## Home — headlines e textos definidos
 
 - **Hero**
-  - Eyebrow: `AFRODOURADO`
+  - Eyebrow: `Afro Dourado`
   - Headline: `Natural é vida.`
   - Descrição: `Cuidado especializado para a saúde, beleza e identidade do cabelo afro em Luanda e Huambo.`
   - CTA primário: `Agendar atendimento`
-  - CTA secundário: `Descobrir a AfroDourado`
+  - CTA secundário: `Descobrir a Afro Dourado`
 - **"O cuidado começa aqui"**
   - Headline: `O teu cabelo conta uma história. Nós ajudamos a escrevê-la com ciência, técnica e produtos naturais.`
 - **Três Pilares**
@@ -86,11 +86,12 @@ AfroDourado (logo)   Tricologia   Tranças   Produtos   Sobre   Journal   [Agend
 
 - Duas unidades: **Luanda** e **Huambo**.
 - UX: `Escolha a sua unidade` → `[ LUANDA ]` `[ HUAMBO ]` → morada, horário, telefone.
-- Dados realistas para demonstração; confirmar dados reais com a AfroDourado antes de lançar.
+- Dados realistas para demonstração; confirmar dados reais com a Afro Dourado antes de lançar.
 
 ## Sistema de Agendamento
 
 Fluxo definido (ver `docs/05-biblioteca-de-componentes.md` § Booking):
+
 1. `O que procura?` → Tricologia / Tranças & Estética / Outro
 2. `Qual serviço?` (depende do passo 1)
 3. `Onde?` → Luanda / Huambo
@@ -100,9 +101,10 @@ Fluxo definido (ver `docs/05-biblioteca-de-componentes.md` § Booking):
 
 Regra: nunca pedir mais informação do que a necessária nestes 5 passos.
 
-## Assistente AfroDourado (FAQ guiado)
+## Assistente Afro Dourado (FAQ guiado)
 
-Botão: `AfroDourado Assist`. Opções iniciais:
+Botão: `Afro Dourado Assist`. Opções iniciais:
+
 ```
 Como podemos ajudar?
 Tenho queda capilar
@@ -111,6 +113,7 @@ Quero fazer tranças
 Quero conhecer os produtos
 Quero marcar atendimento
 ```
+
 Respostas: apenas com base em conteúdo validado (nesta fase, praticamente tudo é
 `[[PENDENTE-CLIENTE]]` — implementar a estrutura funcional com respostas genéricas seguras,
 terminando sempre com `Para uma avaliação adequada, fale com a nossa equipa.` + CTA
