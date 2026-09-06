@@ -13,7 +13,7 @@ import { Component, input, output, ChangeDetectionStrategy } from '@angular/core
         [attr.target]="href()?.startsWith('http') ? '_blank' : null"
         (click)="clicked.emit($event)"
       >
-        <ng-content />
+        {{ label() }}
       </a>
     } @else {
       <button
@@ -21,7 +21,7 @@ import { Component, input, output, ChangeDetectionStrategy } from '@angular/core
         [class]="classes()"
         (click)="clicked.emit($event)"
       >
-        <ng-content />
+        {{ label() }}
       </button>
     }
   `,
@@ -83,6 +83,7 @@ export class PillButtonComponent {
   readonly variant = input<'primary' | 'secondary' | 'secondary-light'>('primary');
   readonly size = input<'md' | 'lg'>('md');
   readonly href = input<string | null>(null);
+  readonly label = input<string>('');
   readonly clicked = output<Event>();
 
   classes(): string {

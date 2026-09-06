@@ -28,7 +28,7 @@ import { SectionHeadingComponent } from '@app/shared/ui/section-heading/section-
             <p class="hours">{{ unit === 'luanda' ? luandaHours() : huamboHours() }}</p>
             <p class="phone">{{ unit === 'luanda' ? luandaPhone() : huamboPhone() }}</p>
             <div class="actions">
-              <app-pill-button href="/agendamento" variant="primary" size="md">Agendar nesta unidade</app-pill-button>
+               <app-pill-button href="/agendamento" variant="primary" size="md" label="Agendar nesta unidade"></app-pill-button>
             </div>
           </div>
         }

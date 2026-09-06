@@ -43,7 +43,7 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
         </div>
 
         <div class="cta">
-          <app-pill-button href="/agendamento" variant="secondary-light" size="lg">Agendar atendimento</app-pill-button>
+          <app-pill-button href="/agendamento" variant="secondary-light" size="lg" label="Agendar atendimento"></app-pill-button>
         </div>
       </div>
     </footer>

@@ -11,7 +11,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
     <main class="section-y container-max">
       <app-section-heading eyebrow="Agendamento" title="Agende o seu atendimento" size="display-m" />
       <p class="body">[[PENDENTE-CLIENTE]] <!-- TODO: aguardar validação AfroDourado --></p>
-      <app-pill-button href="/agendamento" variant="primary" size="lg">Começar agendamento</app-pill-button>
+       <app-pill-button href="/agendamento" variant="primary" size="lg" label="Começar agendamento"></app-pill-button>
     </main>
   `,
   styles: [`

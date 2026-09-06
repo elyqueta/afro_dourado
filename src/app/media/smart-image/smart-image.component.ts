@@ -4,15 +4,17 @@ import { Component, input, ChangeDetectionStrategy } from '@angular/core';
   selector: 'app-smart-image',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[style.aspectRatio]': 'aspectRatio()'
+  },
   template: `
     <img
       [src]="src()"
-      [srcset]="srcset()"
+      [attr.srcset]="srcset() || null"
       [sizes]="sizes()"
       [alt]="alt()"
       [class]="classes()"
       [loading]="priority() ? 'eager' : 'lazy'"
-      [style.aspectRatio]="aspectRatio()"
     />
   `,
   styles: [`

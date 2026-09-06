@@ -12,66 +12,19 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
     <header class="navbar" [class.scrolled]="scrolled()">
       <div class="inner container-max">
         <a routerLink="/" class="logo" aria-label="AfroDourado — Voltar ao início">
-          <span class="logo-icon" aria-hidden="true">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M12 7c-2 0-3.5 1.5-3.5 3.5S11 13.5 12 14c1-0.5 2.5-1.5 2.5-3.5S14 7 12 7z" fill="currentColor"/>
-              <path d="M9 18c0-2 1.5-3.5 3-3.5s3 1.5 3 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </span>
           <span class="logo-text">Afro<span class="gold">Dourado</span></span>
         </a>
 
         <nav class="desktop" role="navigation" aria-label="Navegação principal">
-          <a routerLink="/tricologia" routerLinkActive="active" class="nav-link">
-            <span class="nav-icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
-            </span>
-            Tricologia
-          </a>
-          <a routerLink="/trancas-estetica" routerLinkActive="active" class="nav-link">
-            <span class="nav-icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 20h16"/>
-                <path d="M4 20c0-4 4-8 8-8s8 4 8 8"/>
-                <path d="M12 4c-2 0-4 2-4 4s2 4 4 4 4-2 4-4-2-4-4-4z"/>
-              </svg>
-            </span>
-            Tranças
-          </a>
-          <a routerLink="/produtos" routerLinkActive="active" class="nav-link">
-            <span class="nav-icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4.5L6.5 20l2-7L3 9h7z"/>
-              </svg>
-            </span>
-            Produtos
-          </a>
-          <a routerLink="/sobre" routerLinkActive="active" class="nav-link">
-            <span class="nav-icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 16v-4M12 8h.01"/>
-              </svg>
-            </span>
-            Sobre
-          </a>
-          <a routerLink="/journal" routerLinkActive="active" class="nav-link">
-            <span class="nav-icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-              </svg>
-            </span>
-            Journal
-          </a>
+          <a routerLink="/tricologia" routerLinkActive="active" class="nav-link">Tricologia</a>
+          <a routerLink="/trancas-estetica" routerLinkActive="active" class="nav-link">Tranças</a>
+          <a routerLink="/produtos" routerLinkActive="active" class="nav-link">Produtos</a>
+          <a routerLink="/sobre" routerLinkActive="active" class="nav-link">Sobre</a>
+          <a routerLink="/journal" routerLinkActive="active" class="nav-link">Journal</a>
         </nav>
 
         <div class="desktop-cta">
-          <app-pill-button href="/agendamento" variant="primary" size="md">Agendar</app-pill-button>
+          <app-pill-button href="/agendamento" variant="primary" size="md" label="Agendar"></app-pill-button>
         </div>
 
         <button
@@ -112,13 +65,21 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
       z-index: 8000;
       height: 96px;
       transition: background-color 0.4s ease, height 0.4s ease, box-shadow 0.4s ease;
-      background-color: transparent;
+      background: linear-gradient(to bottom, rgba(14, 59, 49, 0.55), rgba(14, 59, 49, 0.25));
     }
     .navbar.scrolled {
       background-color: rgba(247, 243, 236, 0.92);
       backdrop-filter: blur(8px);
       height: 72px;
       box-shadow: 0 1px 0 rgba(14, 59, 49, 0.06);
+    }
+    .navbar.scrolled .nav-link {
+      color: var(--color-ink-900);
+      text-shadow: none;
+    }
+    .navbar.scrolled .nav-link:hover,
+    .navbar.scrolled .nav-link.active {
+      color: var(--color-brand-gold-500);
     }
     .inner {
       display: flex;
@@ -156,18 +117,14 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
       font-family: var(--font-sans);
       font-size: var(--text-small);
       font-weight: 500;
-      color: var(--color-ink-900);
+      color: var(--color-cream-50);
       transition: color var(--duration-micro) var(--ease-out-3);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-    .nav-icon {
-      display: none;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
     }
     .nav-link:hover,
     .nav-link.active {
       color: var(--color-brand-gold-500);
+      text-shadow: none;
     }
     .mobile-toggle {
       display: inline-flex;
@@ -231,9 +188,6 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
       .desktop {
         display: flex;
         gap: 2rem;
-      }
-      .nav-icon {
-        display: inline-flex;
       }
       .desktop-cta {
         display: inline-flex;

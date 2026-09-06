@@ -21,7 +21,7 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
             muted
             loop
             playsinline
-            preload="metadata"
+            preload="none"
             class="hero-video"
           ></video>
         } @else {

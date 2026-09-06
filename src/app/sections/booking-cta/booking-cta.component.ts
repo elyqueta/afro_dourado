@@ -11,9 +11,8 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
       <div class="container-max">
         <h2 class="headline">{{ headline() }}</h2>
         <div class="actions">
-          <app-pill-button href="/agendamento" variant="primary" size="lg">{{ primaryCta() }}</app-pill-button>
-          <app-pill-button href="https://wa.me/244XXXXXXXXX" variant="secondary-light" size="lg" target="_blank" rel="noopener noreferrer">
-            {{ secondaryCta() }}
+          <app-pill-button href="/agendamento" variant="primary" size="lg" [label]="primaryCta()"></app-pill-button>
+          <app-pill-button href="https://wa.me/244XXXXXXXXX" variant="secondary-light" size="lg" target="_blank" rel="noopener noreferrer" [label]="secondaryCta()">
           </app-pill-button>
         </div>
       </div>

@@ -28,7 +28,7 @@ import { PillButtonComponent } from '../../shared/ui/button/pill-button.componen
           @if (selectedOption()) {
             <div class="response">
               <p class="text">{{ response() }}</p>
-              <app-pill-button href="/agendamento" variant="primary" size="md">Agendar avaliação</app-pill-button>
+               <app-pill-button href="/agendamento" variant="primary" size="md" label="Agendar avaliação"></app-pill-button>
             </div>
           }
         </div>

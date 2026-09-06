@@ -24,7 +24,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
           }
         </div>
         <div class="cta">
-          <app-pill-button href="/equipa" variant="secondary" size="md">Conhecer a equipa &rarr;</app-pill-button>
+           <app-pill-button href="/equipa" variant="secondary" size="md" label="Conhecer a equipa &rarr;"></app-pill-button>
         </div>
       </div>
     </section>

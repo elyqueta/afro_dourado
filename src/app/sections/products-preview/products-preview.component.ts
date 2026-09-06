@@ -22,7 +22,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
           }
         </div>
         <div class="cta">
-          <app-pill-button href="/produtos" variant="secondary" size="md">Ver todos &rarr;</app-pill-button>
+           <app-pill-button href="/produtos" variant="secondary" size="md" label="Ver todos &rarr;"></app-pill-button>
         </div>
       </div>
     </section>

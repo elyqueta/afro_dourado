@@ -29,7 +29,7 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
             size="display-m"
           />
           <p class="desc">{{ description() }}</p>
-          <app-pill-button href="/tricologia" variant="secondary-light" size="md">Ver Tricologia &rarr;</app-pill-button>
+           <app-pill-button href="/tricologia" variant="secondary-light" size="md" label="Ver Tricologia &rarr;"></app-pill-button>
         </div>
       </div>
     </section>
