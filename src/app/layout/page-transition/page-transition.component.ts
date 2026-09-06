@@ -10,7 +10,7 @@ import { SmoothScrollService } from '../../core/smooth-scroll.service';
   template: `
     @if (visible()) {
       <div class="overlay" aria-hidden="true">
-        <span class="brand">Afro<span class="gold">Dourado</span></span>
+        <img src="/AfroDourado-logo-transparente.png" alt="AfroDourado" class="brand-logo" />
       </div>
     }
   `,
@@ -25,13 +25,9 @@ import { SmoothScrollService } from '../../core/smooth-scroll.service';
       justify-content: center;
       pointer-events: none;
     }
-    .brand {
-      font-family: var(--font-display);
-      font-size: var(--text-display-m);
-      color: var(--color-cream-50);
-    }
-    .brand .gold {
-      color: var(--color-brand-gold-500);
+    .brand-logo {
+      height: 60px;
+      width: auto;
     }
   `]
 })

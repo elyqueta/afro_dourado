@@ -43,78 +43,83 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
           type="button"
           class="mobile-toggle"
           aria-label="Abrir menu"
-          aria-expanded="false"
+          [attr.aria-expanded]="menuOpen()"
           (click)="toggleMenu()"
+          [class.open]="menuOpen()"
         >
           <span class="line"></span>
           <span class="line"></span>
           <span class="line"></span>
         </button>
       </div>
-
-      @if (menuOpen()) {
-        <div class="mobile-menu">
-          <nav class="mobile-nav" role="navigation" aria-label="Menu mobile">
-            <a
-              routerLink="/tricologia"
-              routerLinkActive="active"
-              class="mobile-link"
-              (click)="closeMenu()"
-              >Tricologia</a
-            >
-            <a
-              routerLink="/trancas-estetica"
-              routerLinkActive="active"
-              class="mobile-link"
-              (click)="closeMenu()"
-              >Tranças & Estética</a
-            >
-            <a
-              routerLink="/produtos"
-              routerLinkActive="active"
-              class="mobile-link"
-              (click)="closeMenu()"
-              >Produtos Naturais</a
-            >
-            <a
-              routerLink="/sobre"
-              routerLinkActive="active"
-              class="mobile-link"
-              (click)="closeMenu()"
-              >Sobre Nós</a
-            >
-            <a
-              routerLink="/equipa"
-              routerLinkActive="active"
-              class="mobile-link"
-              (click)="closeMenu()"
-              >Equipa</a
-            >
-            <a
-              routerLink="/journal"
-              routerLinkActive="active"
-              class="mobile-link"
-              (click)="closeMenu()"
-              >Journal</a
-            >
-            <a
-              routerLink="/contactos"
-              routerLinkActive="active"
-              class="mobile-link"
-              (click)="closeMenu()"
-              >Contactos</a
-            >
-            <a
-              routerLink="/agendamento"
-              routerLinkActive="active"
-              class="mobile-link mobile-cta"
-              (click)="closeMenu()"
-              >Agendar atendimento</a
-            >
-          </nav>
-        </div>
-      }
     </header>
+
+    @if (menuOpen()) {
+      <div class="mobile-menu">
+        <button type="button" class="mobile-close" (click)="closeMenu()" aria-label="Fechar menu">
+          <span class="close-line"></span>
+          <span class="close-line"></span>
+        </button>
+        <nav class="mobile-nav" role="navigation" aria-label="Menu mobile">
+          <a
+            routerLink="/tricologia"
+            routerLinkActive="active"
+            class="mobile-link"
+            (click)="closeMenu()"
+            >Tricologia</a
+          >
+          <a
+            routerLink="/trancas-estetica"
+            routerLinkActive="active"
+            class="mobile-link"
+            (click)="closeMenu()"
+            >Tranças & Estética</a
+          >
+          <a
+            routerLink="/produtos"
+            routerLinkActive="active"
+            class="mobile-link"
+            (click)="closeMenu()"
+            >Produtos Naturais</a
+          >
+          <a
+            routerLink="/sobre"
+            routerLinkActive="active"
+            class="mobile-link"
+            (click)="closeMenu()"
+            >Sobre Nós</a
+          >
+          <a
+            routerLink="/equipa"
+            routerLinkActive="active"
+            class="mobile-link"
+            (click)="closeMenu()"
+            >Equipa</a
+          >
+          <a
+            routerLink="/journal"
+            routerLinkActive="active"
+            class="mobile-link"
+            (click)="closeMenu()"
+            >Journal</a
+          >
+          <a
+            routerLink="/contactos"
+            routerLinkActive="active"
+            class="mobile-link"
+            (click)="closeMenu()"
+            >Contactos</a
+          >
+          <a
+            routerLink="/agendamento"
+            routerLinkActive="active"
+            class="mobile-link mobile-cta"
+            (click)="closeMenu()"
+            >Agendar atendimento</a
+          >
+        </nav>
+      </div>
+    }
   `,
   styles: [
     `
@@ -184,29 +189,44 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
       .mobile-toggle {
         display: inline-flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 6px;
         background: none;
         border: none;
         padding: 0.5rem;
         cursor: pointer;
+        z-index: 10;
       }
       .line {
         display: block;
-        width: 22px;
+        width: 24px;
         height: 2px;
-        background-color: var(--color-ink-900);
+        background-color: var(--color-cream-50);
         transition:
           transform 0.3s ease,
           opacity 0.3s ease;
       }
+      .navbar.scrolled .line {
+        background-color: var(--color-ink-900);
+      }
+      .mobile-toggle.open .line:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+      .mobile-toggle.open .line:nth-child(2) {
+        opacity: 0;
+      }
+      .mobile-toggle.open .line:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
       .mobile-menu {
-        position: absolute;
+        position: fixed;
         inset: 0;
         background-color: var(--color-brand-green-900);
         display: flex;
         align-items: center;
         justify-content: center;
-        animation: fadeIn 0.3s ease;
+        padding-top: 28vh;
+        animation: fadeIn 0.35s ease;
+        z-index: 9999;
       }
       @keyframes fadeIn {
         from {
@@ -216,11 +236,37 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
           opacity: 1;
         }
       }
+      .mobile-close {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+      }
+      .close-line {
+        position: absolute;
+        width: 24px;
+        height: 2px;
+        background-color: var(--color-cream-50);
+      }
+      .close-line:first-child {
+        transform: rotate(45deg);
+      }
+      .close-line:last-child {
+        transform: rotate(-45deg);
+      }
       .mobile-nav {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 2rem;
+        gap: 2.5rem;
       }
       .mobile-link {
         font-family: var(--font-display);
@@ -279,9 +325,18 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
 
   toggleMenu(): void {
     this.menuOpen.update((open) => !open);
+    if (this.menuOpen()) {
+      this.smoothScroll.stop();
+      document.body.style.overflow = 'hidden';
+    } else {
+      this.smoothScroll.start();
+      document.body.style.overflow = '';
+    }
   }
 
   closeMenu(): void {
     this.menuOpen.set(false);
+    this.smoothScroll.start();
+    document.body.style.overflow = '';
   }
 }

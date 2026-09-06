@@ -5,6 +5,7 @@ import { GsapService } from '@app/core/gsap.service';
 import { HeroEntranceService } from '@app/motion/hero-entrance';
 import { EyebrowLabelComponent } from '@app/shared/ui/eyebrow-label/eyebrow-label.component';
 import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-organic.component';
+import { VideoBackgroundComponent } from '@app/shared/ui/video-background/video-background.component';
 
 @Component({
   selector: 'app-hero',
@@ -12,22 +13,7 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="hero" #heroRef>
-      <div class="bg" #bgRef>
-        @if (videoSrc()) {
-          <video
-            [src]="videoSrc()"
-            [poster]="posterSrc()"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="none"
-            class="hero-video"
-          ></video>
-        } @else {
-          <img [src]="posterSrc()" alt="" class="hero-poster" aria-hidden="true" />
-        }
-      </div>
+      <app-video-background [videoSrc]="videoSrc()" [posterSrc]="posterSrc()" #bgRef />
 
       <div class="overlay"></div>
 
@@ -49,7 +35,7 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
       </div>
     </section>
   `,
-  imports: [EyebrowLabelComponent, OrganicDividerComponent],
+  imports: [EyebrowLabelComponent, OrganicDividerComponent, VideoBackgroundComponent],
   styles: [`
     .hero {
       position: relative;
@@ -58,18 +44,6 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
       overflow: hidden;
       display: flex;
       align-items: flex-end;
-    }
-    .bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .hero-video,
-    .hero-poster {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
     }
     .overlay {
       position: absolute;
@@ -144,7 +118,7 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
-    const bg = this.el.nativeElement.querySelector('.bg') as HTMLElement;
+    const bg = this.el.nativeElement.querySelector('app-video-background') as HTMLElement;
     const eyebrowEl = this.el.nativeElement.querySelector('.eyebrow') as HTMLElement;
     const headlineEls = Array.from(this.el.nativeElement.querySelectorAll('.line')) as HTMLElement[];
     const descEl = this.el.nativeElement.querySelector('.description') as HTMLElement;

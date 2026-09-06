@@ -1,60 +1,52 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, ChangeDetectionStrategy, inject } from '@angular/core';
+import { RouterLink, ActivatedRoute } from '@angular/router';
+import { JournalService, Article } from '@app/core/journal.service';
 import { SectionHeadingComponent } from '@app/shared/ui/section-heading/section-heading.component';
 import { SmartImageComponent } from '@app/media/smart-image/smart-image.component';
+import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component';
 
 @Component({
   selector: 'app-journal-article',
   standalone: true,
-  imports: [SectionHeadingComponent, SmartImageComponent],
+  imports: [SectionHeadingComponent, SmartImageComponent, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <main class="section-y container-max">
-      <app-section-heading
-        eyebrow="Journal"
-        title="Queda capilar: quando procurar ajuda"
-        size="display-m"
-      />
-      <div class="article">
-        <app-smart-image
-          src="https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=1200&q=80"
-          alt="Queda capilar: quando procurar ajuda"
-          aspectRatio="16 / 9"
-        />
-        <div class="body">
-          <p>
-            A queda capilar é uma preocupação comum entre pessoas com cabelo afro. É normal perder
-            entre 50 e 100 fios por dia, mas quando a quantidade aumenta de forma visível, é
-            importante procurar orientação profissional.
-          </p>
-          <p>
-            Na Afro Dourado, a avaliação tricológica começa por um exame detalhado do couro cabeludo
-            e da haste capilar. A partir daí, identificamos causas possíveis, como stress, défices
-            nutricionais, tratamentos químicos ou factores genéticos.
-          </p>
-          <p>
-            Os tratamentos podem incluir terapias capilares personalizadas, microagulhamento e
-            recomendações de rotina em casa. O importante é não esperar: quanto mais cedo a
-            avaliação, melhores as chances de preservar o cabelo existente e estimular o crescimento
-            saudável.
-          </p>
-          <p>
-            Se estás a notar mais fios no travesseiro, na escova ou no ralo, marca a tua consulta em
-            Luanda ou Huambo. A primeira consulta é o primeiro passo para compreender o que está a
-            acontecer e definir um plano de cuidado.
-          </p>
-        </div>
-      </div>
+      @if (article(); as article) {
+        <article>
+          <app-section-heading eyebrow="Journal" title="{{ article.title }}" size="display-m" />
+          <app-smart-image [src]="article.image" [alt]="article.title" aspectRatio="16 / 9" />
+          <div class="body">
+            @for (paragraph of paragraphs(); track $index) {
+              <p>{{ paragraph }}</p>
+            }
+          </div>
+
+          <div class="related">
+            <h3 class="related-title">Artigos relacionados</h3>
+            <div class="related-grid">
+              @for (item of related(); track item.slug) {
+                <a [routerLink]="item.slug" class="related-card">
+                  <app-smart-image [src]="item.image" [alt]="item.title" aspectRatio="16 / 9" />
+                  <h4 class="related-name">{{ item.title }}</h4>
+                </a>
+              }
+            </div>
+          </div>
+        </article>
+      } @else {
+        <p class="not-found">Artigo não encontrado.</p>
+      }
     </main>
   `,
   styles: [
     `
-      .article {
-        margin-top: 2rem;
+      article {
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
       }
-      .article app-smart-image {
+      article app-smart-image {
         border-radius: var(--radius-card);
         overflow: hidden;
       }
@@ -69,7 +61,65 @@ import { SmartImageComponent } from '@app/media/smart-image/smart-image.componen
         line-height: 1.7;
         margin: 0;
       }
+      .related {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(14, 59, 49, 0.08);
+      }
+      .related-title {
+        font-family: var(--font-display);
+        font-size: var(--text-heading);
+        margin: 0 0 1.5rem;
+      }
+      .related-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .related-card {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .related-card app-smart-image {
+        border-radius: var(--radius-card);
+        overflow: hidden;
+      }
+      .related-name {
+        font-family: var(--font-display);
+        font-size: var(--text-heading);
+        margin: 0;
+      }
+      .not-found {
+        font-size: var(--text-body);
+        opacity: 0.7;
+      }
+      @media (min-width: 768px) {
+        .related-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
     `,
   ],
 })
-export class JournalArticlePage {}
+export class JournalArticlePage {
+  private readonly route = inject(ActivatedRoute);
+  private readonly journal = inject(JournalService);
+
+  slug = computed(() => this.route.snapshot.paramMap.get('slug') || '');
+
+  article = computed(() => this.journal.bySlug(this.slug()));
+
+  paragraphs = computed(() => {
+    const body = this.article()?.body || '';
+    return body.split('\n').filter(Boolean);
+  });
+
+  related = computed(() => {
+    const current = this.article()?.slug;
+    if (!current) return [];
+    return this.journal.articles().filter((a: Article) => a.slug !== current).slice(0, 2);
+  });
+}

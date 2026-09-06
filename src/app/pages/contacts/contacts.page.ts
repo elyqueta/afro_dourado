@@ -1,31 +1,59 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { SectionHeadingComponent } from '@app/shared/ui/section-heading/section-heading.component';
 import { LocationPickerComponent } from '@app/sections/location-picker/location-picker.component';
-import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component';
+import { BookingCtaComponent } from '@app/sections/booking-cta/booking-cta.component';
 
 @Component({
   selector: 'app-contacts',
   standalone: true,
-  imports: [SectionHeadingComponent, LocationPickerComponent],
+  imports: [SectionHeadingComponent, LocationPickerComponent, BookingCtaComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <main class="section-y container-max">
-      <app-section-heading eyebrow="Contactos" title="Escolha a sua unidade" size="display-m" />
-      <app-location-picker
-        [luandaTitle]="luandaTitle"
-        [luandaAddress]="luandaAddress"
-        [luandaHours]="luandaHours"
-        [luandaPhone]="luandaPhone"
-        [huamboTitle]="huamboTitle"
-        [huamboAddress]="huamboAddress"
-        [huamboHours]="huamboHours"
-        [huamboPhone]="huamboPhone"
-      />
+    <main>
+      <section class="section section-y" style="background-color: var(--color-brand-green-900); color: var(--color-cream-50);">
+        <div class="container-max">
+          <app-section-heading
+            eyebrow="Contactos"
+            title="Escolha a sua unidade"
+            size="display-m"
+            eyebrowColor="gold"
+          />
+          <p class="lead">
+            Estamos em Luanda e Huambo para receber si. Escolha a unidade mais próxima e descubra
+            morada, horário e formas de contacto.
+          </p>
+        </div>
+      </section>
+
+      <section class="section section-y" style="background-color: var(--color-cream-50);">
+        <div class="container-max">
+          <app-location-picker
+            [luandaTitle]="luandaTitle"
+            [luandaAddress]="luandaAddress"
+            [luandaHours]="luandaHours"
+            [luandaPhone]="luandaPhone"
+            [huamboTitle]="huamboTitle"
+            [huamboAddress]="huamboAddress"
+            [huamboHours]="huamboHours"
+            [huamboPhone]="huamboPhone"
+          />
+        </div>
+      </section>
+
+      <app-booking-cta headline="Pronto para marcar?" />
     </main>
   `,
-  styles: [`
-    /* inherits section spacing */
-  `]
+  styles: [
+    `
+      .lead {
+        font-size: var(--text-body);
+        line-height: 1.7;
+        max-width: 70ch;
+        margin: 1.5rem 0 0;
+        opacity: 0.85;
+      }
+    `,
+  ],
 })
 export class ContactsPage {
   readonly luandaTitle = 'Luanda';
