@@ -20,12 +20,16 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
           <div class="col">
             <h4 class="title">Explorar</h4>
             <nav class="links">
+              <a routerLink="/" routerLinkActive="active">Home</a>
+              <a routerLink="/sobre" routerLinkActive="active">Sobre</a>
+              <a routerLink="/servicos" routerLinkActive="active">Serviços</a>
+              <a routerLink="/produtos" routerLinkActive="active">Produtos</a>
+              <a routerLink="/resultados" routerLinkActive="active">Resultados</a>
+              <a routerLink="/journal" routerLinkActive="active">Journal</a>
+              <a routerLink="/contacto" routerLinkActive="active">Contacto</a>
               <a routerLink="/tricologia" routerLinkActive="active">Tricologia</a>
               <a routerLink="/trancas-estetica" routerLinkActive="active">Tranças & Estética</a>
-              <a routerLink="/produtos" routerLinkActive="active">Produtos Naturais</a>
-              <a routerLink="/sobre" routerLinkActive="active">Sobre Nós</a>
               <a routerLink="/equipa" routerLinkActive="active">Equipa</a>
-              <a routerLink="/journal" routerLinkActive="active">Journal</a>
             </nav>
           </div>
           <div class="col">

@@ -23,11 +23,13 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
         </a>
 
         <nav class="desktop" role="navigation" aria-label="Navegação principal">
-          <a routerLink="/tricologia" routerLinkActive="active" class="nav-link">Tricologia</a>
-          <a routerLink="/trancas-estetica" routerLinkActive="active" class="nav-link">Tranças</a>
-          <a routerLink="/produtos" routerLinkActive="active" class="nav-link">Produtos</a>
+          <a routerLink="/" routerLinkActive="active" class="nav-link">Home</a>
           <a routerLink="/sobre" routerLinkActive="active" class="nav-link">Sobre</a>
+          <a routerLink="/servicos" routerLinkActive="active" class="nav-link">Serviços</a>
+          <a routerLink="/produtos" routerLinkActive="active" class="nav-link">Produtos</a>
+          <a routerLink="/resultados" routerLinkActive="active" class="nav-link">Resultados</a>
           <a routerLink="/journal" routerLinkActive="active" class="nav-link">Journal</a>
+          <a routerLink="/contacto" routerLinkActive="active" class="nav-link">Contacto</a>
         </nav>
 
         <div class="desktop-cta">
@@ -62,39 +64,39 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
         </button>
         <nav class="mobile-nav" role="navigation" aria-label="Menu mobile">
           <a
-            routerLink="/tricologia"
+            routerLink="/"
             routerLinkActive="active"
             class="mobile-link"
             (click)="closeMenu()"
-            >Tricologia</a
-          >
-          <a
-            routerLink="/trancas-estetica"
-            routerLinkActive="active"
-            class="mobile-link"
-            (click)="closeMenu()"
-            >Tranças & Estética</a
-          >
-          <a
-            routerLink="/produtos"
-            routerLinkActive="active"
-            class="mobile-link"
-            (click)="closeMenu()"
-            >Produtos Naturais</a
+            >Home</a
           >
           <a
             routerLink="/sobre"
             routerLinkActive="active"
             class="mobile-link"
             (click)="closeMenu()"
-            >Sobre Nós</a
+            >Sobre</a
           >
           <a
-            routerLink="/equipa"
+            routerLink="/servicos"
             routerLinkActive="active"
             class="mobile-link"
             (click)="closeMenu()"
-            >Equipa</a
+            >Serviços</a
+          >
+          <a
+            routerLink="/produtos"
+            routerLinkActive="active"
+            class="mobile-link"
+            (click)="closeMenu()"
+            >Produtos</a
+          >
+          <a
+            routerLink="/resultados"
+            routerLinkActive="active"
+            class="mobile-link"
+            (click)="closeMenu()"
+            >Resultados</a
           >
           <a
             routerLink="/journal"
@@ -104,11 +106,11 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
             >Journal</a
           >
           <a
-            routerLink="/contactos"
+            routerLink="/contacto"
             routerLinkActive="active"
             class="mobile-link"
             (click)="closeMenu()"
-            >Contactos</a
+            >Contacto</a
           >
           <a
             routerLink="/agendamento"

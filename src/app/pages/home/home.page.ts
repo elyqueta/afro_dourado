@@ -9,6 +9,7 @@ import { TeamPreviewComponent } from '@app/sections/team-preview/team-preview.co
 import { JournalPreviewComponent } from '@app/sections/journal-preview/journal-preview.component';
 import { BookingCtaComponent } from '@app/sections/booking-cta/booking-cta.component';
 import { FaqAccordionComponent } from '@app/sections/faq-accordion/faq-accordion.component';
+import { SectionHeadingComponent } from '@app/shared/ui/section-heading/section-heading.component';
 import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component';
 
 @Component({
@@ -25,9 +26,11 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
     JournalPreviewComponent,
     BookingCtaComponent,
     FaqAccordionComponent,
+    SectionHeadingComponent,
     PillButtonComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./home.page.css'],
   template: `
     <main>
       <app-hero
@@ -79,6 +82,25 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
       <app-journal-preview [articles]="articles" />
 
       <app-booking-cta headline="Pronto para cuidar do teu cabelo?" />
+
+      <section class="section section-y contact-section" style="background-color: var(--color-brand-green-900); color: var(--color-cream-50);">
+        <div class="container-max">
+          <app-section-heading
+            eyebrow="Contacto"
+            title="Escolha a sua unidade"
+            size="display-m"
+            eyebrowColor="gold"
+          />
+          <p class="lead">
+            Estamos em Luanda e Huambo para receber si. Escolha a unidade mais próxima e descubra
+            morada, horário e formas de contacto.
+          </p>
+          <div class="actions">
+            <app-pill-button href="/contacto" variant="secondary-light" size="md" label="Contactar"></app-pill-button>
+            <app-pill-button href="/agendamento" variant="secondary-light" size="md" label="Agendar atendimento"></app-pill-button>
+          </div>
+        </div>
+      </section>
 
       <app-faq-accordion [items]="faqItems" />
     </main>

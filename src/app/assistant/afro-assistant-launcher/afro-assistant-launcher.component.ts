@@ -1,4 +1,5 @@
-import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { AssistantService } from '@app/core/assistant.service';
 
 @Component({
   selector: 'app-afro-assistant-launcher',
@@ -6,12 +7,12 @@ import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    @if (visible()) {
+    @if (assistant.open() === false) {
       <button
         type="button"
         class="launcher"
         aria-label="Abrir assistente Afro Dourado"
-        (click)="open()"
+        (click)="assistant.openAssistant()"
       >
         <span class="icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -77,9 +78,5 @@ import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
   ],
 })
 export class AfroAssistantLauncherComponent {
-  readonly visible = signal(true);
-
-  open(): void {
-    this.visible.set(false);
-  }
+  readonly assistant = inject(AssistantService);
 }
