@@ -48,6 +48,16 @@
 ### Assistente
 - [x] `AfroAssistantLauncherComponent`
 - [x] `AfroAssistantPanelComponent`
+- [x] Modo split (desktop ≥1024px): site ocupa 50% via `site-shell` + `--assistant-w`; painel fixo à direita com `transform` (sem `width` animado)
+- [x] Modo full (tablet/mobile <1024px): painel em ecrã inteiro `100dvh`, slide-up, `aria-modal="true"`, foco preso, scroll bloqueado via `SmoothScrollService.stop()/start()`
+- [x] `AssistantService` ganhou `isSplit` (signal + `matchMedia` com SSR guard), `sbw` e atualização de `data-assistant*`/`--assistant-w`
+- [x] Launcher escondido enquanto o assistente está aberto (CSS global)
+- [x] `AppCursorComponent` esconde cursor nativo sobre o painel
+- [x] `PageTransitionComponent` cobre só a área do site em split
+- [x] `MobileCtaBarComponent` escondida enquanto o assistente está aberto
+- [x] `prefers-reduced-motion`: fade curto, sem slide
+- [x] `npm test` passa (9 testes: App + AssistantService)
+- [x] `npm run build` sem erros nem warnings de orçamento
 
 ### App shell
 - [x] `app.html` composto com: navbar, router-outlet, footer, page-transition, mobile-cta-bar, cursor, assistant launcher/panel, grain-overlay
@@ -150,3 +160,34 @@
 - Vídeos da web (Pexels) aplicados por página: Home, Tricologia e Tranças usam vídeos diferentes; o carregamento é lazy e só inicia quando o hero entra no viewport.
 - Menu mobile/tablet usa `z-index: 9999` e `position: fixed` para garantir que fica por cima de qualquer conteúdo, mesmo com scroll. O scroll é bloqueado enquanto o menu está aberto.
 - Preloader usa o mesmo logo do footer (`/AfroDourado-logo-transparente.png`).
+
+---
+
+## Entrega — Assistente split-screen / full-screen
+
+### Ficheiros alterados
+
+| Ficheiro | Alteração principal |
+|---|---|
+| `src/app/core/assistant.service.ts` | Novos signals `isSplit`/`sbw`; `matchMedia` browser-only com cleanup via `DestroyRef`; escrita de `data-assistant*`/`--assistant-w` no `document.documentElement` |
+| `src/app/assistant/afro-assistant-panel/afro-assistant-panel.component.ts` | Suporte split/full, `SmoothScrollService.stop()/start()` só em full, foco preso em full, `visualViewport` para teclado virtual, scroll automático |
+| `src/app/assistant/afro-assistant-panel/afro-assistant-panel.component.html` | Estrutura com `.panel-shell` + overlay (só em full) |
+| `src/app/assistant/afro-assistant-panel/afro-assistant-panel.component.css` | CSS de split/full, `transform` slide, `visibility`+`inert` (via HTML), `prefers-reduced-motion` |
+| `src/app/assistant/afro-assistant-launcher/afro-assistant-launcher.component.ts` | CSS: escondido quando `html[data-assistant='open']` |
+| `src/app/app.ts` | `ScrollTrigger.refresh()` + `lenis.resize()` em navegação e mudança de estado do assistente; `runInInjectionContext` para `effect()` |
+| `src/app/app.html` | `.site-shell` envolve navbar/main/footer; painel/launcher/cursor/overlays fora do shell |
+| `src/app/app.css` | `.site-shell` com `margin-right` animado via `--assistant-w`/`--sbw` |
+| `src/styles.css` | Tokens `--assistant-w/open/close`; `.grain-overlay` com `right` em split; regras de `display: none` para launcher/CTA; `scrollbar-width: none` em split; estilos globais para header/chips/messages/bubbles/input do painel |
+| `src/app/layout/navbar/navbar.component.ts` | `right: var(--assistant-w)`; override split para compact (logo + CTA + hamburger); mobile menu com `right: var(--assistant-w)` |
+| `src/app/layout/page-transition/page-transition.component.ts` | `right: var(--assistant-w)` em split para cobrir só a área do site |
+| `src/app/shared/ui/cursor/app-cursor.component.ts` | Classe `.hidden` quando o rato está sobre `.panel-shell` |
+| `src/app/layout/cta-bar-mobile/cta-bar-mobile.component.ts` | Escondido via CSS quando `html[data-assistant='open']` |
+| `src/app/app.spec.ts` | Polyfills inline (`matchMedia`, `requestAnimationFrame`, `ResizeObserver`) + router testing imports |
+| `src/app/core/assistant.service.spec.ts` | 6 testes para API e atributos `data-assistant*` |
+| `vitest.config.ts` | Alias `@app` para resolução em testes |
+| `tsconfig.spec.json` | `baseUrl`, `paths` e `ignoreDeprecations` para suporte de alias em testes |
+| `src/test-setup.ts` | Polyfills globais para `matchMedia`, `requestAnimationFrame`, `ResizeObserver` |
+
+### Estado do build/test
+- `npm run build` compila sem erros e sem warnings de orçamento.
+- `npm test` passa: 9/9 testes.

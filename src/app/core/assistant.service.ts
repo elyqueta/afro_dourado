@@ -1,4 +1,6 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, computed, DestroyRef, inject, effect } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';
 
 export interface AssistantMessage {
   sender: 'user' | 'assistant';
@@ -80,7 +82,89 @@ export class AssistantService {
   readonly input = signal('');
   readonly isTyping = signal(false);
   readonly options = signal<AssistantOption[]>(INITIAL_OPTIONS);
-  readonly canSend = computed(() => this.input().trim().length > 0 && this.isTyping() === false);
+  readonly canSend = computed(() => this.input().trim().length > 0 && !this.isTyping());
+
+  readonly isSplit = signal(false);
+  readonly sbw = signal(0);
+
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly platformId = inject(PLATFORM_ID);
+  private modeQuery: MediaQueryList | null = null;
+  private resizeHandler: (() => void) | null = null;
+
+  constructor() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.modeQuery = window.matchMedia('(min-width: 1024px)');
+      this.isSplit.set(this.modeQuery.matches);
+
+      const onModeChange = (e: MediaQueryListEvent) => {
+        this.isSplit.set(e.matches);
+        if (this.open()) {
+          this.updateSbw();
+        }
+        this.updateCssVariables();
+      };
+
+      this.modeQuery.addEventListener('change', onModeChange);
+
+      this.resizeHandler = () => {
+        if (this.open()) {
+          this.updateSbw();
+          this.updateCssVariables();
+        }
+      };
+      window.addEventListener('resize', this.resizeHandler);
+
+      this.destroyRef.onDestroy(() => {
+        this.modeQuery?.removeEventListener('change', onModeChange);
+        if (this.resizeHandler) {
+          window.removeEventListener('resize', this.resizeHandler);
+        }
+      });
+    }
+
+    effect(() => {
+      this.open();
+      if (isPlatformBrowser(this.platformId) && this.open()) {
+        this.updateSbw();
+      }
+      this.updateCssVariables();
+    });
+
+    effect(() => {
+      this.isSplit();
+      if (isPlatformBrowser(this.platformId) && this.open()) {
+        this.updateSbw();
+      }
+      this.updateCssVariables();
+    });
+  }
+
+  private updateSbw(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    this.sbw.set(window.innerWidth - document.documentElement.clientWidth);
+  }
+
+  private updateCssVariables(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const root = document.documentElement;
+    const open = this.open();
+    const split = this.isSplit();
+
+    if (open && split) {
+      root.style.setProperty('--assistant-w', '50vw');
+      root.setAttribute('data-assistant', 'open');
+      root.setAttribute('data-assistant-mode', 'split');
+    } else if (open) {
+      root.style.setProperty('--assistant-w', '0px');
+      root.setAttribute('data-assistant', 'open');
+      root.setAttribute('data-assistant-mode', 'full');
+    } else {
+      root.style.setProperty('--assistant-w', '0px');
+      root.setAttribute('data-assistant', 'closed');
+      root.removeAttribute('data-assistant-mode');
+    }
+  }
 
   openAssistant(): void {
     this.open.set(true);
@@ -92,9 +176,7 @@ export class AssistantService {
 
   sendMessage(text: string): void {
     const trimmed = text.trim();
-    if (!trimmed || this.isTyping()) {
-      return;
-    }
+    if (!trimmed || this.isTyping()) return;
 
     this.messages.update((current) => [
       ...current,

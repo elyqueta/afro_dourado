@@ -1,3 +1,9 @@
-.main {
-  min-height: 100vh;
+.site-shell {
+  margin-right: calc(var(--assistant-w) - var(--sbw, 0px));
+  transition: margin-right var(--assistant-close) var(--ease-out-3);
+}
+
+html[data-assistant='open'] .site-shell {
+  transition-duration: var(--assistant-open);
+  transition-timing-function: var(--ease-out-4);
 }

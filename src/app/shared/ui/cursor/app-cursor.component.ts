@@ -9,7 +9,7 @@ import { GsapService } from '@app/core/gsap.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (isBrowser() && !isMobile()) {
-      <div class="cursor" [class.view]="isView()" [class.open]="isOpen()"></div>
+      <div class="cursor" [class.view]="isView()" [class.open]="isOpen()" [class.hidden]="isOverPanel()"></div>
     }
   `,
   styles: [`
@@ -22,7 +22,7 @@ import { GsapService } from '@app/core/gsap.service';
       pointer-events: none;
       z-index: 10000;
       mix-blend-mode: difference;
-      transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+      transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
       transform: translate3d(-50%, -50%, 0);
     }
     .cursor.view {
@@ -36,6 +36,9 @@ import { GsapService } from '@app/core/gsap.service';
       height: 64px;
       background-color: rgba(199, 162, 75, 0.15);
       border: 1px solid var(--color-brand-gold-500);
+    }
+    .cursor.hidden {
+      opacity: 0;
     }
   `]
 })
@@ -54,6 +57,7 @@ export class AppCursorComponent implements AfterViewInit, OnDestroy {
 
   isView = signal(false);
   isOpen = signal(false);
+  isOverPanel = signal(false);
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
@@ -62,6 +66,12 @@ export class AppCursorComponent implements AfterViewInit, OnDestroy {
     document.addEventListener('mousemove', this.onMouseMove);
     document.addEventListener('mousedown', () => this.isOpen.set(true));
     document.addEventListener('mouseup', () => this.isOpen.set(false));
+
+    const panel = document.querySelector('.panel-shell');
+    if (panel) {
+      panel.addEventListener('mouseenter', () => this.isOverPanel.set(true));
+      panel.addEventListener('mouseleave', () => this.isOverPanel.set(false));
+    }
   }
 
   ngOnDestroy(): void {

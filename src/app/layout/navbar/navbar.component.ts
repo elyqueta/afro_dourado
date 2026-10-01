@@ -135,7 +135,8 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
         transition:
           background-color 0.4s ease,
           height 0.4s ease,
-          box-shadow 0.4s ease;
+          box-shadow 0.4s ease,
+          right var(--assistant-close) var(--ease-out-3);
         background: linear-gradient(to bottom, rgba(14, 59, 49, 0.55), rgba(14, 59, 49, 0.25));
       }
       .navbar.scrolled {
@@ -304,6 +305,27 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
         .mobile-toggle {
           display: none;
         }
+      }
+
+      /* Split mode overrides: compact navbar + mobile menu limited to site area */
+      html[data-assistant='open'][data-assistant-mode='split'] .navbar {
+        right: var(--assistant-w);
+      }
+
+      html[data-assistant='open'][data-assistant-mode='split'] .desktop {
+        display: none;
+      }
+
+      html[data-assistant='open'][data-assistant-mode='split'] .desktop-cta {
+        display: inline-flex;
+      }
+
+      html[data-assistant='open'][data-assistant-mode='split'] .mobile-toggle {
+        display: inline-flex;
+      }
+
+      html[data-assistant='open'][data-assistant-mode='split'] .mobile-menu {
+        right: var(--assistant-w);
       }
     `,
   ],

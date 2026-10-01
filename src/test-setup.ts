@@ -1,8 +1,3 @@
-import { TestBed } from '@angular/core/testing';
-import { App } from './app';
-import { RouterLink, RouterLinkActive, Router } from '@angular/router';
-import { provideRouter } from '@angular/router';
-
 const mockMatchMedia = (query: string): MediaQueryList => {
   const listeners: ((ev: MediaQueryListEvent | Event) => void)[] = [];
   return {
@@ -47,33 +42,4 @@ class MockResizeObserver implements ResizeObserver {
 Object.defineProperty(window, 'ResizeObserver', {
   writable: true,
   value: MockResizeObserver,
-});
-
-describe('App', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [App, RouterLink, RouterLinkActive],
-      providers: [provideRouter([])],
-    }).compileComponents();
-  });
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it('should render navbar', async () => {
-    const fixture = TestBed.createComponent(App);
-    await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('app-navbar')).toBeTruthy();
-  });
-
-  it('should render footer', async () => {
-    const fixture = TestBed.createComponent(App);
-    await fixture.whenStable();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('app-footer')).toBeTruthy();
-  });
 });

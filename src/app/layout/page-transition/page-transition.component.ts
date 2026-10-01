@@ -1,6 +1,5 @@
 import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { gsap } from 'gsap';
 import { SmoothScrollService } from '../../core/smooth-scroll.service';
 
 @Component({
@@ -24,7 +23,18 @@ import { SmoothScrollService } from '../../core/smooth-scroll.service';
       align-items: center;
       justify-content: center;
       pointer-events: none;
+      transition: right var(--assistant-close) var(--ease-out-3);
     }
+
+    html[data-assistant='open'] .overlay {
+      transition-duration: var(--assistant-open);
+      transition-timing-function: var(--ease-out-4);
+    }
+
+    html[data-assistant='open'][data-assistant-mode='split'] .overlay {
+      right: var(--assistant-w);
+    }
+
     .brand-logo {
       height: 60px;
       width: auto;

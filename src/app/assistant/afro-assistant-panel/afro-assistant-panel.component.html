@@ -1,0 +1,83 @@
+<div
+  class="panel-shell"
+  [class.split]="assistant.isSplit()"
+  [class.closed]="!assistant.open()"
+  [attr.aria-modal]="assistant.isSplit() ? 'false' : 'true'"
+  [attr.inert]="!assistant.open() ? 'true' : null"
+  role="dialog"
+  aria-label="Assistente Afro Dourado"
+  (keydown.escape)="onEscape()"
+  #panelShell
+>
+  <div class="panel-overlay" (click)="assistant.closeAssistant()"></div>
+  <div class="panel" (click)="$event.stopPropagation()">
+    <div class="header">
+      <div>
+        <p class="eyebrow">Afro Dourado Assist</p>
+        <h3 class="title">Como podemos ajudar?</h3>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="reset" (click)="assistant.resetChat()" aria-label="Reiniciar conversa">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 3v5h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button type="button" class="close" aria-label="Fechar assistente" (click)="assistant.closeAssistant()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="suggestions">
+      @for (option of assistant.options(); track option.label) {
+        <button type="button" class="chip" (click)="assistant.sendMessage(option.label)">
+          {{ option.label }}
+        </button>
+      }
+    </div>
+
+    <div class="messages" #messagesContainer>
+      @for (message of assistant.messages(); track trackByTimestamp($index, message)) {
+        <div class="message" [class.user]="message.sender === 'user'">
+          <div class="bubble">
+            <p class="text">{{ message.text }}</p>
+            <span class="time">{{ formatTime(message.timestamp) }}</span>
+          </div>
+        </div>
+      }
+      @if (assistant.isTyping()) {
+        <div class="message assistant">
+          <div class="bubble typing">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+      }
+    </div>
+
+    <form class="input-area" (ngSubmit)="onSubmit()">
+      <input
+        type="text"
+        [value]="assistant.input()"
+        (input)="onInput($event)"
+        placeholder="Escreva a sua mensagem..."
+        class="input"
+        autocomplete="off"
+      />
+      <button
+        type="submit"
+        class="send"
+        [disabled]="!assistant.canSend()"
+        aria-label="Enviar mensagem"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </form>
+  </div>
+</div>
