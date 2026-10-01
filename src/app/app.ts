@@ -1,6 +1,7 @@
 import { Component, signal, inject, AfterViewInit, OnDestroy, PLATFORM_ID, DestroyRef, effect, runInInjectionContext, Injector } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavbarComponent } from '@app/layout/navbar/navbar.component';
 import { FooterComponent } from '@app/layout/footer/footer.component';
 import { PageTransitionComponent } from '@app/layout/page-transition/page-transition.component';
@@ -42,7 +43,6 @@ export class App implements AfterViewInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       this.smoothScroll.init();
       this.gsap.lagSmoothing(false);
-
       this.smoothScroll.on('scroll', () => {
         this.gsap.scrollTrigger.update();
       });
@@ -53,30 +53,33 @@ export class App implements AfterViewInit, OnDestroy {
     if (!isPlatformBrowser(this.platformId)) return;
 
     runInInjectionContext(this.injector, () => {
-      this.router.events.subscribe((event) => {
+      this.router.events.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((event) => {
         if (event instanceof NavigationEnd) {
           this.gsap.killAllTriggers();
           this.smoothScroll.scrollTo(0, { immediate: true });
-          setTimeout(() => {
-            this.gsap.refresh();
-            this.smoothScroll.instance?.resize();
-          }, 0);
+          this.refreshLayout();
         }
       });
 
-      const openSubscription = effect(() => {
-        this.assistant.open();
-        this.scheduleRefresh(700);
-      });
+      let initialized = false;
+      let previousSplit = false;
+      const layoutSubscription = effect(() => {
+        const open = this.assistant.open();
+        const split = this.assistant.isSplit();
+        if (!initialized) {
+          initialized = true;
+          previousSplit = split;
+          return;
+        }
 
-      const isSplitSubscription = effect(() => {
-        this.assistant.isSplit();
-        this.scheduleRefresh(700);
+        const delay = split !== previousSplit ? 50 : open ? 650 : 450;
+        previousSplit = split;
+        this.scheduleRefresh(delay);
       });
 
       this.destroyRef.onDestroy(() => {
-        openSubscription.destroy();
-        isSplitSubscription.destroy();
+        layoutSubscription.destroy();
+        if (this.refreshTimeout !== null) clearTimeout(this.refreshTimeout);
       });
     });
   }
@@ -85,11 +88,24 @@ export class App implements AfterViewInit, OnDestroy {
     // Effects are auto-cleaned by Angular DestroyRef
   }
 
+  private refreshTimeout: ReturnType<typeof setTimeout> | null = null;
+
+  onSiteShellTransitionEnd(event: TransitionEvent): void {
+    if (event.target !== event.currentTarget || event.propertyName !== 'margin-right') return;
+    this.refreshLayout();
+  }
+
   private scheduleRefresh(delay: number): void {
-    setTimeout(() => {
-      if (!isPlatformBrowser(this.platformId)) return;
-      this.gsap.refresh();
-      this.smoothScroll.instance?.resize();
+    if (this.refreshTimeout !== null) clearTimeout(this.refreshTimeout);
+    this.refreshTimeout = setTimeout(() => {
+      this.refreshTimeout = null;
+      this.refreshLayout();
     }, delay);
+  }
+
+  private refreshLayout(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    this.gsap.refresh();
+    this.smoothScroll.instance?.resize();
   }
 }

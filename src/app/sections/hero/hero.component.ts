@@ -1,7 +1,5 @@
 import { Component, input, inject, PLATFORM_ID, AfterViewInit, OnDestroy, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { SmoothScrollService } from '@app/core/smooth-scroll.service';
-import { GsapService } from '@app/core/gsap.service';
 import { HeroEntranceService } from '@app/motion/hero-entrance';
 import { EyebrowLabelComponent } from '@app/shared/ui/eyebrow-label/eyebrow-label.component';
 import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-organic.component';
@@ -100,8 +98,6 @@ import { VideoBackgroundComponent } from '@app/shared/ui/video-background/video-
 export class HeroComponent implements AfterViewInit, OnDestroy {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly heroEntrance = inject(HeroEntranceService);
-  private readonly gsap = inject(GsapService);
-  private readonly smoothScroll = inject(SmoothScrollService);
 
   readonly videoSrc = input<string | null>(null);
   readonly posterSrc = input.required<string>();
@@ -136,10 +132,6 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
 
     const hero = this.el.nativeElement.querySelector('.hero') as HTMLElement;
     this.killFn = this.heroEntrance.heroScrollFade(hero);
-
-    this.smoothScroll.instance?.on('scroll', () => {
-      this.gsap.scrollTrigger.update();
-    });
   }
 
   ngOnDestroy(): void {

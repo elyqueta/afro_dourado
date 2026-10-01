@@ -83,6 +83,10 @@ import { BadgeNumberComponent } from '@app/shared/ui/badge-number/badge-number.c
           top: 96px;
         }
       }
+      :host-context(html[data-assistant='open'][data-assistant-mode='split']) .sticky-wrap {
+        grid-template-columns: 1fr;
+        position: static;
+      }
     `,
   ],
 })

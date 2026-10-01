@@ -1,9 +1,16 @@
 .site-shell {
-  margin-right: calc(var(--assistant-w) - var(--sbw, 0px));
+  /* Margin animates only to resize the page alongside the docked assistant. */
+  margin-right: calc(var(--assistant-w) - var(--assistant-sbw-comp, 0px));
   transition: margin-right var(--assistant-close) var(--ease-out-3);
 }
 
 html[data-assistant='open'] .site-shell {
   transition-duration: var(--assistant-open);
   transition-timing-function: var(--ease-out-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-shell {
+    transition-duration: 0ms !important;
+  }
 }

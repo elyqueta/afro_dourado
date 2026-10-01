@@ -28,19 +28,31 @@ export class AfroAssistantPanelComponent implements AfterViewInit, AfterViewChec
   readonly panelShell = viewChild<ElementRef<HTMLDivElement>>('panelShell');
   private readonly smoothScroll = inject(SmoothScrollService);
   private readonly platformId = inject(PLATFORM_ID);
+  private focusTimeout: ReturnType<typeof setTimeout> | null = null;
+  private wasOpen = false;
+  private previousSplit: boolean | null = null;
 
   constructor() {
     effect(() => {
       const open = this.assistant.open();
-      if (!this.assistant.isSplit()) {
-        if (open) {
-          this.smoothScroll.stop();
-        } else {
-          this.smoothScroll.start();
-        }
+      const split = this.assistant.isSplit();
+      if (!isPlatformBrowser(this.platformId)) return;
+
+      this.adjustForVisualViewport();
+      if (open && !split) {
+        this.smoothScroll.stop();
       } else {
         this.smoothScroll.start();
       }
+
+      if (open && (!this.wasOpen || (this.previousSplit === true && !split))) {
+        this.schedulePanelFocus();
+      } else if (this.wasOpen && !open) {
+        this.scheduleFocusOnLauncher();
+      }
+
+      this.wasOpen = open;
+      this.previousSplit = split;
     });
   }
 
@@ -49,10 +61,11 @@ export class AfroAssistantPanelComponent implements AfterViewInit, AfterViewChec
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
-    if (window.visualViewport) {
-      this.adjustForVisualViewport();
-      window.visualViewport.addEventListener('resize', this.adjustForVisualViewport);
-    }
+    document.addEventListener('keydown', this.onDocumentKeydown);
+    window.addEventListener('resize', this.adjustForVisualViewport);
+    window.visualViewport?.addEventListener('resize', this.adjustForVisualViewport);
+    window.visualViewport?.addEventListener('scroll', this.adjustForVisualViewport);
+    this.adjustForVisualViewport();
   }
 
   ngAfterViewChecked(): void {
@@ -64,43 +77,51 @@ export class AfroAssistantPanelComponent implements AfterViewInit, AfterViewChec
   }
 
   ngOnDestroy(): void {
-    if (isPlatformBrowser(this.platformId) && window.visualViewport) {
-      window.visualViewport.removeEventListener('resize', this.adjustForVisualViewport);
+    if (isPlatformBrowser(this.platformId)) {
+      document.removeEventListener('keydown', this.onDocumentKeydown);
+      window.removeEventListener('resize', this.adjustForVisualViewport);
+      window.visualViewport?.removeEventListener('resize', this.adjustForVisualViewport);
+      window.visualViewport?.removeEventListener('scroll', this.adjustForVisualViewport);
     }
+    if (this.focusTimeout !== null) clearTimeout(this.focusTimeout);
   }
 
-  onEscape(): void {
-    if (this.assistant.open()) {
+  private onDocumentKeydown = (event: KeyboardEvent): void => {
+    if (!this.assistant.open()) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
       this.assistant.closeAssistant();
+      return;
     }
-  }
-
-  onKeyDown(event: KeyboardEvent): void {
     if (event.key !== 'Tab' || this.assistant.isSplit()) return;
-
     const shell = this.panelShell();
     if (!shell) return;
 
     const focusableSelector = 'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])';
     const focusableElements = shell.nativeElement.querySelectorAll<HTMLElement>(focusableSelector);
 
-    if (focusableElements.length === 0) return;
+    if (focusableElements.length === 0) {
+      event.preventDefault();
+      shell.nativeElement.focus();
+      return;
+    }
 
     const first = focusableElements[0];
     const last = focusableElements[focusableElements.length - 1];
+    const activeElement = document.activeElement;
 
     if (event.shiftKey) {
-      if (document.activeElement === first || !shell.nativeElement.contains(document.activeElement)) {
+      if (activeElement === first || !shell.nativeElement.contains(activeElement)) {
         event.preventDefault();
         last.focus();
       }
     } else {
-      if (document.activeElement === last || !shell.nativeElement.contains(document.activeElement)) {
+      if (activeElement === last || !shell.nativeElement.contains(activeElement)) {
         event.preventDefault();
         first.focus();
       }
     }
-  }
+  };
 
   onSubmit(): void {
     this.assistant.sendMessage(this.assistant.input());
@@ -126,15 +147,47 @@ export class AfroAssistantPanelComponent implements AfterViewInit, AfterViewChec
     element.scrollTop = element.scrollHeight;
   }
 
+  private schedulePanelFocus(): void {
+    this.scheduleFocus(() => {
+      const shell = this.panelShell()?.nativeElement;
+      if (!shell || shell.contains(document.activeElement)) return;
+      shell.querySelector<HTMLElement>('.close')?.focus();
+    });
+  }
+
+  private scheduleFocusOnLauncher(): void {
+    this.scheduleFocus(() => {
+      document.querySelector<HTMLElement>('app-afro-assistant-launcher button')?.focus();
+    });
+  }
+
+  private scheduleFocus(callback: () => void): void {
+    if (this.focusTimeout !== null) clearTimeout(this.focusTimeout);
+    this.focusTimeout = setTimeout(() => {
+      this.focusTimeout = null;
+      callback();
+    });
+  }
+
   private adjustForVisualViewport = (): void => {
     if (!isPlatformBrowser(this.platformId)) return;
-    if (this.assistant.isSplit()) return;
-    if (!window.visualViewport) return;
-
-    const offset = window.innerHeight - window.visualViewport.height;
     const shell = this.panelShell();
-    if (shell) {
-      shell.nativeElement.style.setProperty('--viewport-offset', `${Math.max(0, offset)}px`);
+    if (!shell) return;
+
+    if (this.assistant.isSplit()) {
+      shell.nativeElement.style.removeProperty('--assistant-viewport-height');
+      shell.nativeElement.style.removeProperty('--assistant-viewport-top');
+      return;
     }
+
+    const viewport = window.visualViewport;
+    shell.nativeElement.style.setProperty(
+      '--assistant-viewport-height',
+      `${viewport?.height ?? window.innerHeight}px`,
+    );
+    shell.nativeElement.style.setProperty(
+      '--assistant-viewport-top',
+      `${viewport?.offsetTop ?? 0}px`,
+    );
   };
 }

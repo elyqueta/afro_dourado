@@ -91,6 +91,9 @@ import { BookingCtaComponent } from '@app/sections/booking-cta/booking-cta.compo
           grid-template-columns: repeat(3, 1fr);
         }
       }
+      :host-context(html[data-assistant='open'][data-assistant-mode='split']) .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     `,
   ],
 })

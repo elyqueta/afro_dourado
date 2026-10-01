@@ -1,16 +1,11 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SmoothScrollService } from './smooth-scroll.service';
 
 @Injectable({ providedIn: 'root' })
 export class GsapService {
-  private readonly smoothScroll = inject(SmoothScrollService);
-
   constructor() {
     gsap.registerPlugin(ScrollTrigger);
-
-    this.smoothScroll.on('scroll', () => ScrollTrigger.update());
   }
 
   get gsap() {

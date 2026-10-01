@@ -1,4 +1,4 @@
-<div class="site-shell">
+<div class="site-shell" (transitionend)="onSiteShellTransitionEnd($event)">
   <app-navbar />
   <main class="main">
     <router-outlet />

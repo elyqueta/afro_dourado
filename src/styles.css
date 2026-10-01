@@ -36,6 +36,8 @@
 
   /* Assistant tokens */
   --assistant-w: 0px;
+  --assistant-sbw-comp: 0px;
+  --sbw: 0px;
   --assistant-open: 600ms;
   --assistant-close: 420ms;
 
@@ -112,6 +114,56 @@ html[data-assistant='open'] app-mobile-cta-bar {
   display: none;
 }
 
+html[data-assistant='open'] .panel-shell:not(.closed) {
+  transform: translate3d(0, 0, 0);
+  transition-duration: var(--assistant-open);
+  transition-timing-function: var(--ease-out-4);
+  visibility: visible;
+}
+
+html[data-assistant='open'] .site-shell {
+  transition-duration: var(--assistant-open);
+  transition-timing-function: var(--ease-out-4);
+}
+
+html[data-assistant='open'][data-assistant-mode='split'] .panel-shell.split:not(.closed) {
+  transform: translate3d(0, 0, 0);
+}
+
+html[data-assistant='open'][data-assistant-mode='split'] app-navbar .navbar,
+html[data-assistant='open'][data-assistant-mode='split'] app-page-transition .overlay,
+html[data-assistant='open'][data-assistant-mode='split'] .grain-overlay,
+html[data-assistant='open'][data-assistant-mode='split'] app-trichology .cta-sticky {
+  right: var(--assistant-w);
+  transition:
+    right var(--assistant-open) var(--ease-out-4);
+}
+
+html[data-assistant='closed'] app-navbar .navbar,
+html[data-assistant='closed'] app-page-transition .overlay,
+html[data-assistant='closed'] .grain-overlay,
+html[data-assistant='closed'] app-trichology .cta-sticky {
+  transition:
+    right var(--assistant-close) var(--ease-out-3);
+}
+
+html[data-assistant='open'][data-assistant-mode='split'] app-navbar .desktop {
+  display: none;
+}
+
+html[data-assistant='open'][data-assistant-mode='split'] app-navbar .desktop-cta,
+html[data-assistant='open'][data-assistant-mode='split'] app-navbar .mobile-toggle {
+  display: inline-flex;
+}
+
+html[data-assistant='open'][data-assistant-mode='split'] app-navbar .mobile-menu {
+  right: var(--assistant-w);
+}
+
+html[data-assistant='open'][data-assistant-mode='split'] app-page-transition .overlay {
+  right: var(--assistant-w);
+}
+
 /* Hide window scrollbar in split mode to avoid overlap with panel */
 html[data-assistant-mode='split'][data-assistant='open'] {
   scrollbar-width: none;
@@ -119,6 +171,44 @@ html[data-assistant-mode='split'][data-assistant='open'] {
 
 html[data-assistant-mode='split'][data-assistant='open'] ::-webkit-scrollbar {
   display: none;
+}
+
+html[data-assistant-mode='full'][data-assistant='open'] {
+  scrollbar-width: none;
+}
+
+html[data-assistant-mode='full'][data-assistant='open'] ::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-assistant='open'] .site-shell,
+  html[data-assistant='closed'] .site-shell,
+  html[data-assistant='open'] app-navbar .navbar,
+  html[data-assistant='closed'] app-navbar .navbar,
+  html[data-assistant='open'] app-page-transition .overlay,
+  html[data-assistant='closed'] app-page-transition .overlay,
+  html[data-assistant='open'] .grain-overlay,
+  html[data-assistant='closed'] .grain-overlay,
+  html[data-assistant='open'] app-trichology .cta-sticky,
+  html[data-assistant='closed'] app-trichology .cta-sticky {
+    transition-duration: 0ms !important;
+  }
+
+  html[data-assistant='open'] .panel-shell:not(.closed),
+  .panel-shell {
+    transform: none !important;
+    transition:
+      opacity 160ms ease,
+      visibility 0ms 0ms !important;
+  }
+
+  .panel-shell.closed {
+    opacity: 0;
+    transition:
+      opacity 160ms ease,
+      visibility 0ms 160ms !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

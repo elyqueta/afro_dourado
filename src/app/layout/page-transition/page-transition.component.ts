@@ -26,15 +26,6 @@ import { SmoothScrollService } from '../../core/smooth-scroll.service';
       transition: right var(--assistant-close) var(--ease-out-3);
     }
 
-    html[data-assistant='open'] .overlay {
-      transition-duration: var(--assistant-open);
-      transition-timing-function: var(--ease-out-4);
-    }
-
-    html[data-assistant='open'][data-assistant-mode='split'] .overlay {
-      right: var(--assistant-w);
-    }
-
     .brand-logo {
       height: 60px;
       width: auto;

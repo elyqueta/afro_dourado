@@ -66,6 +66,9 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
           grid-template-columns: 1fr 1fr;
         }
       }
+      :host-context(html[data-assistant='open'][data-assistant-mode='split']) .grid {
+        grid-template-columns: 1fr;
+      }
     `,
   ],
 })

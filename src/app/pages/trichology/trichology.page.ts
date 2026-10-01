@@ -230,6 +230,14 @@ import { VideoBackgroundComponent } from '@app/shared/ui/video-background/video-
           display: none;
         }
       }
+
+      :host-context(html[data-assistant='open'][data-assistant-mode='split']) .header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      :host-context(html[data-assistant='open'][data-assistant-mode='split']) .media {
+        width: 100%;
+      }
     `,
   ],
 })

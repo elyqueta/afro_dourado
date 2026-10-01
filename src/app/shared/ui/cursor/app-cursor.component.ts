@@ -1,7 +1,5 @@
 import { Component, inject, signal, AfterViewInit, OnDestroy, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { SmoothScrollService } from '@app/core/smooth-scroll.service';
-import { GsapService } from '@app/core/gsap.service';
 
 @Component({
   selector: 'app-app-cursor',
@@ -44,8 +42,7 @@ import { GsapService } from '@app/core/gsap.service';
 })
 export class AppCursorComponent implements AfterViewInit, OnDestroy {
   private readonly platformId = inject(PLATFORM_ID);
-  private readonly gsap = inject(GsapService);
-  private readonly smoothScroll = inject(SmoothScrollService);
+  private panel: Element | null = null;
 
   isBrowser() {
     return isPlatformBrowser(this.platformId);
@@ -64,20 +61,29 @@ export class AppCursorComponent implements AfterViewInit, OnDestroy {
     if (window.matchMedia('(pointer: coarse)').matches) return;
 
     document.addEventListener('mousemove', this.onMouseMove);
-    document.addEventListener('mousedown', () => this.isOpen.set(true));
-    document.addEventListener('mouseup', () => this.isOpen.set(false));
+    document.addEventListener('mousedown', this.onMouseDown);
+    document.addEventListener('mouseup', this.onMouseUp);
 
-    const panel = document.querySelector('.panel-shell');
-    if (panel) {
-      panel.addEventListener('mouseenter', () => this.isOverPanel.set(true));
-      panel.addEventListener('mouseleave', () => this.isOverPanel.set(false));
+    this.panel = document.querySelector('.panel-shell');
+    if (this.panel) {
+      this.panel.addEventListener('mouseenter', this.onPanelEnter);
+      this.panel.addEventListener('mouseleave', this.onPanelLeave);
     }
   }
 
   ngOnDestroy(): void {
     if (!isPlatformBrowser(this.platformId)) return;
     document.removeEventListener('mousemove', this.onMouseMove);
+    document.removeEventListener('mousedown', this.onMouseDown);
+    document.removeEventListener('mouseup', this.onMouseUp);
+    this.panel?.removeEventListener('mouseenter', this.onPanelEnter);
+    this.panel?.removeEventListener('mouseleave', this.onPanelLeave);
   }
+
+  private onMouseDown = (): void => this.isOpen.set(true);
+  private onMouseUp = (): void => this.isOpen.set(false);
+  private onPanelEnter = (): void => this.isOverPanel.set(true);
+  private onPanelLeave = (): void => this.isOverPanel.set(false);
 
   private onMouseMove = (e: MouseEvent) => {
     const cursor = document.querySelector('.cursor') as HTMLElement;

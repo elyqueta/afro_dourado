@@ -15,7 +15,7 @@
 ### Motion / core services
 - [x] `gsap` + `lenis` instalados (`package.json`)
 - [x] `SmoothScrollService` (`core/smooth-scroll.service.ts`) — instância única, browser-only, RAF loop, `start/stop/scrollTo/on/destroy`
-- [x] `GsapService` (`core/gsap.service.ts`) — regista `ScrollTrigger`, liga Lenis `scroll` → `ScrollTrigger.update()`, `killAllTriggers()`, `refresh()`, `lagSmoothing()`
+- [x] `GsapService` (`core/gsap.service.ts`) — regista `ScrollTrigger`, `killAllTriggers()`, `refresh()`, `lagSmoothing()`; `App` liga Lenis `scroll` → `ScrollTrigger.update()` uma única vez
 - [x] `ConnectionService` (`core/connection.service.ts`)
 - [x] `SeoService` (`core/seo.service.ts`)
 - [x] `BookingService` (`core/booking.service.ts`)
@@ -48,14 +48,17 @@
 ### Assistente
 - [x] `AfroAssistantLauncherComponent`
 - [x] `AfroAssistantPanelComponent`
-- [x] Modo split (desktop ≥1024px): site ocupa 50% via `site-shell` + `--assistant-w`; painel fixo à direita com `transform` (sem `width` animado)
-- [x] Modo full (tablet/mobile <1024px): painel em ecrã inteiro `100dvh`, slide-up, `aria-modal="true"`, foco preso, scroll bloqueado via `SmoothScrollService.stop()/start()`
-- [x] `AssistantService` ganhou `isSplit` (signal + `matchMedia` com SSR guard), `sbw` e atualização de `data-assistant*`/`--assistant-w`
+- [x] Modo split (desktop ≥1024px): site redimensionado para 50% via `site-shell` e compensação da scrollbar; painel docked à direita, sem scrim e sem animar largura
+- [x] Modo full (tablet/mobile <1024px): painel `100dvh`/100% largura, slide-up, `aria-modal="true"`, foco preso e scroll bloqueado via `SmoothScrollService.stop()/start()`
+- [x] `AssistantService`: `isSplit` via `matchMedia` com SSR guard, medição da scrollbar e estado CSS global (`data-assistant*`, `--assistant-w`, `--sbw`, `--assistant-viewport-width`)
+- [x] `visualViewport` ajusta o painel em ecrã inteiro ao teclado virtual; listeners de viewport e foco são removidos no cleanup
+- [x] Mudanças de modo e fim da transição do shell refrescam `ScrollTrigger` e Lenis; scroll do chat é isolado com `data-lenis-prevent`
+- [x] Navbar compacta, menu limitado à coluna do site, transição de página/grain limitados ao site e grelhas ajustadas quando docked
 - [x] Launcher escondido enquanto o assistente está aberto (CSS global)
 - [x] `AppCursorComponent` esconde cursor nativo sobre o painel
 - [x] `PageTransitionComponent` cobre só a área do site em split
 - [x] `MobileCtaBarComponent` escondida enquanto o assistente está aberto
-- [x] `prefers-reduced-motion`: fade curto, sem slide
+- [x] `prefers-reduced-motion`: layout instantâneo e fade curto, sem slide
 - [x] `npm test` passa (9 testes: App + AssistantService)
 - [x] `npm run build` sem erros nem warnings de orçamento
 
@@ -152,6 +155,9 @@
 
 ## Notas técnicas
 
+- Os estados globais do painel/navbar/page transition ficam em `src/styles.css`: selectores `html[data-assistant]` em folhas encapsuladas Angular não alcançam o elemento `<html>`.
+- `site-shell` anima `margin-right` apenas para redimensionar o site durante o modo docked; scrollbar e menu de foco seguem visíveis/funcionais sem scrim no desktop.
+- O `App` é o único ponto de integração Lenis → ScrollTrigger; secções e Hero não registam listeners adicionais de scroll.
 - Todos os templates de página estão inline nos `.page.ts` (não existem ficheiros `.html` separados em `pages/`).
 - O conteúdo pendente está marcado com `[[PENDENTE-CLIENTE]]` e comentário `<!-- TODO: aguardar validação Afro Dourado -->`.
 - Imagens via Pexels com parâmetros de otimização (`auto=format&fit=crop&w=...&q=80`).

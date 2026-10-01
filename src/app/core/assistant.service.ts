@@ -99,19 +99,15 @@ export class AssistantService {
 
       const onModeChange = (e: MediaQueryListEvent) => {
         this.isSplit.set(e.matches);
-        if (this.open()) {
-          this.updateSbw();
-        }
+        this.updateSbw();
         this.updateCssVariables();
       };
 
       this.modeQuery.addEventListener('change', onModeChange);
 
       this.resizeHandler = () => {
-        if (this.open()) {
-          this.updateSbw();
-          this.updateCssVariables();
-        }
+        this.updateSbw();
+        this.updateCssVariables();
       };
       window.addEventListener('resize', this.resizeHandler);
 
@@ -151,19 +147,12 @@ export class AssistantService {
     const open = this.open();
     const split = this.isSplit();
 
-    if (open && split) {
-      root.style.setProperty('--assistant-w', '50vw');
-      root.setAttribute('data-assistant', 'open');
-      root.setAttribute('data-assistant-mode', 'split');
-    } else if (open) {
-      root.style.setProperty('--assistant-w', '0px');
-      root.setAttribute('data-assistant', 'open');
-      root.setAttribute('data-assistant-mode', 'full');
-    } else {
-      root.style.setProperty('--assistant-w', '0px');
-      root.setAttribute('data-assistant', 'closed');
-      root.removeAttribute('data-assistant-mode');
-    }
+    root.style.setProperty('--assistant-viewport-width', `${window.innerWidth}px`);
+    root.style.setProperty('--sbw', `${this.sbw()}px`);
+    root.style.setProperty('--assistant-w', open && split ? '50vw' : '0px');
+    root.style.setProperty('--assistant-sbw-comp', open && split ? `${this.sbw()}px` : '0px');
+    root.setAttribute('data-assistant', open ? 'open' : 'closed');
+    root.setAttribute('data-assistant-mode', split ? 'split' : 'full');
   }
 
   openAssistant(): void {

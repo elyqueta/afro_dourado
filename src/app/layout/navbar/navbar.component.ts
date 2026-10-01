@@ -307,26 +307,6 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
         }
       }
 
-      /* Split mode overrides: compact navbar + mobile menu limited to site area */
-      html[data-assistant='open'][data-assistant-mode='split'] .navbar {
-        right: var(--assistant-w);
-      }
-
-      html[data-assistant='open'][data-assistant-mode='split'] .desktop {
-        display: none;
-      }
-
-      html[data-assistant='open'][data-assistant-mode='split'] .desktop-cta {
-        display: inline-flex;
-      }
-
-      html[data-assistant='open'][data-assistant-mode='split'] .mobile-toggle {
-        display: inline-flex;
-      }
-
-      html[data-assistant='open'][data-assistant-mode='split'] .mobile-menu {
-        right: var(--assistant-w);
-      }
     `,
   ],
 })

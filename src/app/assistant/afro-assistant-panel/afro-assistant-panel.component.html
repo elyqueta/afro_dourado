@@ -5,16 +5,15 @@
   [attr.aria-modal]="assistant.isSplit() ? 'false' : 'true'"
   [attr.inert]="!assistant.open() ? 'true' : null"
   role="dialog"
-  aria-label="Assistente Afro Dourado"
-  (keydown.escape)="onEscape()"
+  aria-labelledby="assistant-title"
+  tabindex="-1"
   #panelShell
 >
-  <div class="panel-overlay" (click)="assistant.closeAssistant()"></div>
-  <div class="panel" (click)="$event.stopPropagation()">
+  <div class="panel" data-lenis-prevent>
     <div class="header">
       <div>
         <p class="eyebrow">Afro Dourado Assist</p>
-        <h3 class="title">Como podemos ajudar?</h3>
+        <h3 class="title" id="assistant-title">Como podemos ajudar?</h3>
       </div>
       <div class="header-actions">
         <button type="button" class="reset" (click)="assistant.resetChat()" aria-label="Reiniciar conversa">
@@ -39,7 +38,7 @@
       }
     </div>
 
-    <div class="messages" #messagesContainer>
+    <div class="messages" data-lenis-prevent #messagesContainer>
       @for (message of assistant.messages(); track trackByTimestamp($index, message)) {
         <div class="message" [class.user]="message.sender === 'user'">
           <div class="bubble">
@@ -66,7 +65,9 @@
         (input)="onInput($event)"
         placeholder="Escreva a sua mensagem..."
         class="input"
+        aria-label="Escreva a sua mensagem"
         autocomplete="off"
+        enterkeyhint="send"
       />
       <button
         type="submit"

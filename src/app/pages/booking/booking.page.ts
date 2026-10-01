@@ -208,6 +208,9 @@ interface LocalData {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
       }
+      :host-context(html[data-assistant='open'][data-assistant-mode='split']) .options {
+        grid-template-columns: 1fr;
+      }
       .option {
         text-align: left;
         padding: 1.25rem;

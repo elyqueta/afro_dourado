@@ -60,6 +60,9 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
         grid-template-columns: repeat(3, 1fr);
       }
     }
+    :host-context(html[data-assistant='open'][data-assistant-mode='split']) .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
     .cta {
       margin-top: 2.5rem;
     }

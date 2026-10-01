@@ -1,34 +1,35 @@
 .panel-shell {
   position: fixed;
   z-index: 8500;
-  top: 0;
+  top: var(--assistant-viewport-top, 0px);
   right: 0;
-  bottom: 0;
+  bottom: auto;
   left: 0;
   width: 100%;
-  height: 100dvh;
+  height: var(--assistant-viewport-height, 100dvh);
   transform: translate3d(0, 100%, 0);
   visibility: visible;
+  opacity: 1;
   background-color: var(--color-cream-50);
-  transition: transform var(--assistant-close) var(--ease-out-3), visibility 0ms 0ms;
+  transition:
+    transform var(--assistant-close) var(--ease-out-3),
+    opacity 160ms ease,
+    visibility 0ms 0ms;
+  overscroll-behavior: contain;
 }
 
 .panel-shell.closed {
+  opacity: 0;
   visibility: hidden;
-  transition: transform var(--assistant-close) var(--ease-out-3), visibility 0ms var(--assistant-close);
-}
-
-html[data-assistant='open'] .panel-shell {
-  transform: translate3d(0, 0, 0);
-  transition-duration: var(--assistant-open);
-  transition-timing-function: var(--ease-out-4);
-}
-
-html[data-assistant='open'] .panel-shell.closed {
-  transition: transform var(--assistant-close) var(--ease-out-3), visibility 0ms var(--assistant-close);
+  transition:
+    transform var(--assistant-close) var(--ease-out-3),
+    opacity 160ms ease,
+    visibility 0ms var(--assistant-close);
 }
 
 .panel-shell.split {
+  top: 0;
+  bottom: 0;
   left: auto;
   width: 50vw;
   height: 100dvh;
@@ -37,56 +38,23 @@ html[data-assistant='open'] .panel-shell.closed {
   flex-direction: column;
 }
 
-.panel-shell.split.closed {
-  transform: translate3d(100%, 0, 0);
-}
-
-html[data-assistant='open'] .panel-shell.split {
-  transform: translate3d(0, 0, 0);
-}
-
 .panel-shell:not(.split) {
+  right: auto;
+  width: var(--assistant-viewport-width, 100vw);
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  padding: 1rem;
-}
-
-.panel-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(14, 59, 49, 0.4);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--assistant-close) var(--ease-out-3);
-}
-
-html[data-assistant='open'] .panel-overlay {
-  opacity: 1;
-  pointer-events: auto;
-  transition-duration: var(--assistant-open);
-  transition-timing-function: var(--ease-out-4);
-}
-
-.panel-shell.split .panel-overlay {
-  display: none;
+  flex-direction: column;
 }
 
 .panel {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
+  min-height: 0;
   background-color: var(--color-cream-50);
   overflow: hidden;
 }
 
-.panel-shell:not(.split) .panel {
-  width: 100%;
-  max-width: 420px;
-  max-height: 80vh;
-  border-radius: var(--radius-card);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-}
-
+.panel-shell:not(.split) .panel,
 .panel-shell.split .panel {
   width: 100%;
   height: 100%;
@@ -96,20 +64,12 @@ html[data-assistant='open'] .panel-overlay {
   box-shadow: none;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .panel-shell {
-    transform: none !important;
-    transition: opacity 200ms ease, visibility 0ms 200ms;
-  }
-  .panel-shell.closed {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 200ms ease, visibility 0ms 0ms;
-  }
-  .panel-shell.split {
-    transform: none !important;
-  }
-  html[data-assistant='open'] .panel-shell {
-    transform: none !important;
-  }
+.panel-shell:not(.split) .suggestions {
+  max-height: calc(var(--assistant-viewport-height, 100dvh) * 0.24);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.panel-shell .messages {
+  overscroll-behavior: contain;
 }
