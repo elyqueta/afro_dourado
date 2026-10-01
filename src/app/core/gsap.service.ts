@@ -17,7 +17,7 @@ export class GsapService {
   }
 
   lagSmoothing(enabled: boolean): void {
-    gsap.ticker.lagSmoothing(enabled ? 0 : 0.016);
+    gsap.ticker.lagSmoothing(enabled ? 500 : 0);
   }
 
   killAllTriggers(): void {

@@ -109,7 +109,8 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   }
   readonly description = input<string>('');
 
-  private killFn: any = null;
+  private entranceTimeline?: { kill: () => void };
+  private scrollTrigger?: { kill: () => void };
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
@@ -118,10 +119,13 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     const eyebrowEl = this.el.nativeElement.querySelector('.eyebrow') as HTMLElement;
     const headlineEls = Array.from(this.el.nativeElement.querySelectorAll('.line')) as HTMLElement[];
     const descEl = this.el.nativeElement.querySelector('.description') as HTMLElement;
-    const ctaEls = Array.from(this.el.nativeElement.querySelectorAll('.ctas ::ng-deep > *')) as HTMLElement[];
+    const ctaContainer = this.el.nativeElement.querySelector('.ctas');
+    const ctaEls = ctaContainer
+      ? Array.from(ctaContainer.children).filter((child): child is HTMLElement => child instanceof HTMLElement)
+      : [];
     const decorEls = Array.from(this.el.nativeElement.querySelectorAll('.decor')) as HTMLElement[];
 
-    this.heroEntrance.heroEntrance({
+    const entranceTimeline = this.heroEntrance.heroEntrance({
       bg,
       logo: eyebrowEl,
       headline: headlineEls,
@@ -129,15 +133,16 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
       ctas: ctaEls,
       decor: decorEls,
     });
+    if (entranceTimeline) this.entranceTimeline = entranceTimeline;
 
     const hero = this.el.nativeElement.querySelector('.hero') as HTMLElement;
-    this.killFn = this.heroEntrance.heroScrollFade(hero);
+    const scrollTrigger = this.heroEntrance.heroScrollFade(hero);
+    if (scrollTrigger) this.scrollTrigger = scrollTrigger;
   }
 
   ngOnDestroy(): void {
-    if (this.killFn) {
-      this.killFn();
-    }
+    this.entranceTimeline?.kill();
+    this.scrollTrigger?.kill();
   }
 
   constructor(private readonly el: ElementRef<HTMLElement>) {}

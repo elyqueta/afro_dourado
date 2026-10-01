@@ -42,25 +42,38 @@
 ### Layout
 - [x] `NavbarComponent` — menu mobile/tablet fullscreen com fundo `brand-green-900`, z-index 9999, links centralizados, botão de fechar, animação do hamburger para X, scroll bloqueado enquanto aberto
 - [x] `FooterComponent`
-- [x] `PageTransitionComponent` — preloader com logo do footer (`/AfroDourado-logo-transparente.png`)
+- [x] `PageTransitionComponent` — preloader com logo apenas no carregamento inicial; navegações internas não mostram overlay
 - [x] `MobileCtaBarComponent`
 
 ### Assistente
 - [x] `AfroAssistantLauncherComponent`
 - [x] `AfroAssistantPanelComponent`
 - [x] Modo split (desktop ≥1024px): site redimensionado para 50% via `site-shell` e compensação da scrollbar; painel docked à direita, sem scrim e sem animar largura
+- [x] Divisor do assistente ajustável por rato/teclado; colunas mantêm largura mínima, painel preserva a largura enquanto fecha
 - [x] Modo full (tablet/mobile <1024px): painel `100dvh`/100% largura, slide-up, `aria-modal="true"`, foco preso e scroll bloqueado via `SmoothScrollService.stop()/start()`
 - [x] `AssistantService`: `isSplit` via `matchMedia` com SSR guard, medição da scrollbar e estado CSS global (`data-assistant*`, `--assistant-w`, `--sbw`, `--assistant-viewport-width`)
 - [x] `visualViewport` ajusta o painel em ecrã inteiro ao teclado virtual; listeners de viewport e foco são removidos no cleanup
 - [x] Mudanças de modo e fim da transição do shell refrescam `ScrollTrigger` e Lenis; scroll do chat é isolado com `data-lenis-prevent`
 - [x] Navbar compacta, menu limitado à coluna do site, transição de página/grain limitados ao site e grelhas ajustadas quando docked
+- [x] CTA "Agendar" da navbar oculto enquanto o assistente está docked
+- [x] Mensagens livres do assistente respondem claramente que a funcionalidade está em desenvolvimento, sem submissão/reload
 - [x] Launcher escondido enquanto o assistente está aberto (CSS global)
 - [x] `AppCursorComponent` esconde cursor nativo sobre o painel
 - [x] `PageTransitionComponent` cobre só a área do site em split
 - [x] `MobileCtaBarComponent` escondida enquanto o assistente está aberto
 - [x] `prefers-reduced-motion`: layout instantâneo e fade curto, sem slide
-- [x] `npm test` passa (9 testes: App + AssistantService)
+- [x] `npm test` passa (10 testes: App, AssistantService e GsapService)
 - [x] `npm run build` sem erros nem warnings de orçamento
+
+### Galeria e responsive
+- [x] Nova página `/galeria`, com filtros e imagens demonstrativas; links "Ver galeria" e footer apontam para a página
+- [x] Footer, Sobre, Resultados e secções de preview usam grelhas compactas quando o assistente está aberto em split
+- [x] Selecção da unidade em Contactos e Agendamento apresenta mapa Google aproximado a partir do endereço de demonstração
+- [x] Agendamento valida data/período/contactos e apresenta mensagens de orientação
+- [x] Animações de reveal deixam o conteúdo visível caso a animação seja interrompida; selector inválido do CTA do Hero foi corrigido
+- [x] Correcção do ticker GSAP: desactivar o lag smoothing com limiar de 0 (em vez de 0,016ms), para as animações de entrada e reveals terminarem no tempo previsto
+- [x] Galeria: miniaturas abrem lightbox responsiva com navegação, zoom, foco modal e fecho por Escape; overflow horizontal do painel fixo fechado contido na raiz
+- [x] Lightbox: imagem ampliada pode ser explorada por arrasto ou trackpad, sem depender da barra de scroll; scrollbar global fina e discreta, mantendo o scroll funcional
 
 ### App shell
 - [x] `app.html` composto com: navbar, router-outlet, footer, page-transition, mobile-cta-bar, cursor, assistant launcher/panel, grain-overlay
@@ -72,7 +85,7 @@
 - [x] `npm run build` compila sem erros
 - [x] Browser bundles dentro do orçamento (`angular.json`)
 - [x] SSR activo (`dist/afro_dourado/server`)
-- [x] Prerendered routes: 8 estáticas
+- [x] Prerendered routes: 11 estáticas
 
 ---
 
@@ -158,6 +171,7 @@
 - Os estados globais do painel/navbar/page transition ficam em `src/styles.css`: selectores `html[data-assistant]` em folhas encapsuladas Angular não alcançam o elemento `<html>`.
 - `site-shell` anima `margin-right` apenas para redimensionar o site durante o modo docked; scrollbar e menu de foco seguem visíveis/funcionais sem scrim no desktop.
 - O `App` é o único ponto de integração Lenis → ScrollTrigger; secções e Hero não registam listeners adicionais de scroll.
+- O mapa usa resultados aproximados do Google Maps com endereços de demonstração; substituir pelos endereços validados antes do lançamento.
 - Todos os templates de página estão inline nos `.page.ts` (não existem ficheiros `.html` separados em `pages/`).
 - O conteúdo pendente está marcado com `[[PENDENTE-CLIENTE]]` e comentário `<!-- TODO: aguardar validação Afro Dourado -->`.
 - Imagens via Pexels com parâmetros de otimização (`auto=format&fit=crop&w=...&q=80`).

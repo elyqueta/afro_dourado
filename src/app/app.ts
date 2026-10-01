@@ -46,6 +46,7 @@ export class App implements AfterViewInit, OnDestroy {
       this.smoothScroll.on('scroll', () => {
         this.gsap.scrollTrigger.update();
       });
+      window.addEventListener('resize', this.onWindowResize);
     }
   }
 
@@ -63,22 +64,27 @@ export class App implements AfterViewInit, OnDestroy {
 
       let initialized = false;
       let previousSplit = false;
+      let previousPanelWidth = 50;
       const layoutSubscription = effect(() => {
         const open = this.assistant.open();
         const split = this.assistant.isSplit();
+        const panelWidth = this.assistant.panelWidthPercent();
         if (!initialized) {
           initialized = true;
           previousSplit = split;
+          previousPanelWidth = panelWidth;
           return;
         }
 
-        const delay = split !== previousSplit ? 50 : open ? 650 : 450;
+        const delay = split !== previousSplit ? 50 : panelWidth !== previousPanelWidth ? 100 : open ? 650 : 450;
         previousSplit = split;
+        previousPanelWidth = panelWidth;
         this.scheduleRefresh(delay);
       });
 
       this.destroyRef.onDestroy(() => {
         layoutSubscription.destroy();
+        window.removeEventListener('resize', this.onWindowResize);
         if (this.refreshTimeout !== null) clearTimeout(this.refreshTimeout);
       });
     });
@@ -89,6 +95,7 @@ export class App implements AfterViewInit, OnDestroy {
   }
 
   private refreshTimeout: ReturnType<typeof setTimeout> | null = null;
+  private onWindowResize = (): void => this.scheduleRefresh(100);
 
   onSiteShellTransitionEnd(event: TransitionEvent): void {
     if (event.target !== event.currentTarget || event.propertyName !== 'margin-right') return;

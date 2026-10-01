@@ -7,6 +7,7 @@
 /tricologia          Tricologia
 /trancas-estetica     Tranças & Estética
 /produtos            Produtos Naturais
+/galeria             Galeria visual
 /sobre               Sobre Nós
 /equipa              Equipa
 /journal             Journal (listagem)
@@ -61,6 +62,12 @@ Afro Dourado (logo)   Tricologia   Tranças   Produtos   Sobre   Journal   [Agen
 - Hero headline: `O teu cabelo. A tua expressão.`
 - Galeria com imagens de demonstração contextualizadas.
 - Conteúdo textual: tipos de tranças, técnicas, cuidados prévios e manutenção.
+
+## Galeria (`/galeria`)
+
+- Galeria editorial filtrável por tranças, cabelo natural e cuidado.
+- Imagens de demonstração; não apresentar como registo de resultados clínicos reais.
+- CTA para agendamento.
 
 ## Produtos Naturais — página interna
 

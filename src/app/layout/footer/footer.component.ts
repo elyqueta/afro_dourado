@@ -30,6 +30,7 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
               <a routerLink="/tricologia" routerLinkActive="active">Tricologia</a>
               <a routerLink="/trancas-estetica" routerLinkActive="active">Tranças & Estética</a>
               <a routerLink="/equipa" routerLinkActive="active">Equipa</a>
+              <a routerLink="/galeria" routerLinkActive="active">Galeria</a>
             </nav>
           </div>
           <div class="col">
@@ -119,6 +120,20 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
       .grid {
         grid-template-columns: repeat(4, 1fr);
       }
+    }
+
+    :host-context(html[data-assistant='open'][data-assistant-mode='split']) .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+    :host-context(html[data-assistant='open'][data-assistant-mode='split']) .col {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+    :host-context(html[data-assistant='open'][data-assistant-mode='split']) .logo-img {
+      max-width: 100%;
+      object-fit: contain;
+      object-position: left;
     }
   `]
 })

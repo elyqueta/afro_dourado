@@ -51,6 +51,28 @@
 
 html {
   scroll-behavior: auto;
+  overflow-x: clip;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(14, 59, 49, 0.38) var(--color-cream-50);
+}
+
+html::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--color-cream-50);
+}
+
+html::-webkit-scrollbar-thumb {
+  border: 2px solid var(--color-cream-50);
+  border-radius: var(--radius-pill);
+  background: rgba(14, 59, 49, 0.38);
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-green-700);
 }
 
 body {
@@ -156,6 +178,10 @@ html[data-assistant='open'][data-assistant-mode='split'] app-navbar .mobile-togg
   display: inline-flex;
 }
 
+html[data-assistant='open'][data-assistant-mode='split'] app-navbar .desktop-cta {
+  display: none;
+}
+
 html[data-assistant='open'][data-assistant-mode='split'] app-navbar .mobile-menu {
   right: var(--assistant-w);
 }
@@ -179,6 +205,14 @@ html[data-assistant-mode='full'][data-assistant='open'] {
 
 html[data-assistant-mode='full'][data-assistant='open'] ::-webkit-scrollbar {
   display: none;
+}
+
+html[data-assistant-resizing] .site-shell,
+html[data-assistant-resizing] app-navbar .navbar,
+html[data-assistant-resizing] app-page-transition .overlay,
+html[data-assistant-resizing] .grain-overlay,
+html[data-assistant-resizing] .panel-shell {
+  transition-duration: 0ms !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

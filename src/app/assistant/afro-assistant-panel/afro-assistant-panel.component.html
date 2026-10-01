@@ -9,6 +9,23 @@
   tabindex="-1"
   #panelShell
 >
+  @if (assistant.isSplit()) {
+    <button
+      type="button"
+      class="panel-resizer"
+      role="separator"
+      aria-label="Redimensionar a área do assistente"
+      aria-orientation="vertical"
+      [attr.aria-valuenow]="assistant.panelWidthPercent()"
+      aria-valuemin="30"
+      aria-valuemax="70"
+      (pointerdown)="startResize($event)"
+      (pointermove)="resize($event)"
+      (pointerup)="stopResize($event)"
+      (pointercancel)="stopResize($event)"
+      (keydown)="resizeWithKeyboard($event)"
+    ></button>
+  }
   <div class="panel" data-lenis-prevent>
     <div class="header">
       <div>

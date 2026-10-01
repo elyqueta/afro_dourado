@@ -1,7 +1,9 @@
 import { Component, signal, computed, ChangeDetectionStrategy, inject } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { BookingService, ServiceType, BookingData } from '@app/core/booking.service';
 import { SectionHeadingComponent } from '@app/shared/ui/section-heading/section-heading.component';
 import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component';
+import { googleMapsEmbedUrl } from '@app/sections/location-picker/location-picker.component';
 
 type Step = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -15,7 +17,6 @@ interface LocalData {
   contactPhone: string;
   contactEmail: string;
 }
-
 @Component({
   selector: 'app-booking',
   standalone: true,
@@ -74,6 +75,18 @@ interface LocalData {
                 </button>
               }
             </div>
+            @if (local().unit; as unit) {
+              <div class="unit-map">
+                <p class="map-note">Mapa aproximado da unidade seleccionada, baseado no endereço de demonstração.</p>
+                <iframe
+                  class="map"
+                  [src]="unitMapUrl()"
+                  [title]="'Mapa aproximado da unidade de ' + (unit === 'luanda' ? 'Luanda' : 'Huambo')"
+                  loading="lazy"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                ></iframe>
+              </div>
+            }
           </div>
         }
 
@@ -136,6 +149,10 @@ interface LocalData {
         }
       </div>
 
+      @if (validationMessage()) {
+        <p class="validation" role="alert" aria-live="polite">{{ validationMessage() }}</p>
+      }
+
       <div class="actions">
         @if (canBack()) {
           <app-pill-button (click)="back()" variant="secondary" size="md" label="Voltar"></app-pill-button>
@@ -197,6 +214,27 @@ interface LocalData {
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+      }
+      .validation {
+        margin: 1rem 0 0;
+        color: #8a2f20;
+        font-size: var(--text-small);
+      }
+      .unit-map {
+        margin-top: 1.5rem;
+      }
+      .map-note {
+        margin: 0 0 0.75rem;
+        font-size: var(--text-small);
+        opacity: 0.75;
+      }
+      .map {
+        display: block;
+        width: 100%;
+        height: clamp(220px, 32vw, 360px);
+        border: 0;
+        border-radius: var(--radius-card);
+        background: var(--color-white);
       }
       .panel-title {
         font-family: var(--font-display);
@@ -377,7 +415,9 @@ interface LocalData {
 })
 export class BookingPage {
   private readonly booking = inject(BookingService);
+  private readonly sanitizer = inject(DomSanitizer);
   readonly confirmed = signal(false);
+  readonly validationMessage = signal('');
 
   readonly current = computed<Step>(() => this.booking.step() as Step);
   readonly canBack = computed(() => this.booking.step() > 1);
@@ -393,6 +433,14 @@ export class BookingPage {
     contactName: '',
     contactPhone: '',
     contactEmail: '',
+  });
+  readonly unitMapUrl = computed<SafeResourceUrl | null>(() => {
+    const unit = this.local().unit;
+    if (!unit) return null;
+    const address = unit === 'luanda'
+      ? 'Talatona, Luanda, Angola'
+      : 'Avenida da Independência, Huambo, Angola';
+    return this.sanitizer.bypassSecurityTrustResourceUrl(googleMapsEmbedUrl(address));
   });
 
   readonly steps = [
@@ -451,43 +499,74 @@ export class BookingPage {
   });
 
   selectServiceType(type: ServiceType): void {
+    this.validationMessage.set('');
     this.local.update(current => ({ ...current, serviceType: type, serviceName: '' }));
     this.booking.updateData({ serviceType: type, serviceName: '' });
     this.booking.nextStep();
   }
 
   selectService(name: string): void {
+    this.validationMessage.set('');
     this.local.update(current => ({ ...current, serviceName: name }));
     this.booking.updateData({ serviceName: name });
     this.booking.nextStep();
   }
 
   selectUnit(unit: 'luanda' | 'huambo'): void {
+    this.validationMessage.set('');
     this.local.update(current => ({ ...current, unit }));
     this.booking.updateData({ unit });
-    this.booking.nextStep();
   }
 
   onDateChange(value: string): void {
+    this.validationMessage.set('');
     this.local.update(current => ({ ...current, date: value }));
     this.booking.updateData({ date: value });
   }
 
   onContactChange(field: 'contactName' | 'contactPhone' | 'contactEmail', value: string): void {
+    this.validationMessage.set('');
     this.local.update(current => ({ ...current, [field]: value }));
     this.booking.updateData({ [field]: value } as Partial<BookingData>);
   }
 
   selectPeriod(period: string): void {
+    this.validationMessage.set('');
     this.local.update(current => ({ ...current, time: period }));
     this.booking.updateData({ time: period });
-    this.booking.nextStep();
   }
 
   next(): void {
-    if (this.current() === 4 && !this.local().date) {
+    const data = this.local();
+    if (this.current() === 3 && !data.unit) {
+      this.validationMessage.set('Escolha a unidade onde pretende ser atendido.');
       return;
     }
+    if (this.current() === 4) {
+      if (!data.date || !data.time) {
+        this.validationMessage.set('Indique uma data e um período preferido para continuar.');
+        return;
+      }
+      if (new Date(`${data.date}T00:00:00`) < new Date(new Date().toDateString())) {
+        this.validationMessage.set('Escolha uma data igual ou posterior a hoje.');
+        return;
+      }
+    }
+    if (this.current() === 5) {
+      if (!data.contactName.trim()) {
+        this.validationMessage.set('Indique o seu nome para a equipa identificar o pedido.');
+        return;
+      }
+      if (data.contactPhone.replace(/\D/g, '').length < 7) {
+        this.validationMessage.set('Indique um telefone válido para podermos confirmar o pedido.');
+        return;
+      }
+      if (data.contactEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.contactEmail)) {
+        this.validationMessage.set('Verifique o endereço de email ou deixe o campo em branco.');
+        return;
+      }
+    }
+    this.validationMessage.set('');
     this.booking.nextStep();
   }
 
@@ -496,6 +575,12 @@ export class BookingPage {
   }
 
   confirm(): void {
+    if (!this.local().contactName.trim() || this.local().contactPhone.replace(/\D/g, '').length < 7) {
+      this.validationMessage.set('Preencha os seus dados de contacto antes de confirmar.');
+      this.booking.setStep(5);
+      return;
+    }
+    this.validationMessage.set('');
     this.booking.updateData({
       contactName: this.local().contactName,
       contactPhone: this.local().contactPhone,

@@ -28,7 +28,7 @@ import { VideoBackgroundComponent } from '@app/shared/ui/video-background/video-
           <p class="lead">
             Técnica, identidade e expressão em cada entrelaçado.
           </p>
-          <app-pill-button href="#galeria" variant="secondary-light" size="lg" label="Ver galeria &rarr;"></app-pill-button>
+          <app-pill-button href="/galeria" variant="secondary-light" size="lg" label="Ver galeria &rarr;"></app-pill-button>
         </div>
       </section>
 

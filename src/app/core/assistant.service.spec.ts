@@ -56,6 +56,11 @@ describe('AssistantService', () => {
 
     expect(service.isSplit()).toBe(true);
     expect(document.documentElement.getAttribute('data-assistant-mode')).toBe('split');
+    service.openAssistant();
+    TestBed.flushEffects();
+    service.resizePanel(window.innerWidth * 0.4);
+    expect(Number.parseFloat(document.documentElement.style.getPropertyValue('--assistant-w')))
+      .toBeCloseTo(window.innerWidth * 0.6);
   });
 
   it('should expose sbw signal', () => {
@@ -88,7 +93,8 @@ describe('AssistantService', () => {
 
   it('should send message and reset chat', () => {
     service.sendMessage('olá');
-    expect(service.messages().length).toBeGreaterThan(1);
+    expect(service.messages()).toHaveLength(3);
+    expect(service.messages()[2].text).toContain('ainda está em desenvolvimento');
     service.resetChat();
     expect(service.messages().length).toBe(1);
   });

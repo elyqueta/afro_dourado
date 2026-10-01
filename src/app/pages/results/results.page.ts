@@ -160,6 +160,13 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
       .cta {
         text-align: center;
       }
+      :host-context(html[data-assistant='open'][data-assistant-mode='split']) .grid {
+        grid-template-columns: 1fr;
+        max-width: 560px;
+      }
+      :host-context(html[data-assistant='open'][data-assistant-mode='split']) .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     `,
   ],
 })

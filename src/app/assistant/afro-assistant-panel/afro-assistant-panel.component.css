@@ -31,11 +31,46 @@
   top: 0;
   bottom: 0;
   left: auto;
-  width: 50vw;
+  width: var(--assistant-panel-width, 50vw);
   height: 100dvh;
   transform: translate3d(100%, 0, 0);
   display: flex;
   flex-direction: column;
+}
+
+.panel-resizer {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: -6px;
+  width: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.panel-resizer::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5px;
+  width: 2px;
+  background: transparent;
+  content: '';
+  transition: background-color var(--duration-micro) var(--ease-out-3);
+}
+
+.panel-resizer:hover::after,
+.panel-resizer:focus-visible::after {
+  background: var(--color-brand-gold-500);
+}
+
+.panel-resizer:focus-visible {
+  outline: 2px solid var(--color-brand-gold-500);
+  outline-offset: -2px;
 }
 
 .panel-shell:not(.split) {

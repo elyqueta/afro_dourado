@@ -198,6 +198,17 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
       .cta {
         margin-top: 2.5rem;
       }
+      :host-context(html[data-assistant='open'][data-assistant-mode='split']) .grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      :host-context(html[data-assistant='open'][data-assistant-mode='split']) .media {
+        order: -1;
+      }
+      :host-context(html[data-assistant='open'][data-assistant-mode='split']) .values,
+      :host-context(html[data-assistant='open'][data-assistant-mode='split']) .locations {
+        grid-template-columns: 1fr;
+      }
     `,
   ],
 })

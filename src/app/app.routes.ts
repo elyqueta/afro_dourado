@@ -6,6 +6,7 @@ export const routes: Routes = [
   { path: 'servicos', loadComponent: () => import('./pages/services/services.page').then(m => m.ServicesPage) },
   { path: 'produtos', loadComponent: () => import('./pages/products/products.page').then(m => m.ProductsPage) },
   { path: 'resultados', loadComponent: () => import('./pages/results/results.page').then(m => m.ResultsPage) },
+  { path: 'galeria', loadComponent: () => import('./pages/gallery/gallery.page').then(m => m.GalleryPage) },
   { path: 'journal', loadComponent: () => import('./pages/journal/journal.page').then(m => m.JournalPage) },
   { path: 'journal/:slug', loadComponent: () => import('./pages/journal-article/journal-article.page').then(m => m.JournalArticlePage) },
   { path: 'contacto', loadComponent: () => import('./pages/contacts/contacts.page').then(m => m.ContactsPage) },

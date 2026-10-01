@@ -31,6 +31,7 @@ export class AfroAssistantPanelComponent implements AfterViewInit, AfterViewChec
   private focusTimeout: ReturnType<typeof setTimeout> | null = null;
   private wasOpen = false;
   private previousSplit: boolean | null = null;
+  private resizingPointerId: number | null = null;
 
   constructor() {
     effect(() => {
@@ -130,6 +131,34 @@ export class AfroAssistantPanelComponent implements AfterViewInit, AfterViewChec
   onInput(event: Event): void {
     const target = event.target as HTMLInputElement;
     this.assistant.input.set(target.value);
+  }
+
+  startResize(event: PointerEvent): void {
+    if (event.button !== 0) return;
+    event.preventDefault();
+    this.resizingPointerId = event.pointerId;
+    (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
+    this.assistant.setResizing(true);
+    this.assistant.resizePanel(event.clientX);
+  }
+
+  resize(event: PointerEvent): void {
+    if (this.resizingPointerId !== event.pointerId) return;
+    this.assistant.resizePanel(event.clientX);
+  }
+
+  stopResize(event: PointerEvent): void {
+    if (this.resizingPointerId !== event.pointerId) return;
+    this.resizingPointerId = null;
+    this.assistant.setResizing(false);
+  }
+
+  resizeWithKeyboard(event: KeyboardEvent): void {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    event.preventDefault();
+    const currentWidth = window.innerWidth * this.assistant.panelWidthPercent() / 100;
+    const delta = event.key === 'ArrowLeft' ? 24 : -24;
+    this.assistant.resizePanel(window.innerWidth - currentWidth - delta);
   }
 
   trackByTimestamp(index: number, message: AssistantMessage): string {

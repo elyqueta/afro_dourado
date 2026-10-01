@@ -51,6 +51,12 @@
 2. Galeria com imagens de demonstração.
 3. CTA de fecho de secção → `/agendamento`.
 
+## Galeria (`/galeria`)
+
+1. Introdução editorial com filtros por tranças, cabelo natural e cuidado.
+2. Grelha responsiva de imagens demonstrativas, com texto alternativo descritivo.
+3. CTA para agendamento; manter as imagens identificadas como inspiração/demo, não como resultados clínicos comprovados.
+
 ## Produtos Naturais (`/produtos`)
 
 1. Hero de produto isolado, fundo limpo.

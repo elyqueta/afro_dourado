@@ -1,7 +1,12 @@
-import { Component, input, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, signal, computed, inject, ChangeDetectionStrategy } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component';
 import { SectionHeadingComponent } from '@app/shared/ui/section-heading/section-heading.component';
+
+export function googleMapsEmbedUrl(query: string): string {
+  return `https://maps.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
+}
 
 @Component({
   selector: 'app-location-picker',
@@ -27,6 +32,14 @@ import { SectionHeadingComponent } from '@app/shared/ui/section-heading/section-
             <p class="address">{{ unit === 'luanda' ? luandaAddress() : huamboAddress() }}</p>
             <p class="hours">{{ unit === 'luanda' ? luandaHours() : huamboHours() }}</p>
             <p class="phone">{{ unit === 'luanda' ? luandaPhone() : huamboPhone() }}</p>
+            <p class="map-note">Mapa aproximado baseado no endereço de demonstração.</p>
+            <iframe
+              class="map"
+              [src]="mapUrl()"
+              title="Mapa aproximado da unidade seleccionada"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
             <div class="actions">
                <app-pill-button href="/agendamento" variant="primary" size="md" label="Agendar nesta unidade"></app-pill-button>
             </div>
@@ -69,12 +82,26 @@ import { SectionHeadingComponent } from '@app/shared/ui/section-heading/section-
       line-height: 1.6;
       margin: 0 0 0.5rem;
     }
+    .map-note {
+      margin: 1.25rem 0 0.5rem;
+      font-size: var(--text-small);
+      opacity: 0.7;
+    }
+    .map {
+      display: block;
+      width: 100%;
+      height: clamp(220px, 32vw, 360px);
+      border: 0;
+      border-radius: var(--radius-card);
+      background: var(--color-white);
+    }
     .actions {
       margin-top: 1.5rem;
     }
   `]
 })
 export class LocationPickerComponent {
+  private readonly sanitizer = inject(DomSanitizer);
   readonly selected = signal<'luanda' | 'huambo' | null>(null);
 
   readonly luandaTitle = input.required<string>();
@@ -86,6 +113,12 @@ export class LocationPickerComponent {
   readonly huamboAddress = input.required<string>();
   readonly huamboHours = input.required<string>();
   readonly huamboPhone = input.required<string>();
+  readonly mapUrl = computed<SafeResourceUrl | null>(() => {
+    const unit = this.selected();
+    if (!unit) return null;
+    const query = unit === 'luanda' ? this.luandaAddress() : this.huamboAddress();
+    return this.sanitizer.bypassSecurityTrustResourceUrl(googleMapsEmbedUrl(query));
+  });
 
   select(unit: 'luanda' | 'huambo'): void {
     this.selected.update(current => current === unit ? null : unit);

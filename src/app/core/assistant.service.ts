@@ -36,37 +36,6 @@ const INITIAL_OPTIONS: AssistantOption[] = [
   },
 ];
 
-function getSimulatedResponse(message: string): string {
-  const normalized = message.toLowerCase();
-
-  if (normalized.includes('queda') || normalized.includes('quedas')) {
-    return 'A queda capilar pode ter várias causas. Recomendamos uma avaliação tricológica para identificar o melhor tratamento para o seu caso.';
-  }
-  if (normalized.includes('trança') || normalized.includes('pentear') || normalized.includes('protecção')) {
-    return 'Temos várias técnicas de tranças e penteados protectivos. Agende uma avaliação para escolhermos o estilo mais adequado.';
-  }
-  if (normalized.includes('produto') || normalized.includes('óleo') || normalized.includes('shampoo')) {
-    return 'A nossa linha de produtos naturais foi pensada para o cabelo afro. Na consulta, indicamos os mais indicados para si.';
-  }
-  if (normalized.includes('marcar') || normalized.includes('agendar') || normalized.includes('atendimento') || normalized.includes('horário')) {
-    return 'Pode marcar diretamente no nosso sistema de agendamento ou falar connosco por WhatsApp.';
-  }
-  if (normalized.includes('preço') || normalized.includes('valor') || normalized.includes('custo')) {
-    return 'Os valores variam conforme o tratamento. Durante a primeira consulta, apresentamos o plano e os valores antes de qualquer procedimento.';
-  }
-  if (normalized.includes('morada') || normalized.includes('localização') || normalized.includes('unidade') || normalized.includes('luanda') || normalized.includes('huambo')) {
-    return 'Estamos em Luanda e Huambo. Pode escolher a unidade mais próxima na página de Contacto.';
-  }
-  if (normalized.includes('obrigado') || normalized.includes('obrigada')) {
-    return 'De nada! Estamos aqui para ajudar. Se precisar de mais informações, não hesite em perguntar.';
-  }
-  if (normalized.includes('olá') || normalized.includes('oi') || normalized.includes('bom dia') || normalized.includes('boa tarde')) {
-    return 'Olá! Como posso ajudá-lo hoje? Pode escolher uma das opções abaixo ou escrever a sua questão.';
-  }
-
-  return 'Para uma avaliação adequada, fale com a nossa equipa. Cada caso é único e requer atenção personalizada.';
-}
-
 @Injectable({
   providedIn: 'root',
 })
@@ -86,6 +55,7 @@ export class AssistantService {
 
   readonly isSplit = signal(false);
   readonly sbw = signal(0);
+  readonly panelWidthPercent = signal(50);
 
   private readonly destroyRef = inject(DestroyRef);
   private readonly platformId = inject(PLATFORM_ID);
@@ -98,6 +68,7 @@ export class AssistantService {
       this.isSplit.set(this.modeQuery.matches);
 
       const onModeChange = (e: MediaQueryListEvent) => {
+        this.setResizing(false);
         this.isSplit.set(e.matches);
         this.updateSbw();
         this.updateCssVariables();
@@ -149,7 +120,9 @@ export class AssistantService {
 
     root.style.setProperty('--assistant-viewport-width', `${window.innerWidth}px`);
     root.style.setProperty('--sbw', `${this.sbw()}px`);
-    root.style.setProperty('--assistant-w', open && split ? '50vw' : '0px');
+    const assistantWidth = window.innerWidth * this.panelWidthPercent() / 100;
+    root.style.setProperty('--assistant-panel-width', `${assistantWidth}px`);
+    root.style.setProperty('--assistant-w', open && split ? `${assistantWidth}px` : '0px');
     root.style.setProperty('--assistant-sbw-comp', open && split ? `${this.sbw()}px` : '0px');
     root.setAttribute('data-assistant', open ? 'open' : 'closed');
     root.setAttribute('data-assistant-mode', split ? 'split' : 'full');
@@ -163,25 +136,42 @@ export class AssistantService {
     this.open.set(false);
   }
 
+  resizePanel(edgeX: number): void {
+    if (!isPlatformBrowser(this.platformId) || !this.isSplit()) return;
+    const minColumnWidth = Math.min(320, window.innerWidth / 2);
+    const panelWidth = Math.min(
+      window.innerWidth - minColumnWidth,
+      Math.max(minColumnWidth, window.innerWidth - edgeX),
+    );
+    this.panelWidthPercent.set((panelWidth / window.innerWidth) * 100);
+    this.updateCssVariables();
+  }
+
+  setResizing(resizing: boolean): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const root = document.documentElement;
+    if (resizing) {
+      root.setAttribute('data-assistant-resizing', '');
+    } else {
+      root.removeAttribute('data-assistant-resizing');
+    }
+  }
+
   sendMessage(text: string): void {
     const trimmed = text.trim();
     if (!trimmed || this.isTyping()) return;
 
+    const now = new Date();
     this.messages.update((current) => [
       ...current,
-      { sender: 'user', text: trimmed, timestamp: new Date() },
+      { sender: 'user', text: trimmed, timestamp: now },
+      {
+        sender: 'assistant',
+        text: 'A funcionalidade de conversa ainda está em desenvolvimento. Para obter ajuda, fale com a nossa equipa.',
+        timestamp: new Date(now.getTime() + 1),
+      },
     ]);
     this.input.set('');
-    this.isTyping.set(true);
-
-    setTimeout(() => {
-      const response = getSimulatedResponse(trimmed);
-      this.messages.update((current) => [
-        ...current,
-        { sender: 'assistant', text: response, timestamp: new Date() },
-      ]);
-      this.isTyping.set(false);
-    }, 700);
   }
 
   resetChat(): void {

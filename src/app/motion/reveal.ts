@@ -27,7 +27,18 @@ export class RevealService {
 
     const { delay = 0, duration = 0.55, y = 24 } = options;
 
-    return gsap.fromTo(el, { opacity: 0, y }, { opacity: 1, y: 0, duration, delay, ease: 'power3.out' });
+    return gsap.fromTo(
+      el,
+      { opacity: 0, y },
+      {
+        opacity: 1,
+        y: 0,
+        duration,
+        delay,
+        ease: 'power3.out',
+        onInterrupt: () => gsap.set(el, { opacity: 1, y: 0 }),
+      },
+    );
   }
 
   revealStagger(elements: HTMLElement[], options: RevealOptions & { stagger?: number } = {}): gsap.core.Tween | void {
@@ -49,6 +60,18 @@ export class RevealService {
 
     const { delay = 0, duration = 0.55, y = 24, stagger = 0.1 } = options;
 
-    return gsap.fromTo(elements, { opacity: 0, y }, { opacity: 1, y: 0, duration, stagger, delay, ease: 'power3.out' });
+    return gsap.fromTo(
+      elements,
+      { opacity: 0, y },
+      {
+        opacity: 1,
+        y: 0,
+        duration,
+        stagger,
+        delay,
+        ease: 'power3.out',
+        onInterrupt: () => gsap.set(elements, { opacity: 1, y: 0 }),
+      },
+    );
   }
 }

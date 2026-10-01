@@ -1,5 +1,5 @@
-import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { Component, inject, signal, ChangeDetectionStrategy, AfterViewInit, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { SmoothScrollService } from '../../core/smooth-scroll.service';
 
 @Component({
@@ -32,23 +32,24 @@ import { SmoothScrollService } from '../../core/smooth-scroll.service';
     }
   `]
 })
-export class PageTransitionComponent {
-  private readonly router = inject(Router);
+export class PageTransitionComponent implements AfterViewInit, OnDestroy {
   private readonly smoothScroll = inject(SmoothScrollService);
+  private readonly platformId = inject(PLATFORM_ID);
+  private timer: ReturnType<typeof setTimeout> | null = null;
 
   readonly visible = signal(false);
 
-  constructor() {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        this.visible.set(true);
-      }
-      if (event instanceof NavigationEnd) {
-        setTimeout(() => {
-          this.visible.set(false);
-          this.smoothScroll.scrollTo(0, { immediate: true });
-        }, 450);
-      }
-    });
+  ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+    this.visible.set(true);
+    this.timer = setTimeout(() => {
+      this.visible.set(false);
+      this.smoothScroll.scrollTo(0, { immediate: true });
+      this.timer = null;
+    }, 600);
+  }
+
+  ngOnDestroy(): void {
+    if (this.timer !== null) clearTimeout(this.timer);
   }
 }
