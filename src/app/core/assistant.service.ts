@@ -15,7 +15,7 @@ export interface AssistantOption {
 
 const INITIAL_OPTIONS: AssistantOption[] = [
   {
-    label: 'Tenho queda capilar',
+    label: 'Estou com queda capilar',
     response: 'Para uma avaliação adequada, fale com a nossa equipa. Cada caso é único e requer atenção personalizada.',
   },
   {

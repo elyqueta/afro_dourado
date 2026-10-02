@@ -172,7 +172,7 @@ sobrepor em mobile — noutra margem/z-index).
 
 ### `AfroAssistantPanelComponent`
 
-Painel com opções rápidas (secção 21 do doc original: "Tenho queda capilar", "Quero cuidar do meu
+Painel com opções rápidas (secção 21 do doc original: "Estou com queda capilar", "Quero cuidar do meu
 cabelo", "Quero fazer tranças", "Quero conhecer os produtos", "Quero marcar atendimento").
 Nesta fase, sem backend de IA/RAG real (isso é um projecto à parte, mencionado no PDF de
 requisitos como Fase 3 futura) — implementar como **FAQ guiado por botões** que mostra respostas

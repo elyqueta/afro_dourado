@@ -114,7 +114,7 @@ Botão: `Afro Dourado Assist`. Opções iniciais:
 
 ```
 Como podemos ajudar?
-Tenho queda capilar
+Estou com queda capilar
 Quero cuidar do meu cabelo
 Quero fazer tranças
 Quero conhecer os produtos
