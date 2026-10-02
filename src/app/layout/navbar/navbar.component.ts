@@ -28,7 +28,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
           <a routerLink="/servicos" routerLinkActive="active" class="nav-link">Serviços</a>
           <a routerLink="/produtos" routerLinkActive="active" class="nav-link">Produtos</a>
           <a routerLink="/resultados" routerLinkActive="active" class="nav-link">Resultados</a>
-          <a routerLink="/journal" routerLinkActive="active" class="nav-link">Journal</a>
+          <a routerLink="/artigos" routerLinkActive="active" class="nav-link">Artigos</a>
           <a routerLink="/contacto" routerLinkActive="active" class="nav-link">Contacto</a>
         </nav>
 
@@ -71,11 +71,11 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
             >Home</a
           >
           <a
-            routerLink="/sobre"
+            routerLink="/artigos"
             routerLinkActive="active"
             class="mobile-link"
             (click)="closeMenu()"
-            >Sobre</a
+            >Artigos</a
           >
           <a
             routerLink="/servicos"
@@ -99,11 +99,11 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
             >Resultados</a
           >
           <a
-            routerLink="/journal"
+            routerLink="/artigos"
             routerLinkActive="active"
             class="mobile-link"
             (click)="closeMenu()"
-            >Journal</a
+             >Artigos</a
           >
           <a
             routerLink="/contacto"

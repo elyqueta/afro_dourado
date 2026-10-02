@@ -5,17 +5,17 @@ import { SectionHeadingComponent } from '@app/shared/ui/section-heading/section-
 import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component';
 
 @Component({
-  selector: 'app-journal-preview',
+  selector: 'app-artigos-preview',
   standalone: true,
   imports: [RouterLink, SmartImageComponent, SectionHeadingComponent, PillButtonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="section section-y" style="background-color: var(--color-cream-50);">
       <div class="container-max">
-        <app-section-heading eyebrow="Journal" title="Histórias e cuidados." size="display-m" />
+         <app-section-heading eyebrow="Artigos" title="Histórias e cuidados." size="display-m" />
         <div class="grid">
           @for (article of articles(); track article.title) {
-            <a [routerLink]="article.slug ? ['/journal', article.slug] : '/journal'" class="card">
+             <a [routerLink]="article.slug ? ['/artigos', article.slug] : '/artigos'" class="card">
               <app-smart-image [src]="article.image" [alt]="article.title" aspectRatio="16 / 9" />
               <h4 class="title">{{ article.title }}</h4>
               <p class="excerpt">{{ article.excerpt }}</p>
@@ -23,7 +23,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
           }
         </div>
         <div class="cta">
-           <app-pill-button href="/journal" variant="secondary" size="md" label="Ver todos &rarr;"></app-pill-button>
+            <app-pill-button href="/artigos" variant="secondary" size="md" label="Ver todos &rarr;"></app-pill-button>
         </div>
       </div>
     </section>
@@ -74,6 +74,6 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
     }
   `]
 })
-export class JournalPreviewComponent {
+export class ArtigosPreviewComponent {
   readonly articles = input.required<{ title: string; excerpt: string; image: string; slug?: string }[]>();
 }

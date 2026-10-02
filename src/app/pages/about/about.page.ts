@@ -84,12 +84,12 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
             <div class="location">
               <h4 class="name">Luanda</h4>
               <p class="address">Rua Principal, Talatona, Luanda, Angola</p>
-              <p class="hours">Segunda a Sexta: 08h00 às 18h00 | Sábado: 09h00 às 14h00</p>
+              <p class="hours">Domingo a Sexta: 08h00 às 17h00 | Sábado: Fechado</p>
             </div>
             <div class="location">
               <h4 class="name">Huambo</h4>
               <p class="address">Avenida da Independência, Huambo, Angola</p>
-              <p class="hours">Segunda a Sexta: 08h00 às 17h30 | Sábado: 09h00 às 13h00</p>
+              <p class="hours">Domingo a Sexta: 08h00 às 17h00 | Sábado: Fechado</p>
             </div>
           </div>
           <div class="cta">

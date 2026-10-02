@@ -6,13 +6,13 @@ import { SmartImageComponent } from '@app/media/smart-image/smart-image.componen
 import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component';
 
 @Component({
-  selector: 'app-journal',
+  selector: 'app-artigos',
   standalone: true,
   imports: [RouterLink, SectionHeadingComponent, SmartImageComponent, PillButtonComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <main class="section-y container-max">
-      <app-section-heading eyebrow="Journal" title="Histórias e cuidados." size="display-m" />
+      <app-section-heading eyebrow="Artigos" title="Histórias e cuidados." size="display-m" />
 
       @if (featured(); as featured) {
         <a [routerLink]="featured.slug" class="featured">
@@ -106,7 +106,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
     `,
   ],
 })
-export class JournalPage {
+export class ArtigosPage {
   private readonly journal = inject(JournalService);
 
   featured = computed(() => this.journal.featured());

@@ -6,7 +6,7 @@ import { TrichologyPreviewComponent } from '@app/sections/trichology-preview/tri
 import { BraidsGalleryPreviewComponent } from '@app/sections/braids-gallery-preview/braids-gallery-preview.component';
 import { ProductsPreviewComponent } from '@app/sections/products-preview/products-preview.component';
 import { TeamPreviewComponent } from '@app/sections/team-preview/team-preview.component';
-import { JournalPreviewComponent } from '@app/sections/journal-preview/journal-preview.component';
+import { ArtigosPreviewComponent } from '@app/sections/artigos-preview/artigos-preview.component';
 import { BookingCtaComponent } from '@app/sections/booking-cta/booking-cta.component';
 import { FaqAccordionComponent } from '@app/sections/faq-accordion/faq-accordion.component';
 import { SectionHeadingComponent } from '@app/shared/ui/section-heading/section-heading.component';
@@ -23,7 +23,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
     BraidsGalleryPreviewComponent,
     ProductsPreviewComponent,
     TeamPreviewComponent,
-    JournalPreviewComponent,
+    ArtigosPreviewComponent,
     BookingCtaComponent,
     FaqAccordionComponent,
     SectionHeadingComponent,
@@ -79,7 +79,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
 
       <app-team-preview [members]="team" />
 
-      <app-journal-preview [articles]="articles" />
+      <app-artigos-preview [articles]="articles" />
 
       <app-booking-cta headline="Pronto para cuidar do teu cabelo?" />
 

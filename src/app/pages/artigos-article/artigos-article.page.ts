@@ -6,7 +6,7 @@ import { SmartImageComponent } from '@app/media/smart-image/smart-image.componen
 import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component';
 
 @Component({
-  selector: 'app-journal-article',
+  selector: 'app-artigos-article',
   standalone: true,
   imports: [SectionHeadingComponent, SmartImageComponent, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14,7 +14,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
     <main class="section-y container-max">
       @if (article(); as article) {
         <article>
-          <app-section-heading eyebrow="Journal" title="{{ article.title }}" size="display-m" />
+          <app-section-heading eyebrow="Artigos" title="{{ article.title }}" size="display-m" />
           <app-smart-image [src]="article.image" [alt]="article.title" aspectRatio="16 / 9" />
           <div class="body">
             @for (paragraph of paragraphs(); track $index) {
@@ -104,7 +104,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
     `,
   ],
 })
-export class JournalArticlePage {
+export class ArtigosArticlePage {
   private readonly route = inject(ActivatedRoute);
   private readonly journal = inject(JournalService);
 

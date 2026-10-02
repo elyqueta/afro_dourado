@@ -58,11 +58,11 @@ import { BookingCtaComponent } from '@app/sections/booking-cta/booking-cta.compo
 export class ContactsPage {
   readonly luandaTitle = 'Luanda';
   readonly luandaAddress = 'Rua Principal, Talatona, Luanda, Angola';
-  readonly luandaHours = 'Segunda a Sexta: 08h00 às 18h00 | Sábado: 09h00 às 14h00 | Domingo: Encerrado';
+  readonly luandaHours = 'Domingo a Sexta: 08h00 às 17h00 | Sábado: Fechado';
   readonly luandaPhone = '+244 923 000 000';
 
   readonly huamboTitle = 'Huambo';
   readonly huamboAddress = 'Avenida da Independência, Huambo, Angola';
-  readonly huamboHours = 'Segunda a Sexta: 08h00 às 17h30 | Sábado: 09h00 às 13h00 | Domingo: Encerrado';
+  readonly huamboHours = 'Domingo a Sexta: 08h00 às 17h00 | Sábado: Fechado';
   readonly huamboPhone = '+244 241 000 000';
 }

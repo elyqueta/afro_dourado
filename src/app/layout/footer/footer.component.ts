@@ -25,7 +25,7 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
               <a routerLink="/servicos" routerLinkActive="active">Serviços</a>
               <a routerLink="/produtos" routerLinkActive="active">Produtos</a>
               <a routerLink="/resultados" routerLinkActive="active">Resultados</a>
-              <a routerLink="/journal" routerLinkActive="active">Journal</a>
+              <a routerLink="/artigos" routerLinkActive="active">Artigos</a>
               <a routerLink="/contacto" routerLinkActive="active">Contacto</a>
               <a routerLink="/tricologia" routerLinkActive="active">Tricologia</a>
               <a routerLink="/trancas-estetica" routerLinkActive="active">Tranças & Estética</a>
@@ -42,7 +42,7 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
             <h4 class="title">Contactos</h4>
             <a href="tel:+244923000000" class="contact-link">+244 923 000 000</a>
             <a href="https://wa.me/244923000000" target="_blank" rel="noopener noreferrer" class="contact-link">WhatsApp</a>
-            <p>Segunda a Sexta: 08h00 às 18h00</p>
+             <p>Domingo a Sexta: 08h00 às 17h00</p>
           </div>
         </div>
 
