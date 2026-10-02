@@ -42,11 +42,10 @@ import { VideoBackgroundComponent } from '@app/shared/ui/video-background/video-
 
           <div class="gallery">
             @for (img of gallery; track $index) {
-              <div class="item">
+              <div class="item" [class.hero]="$index === 0">
                 <app-smart-image
                   [src]="img"
                   alt="Galeria de tranças e estética Afro Dourado"
-                  aspectRatio="3 / 4"
                 />
               </div>
             }
@@ -156,17 +155,49 @@ import { VideoBackgroundComponent } from '@app/shared/ui/video-background/video-
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
+        width: 100%;
+        height: auto;
       }
-      .item {
+      .gallery .item {
         border-radius: var(--radius-card);
         overflow: hidden;
+        min-height: 0;
+        height: auto;
       }
-      .item:first-child {
+      .gallery .item.hero {
         grid-column: span 2;
+        aspect-ratio: 4 / 5;
+      }
+      .gallery .item:not(.hero) {
+        aspect-ratio: 3 / 4;
       }
       @media (min-width: 768px) {
         .gallery {
           grid-template-columns: repeat(4, 1fr);
+          grid-template-rows: repeat(2, 1fr);
+          height: clamp(520px, 62vw, 760px);
+        }
+        .gallery .item {
+          height: 100%;
+        }
+        .gallery .item.hero {
+          grid-column: 1 / span 2;
+          grid-row: 1 / span 2;
+          aspect-ratio: auto;
+        }
+        .gallery .item:not(.hero) {
+          aspect-ratio: auto;
+        }
+        :host ::ng-deep .gallery app-smart-image {
+          display: block;
+          width: 100%;
+          height: 100%;
+          aspect-ratio: auto !important;
+        }
+        :host ::ng-deep .gallery app-smart-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       }
 
@@ -215,5 +246,6 @@ export class BraidsPage {
     'https://images.pexels.com/photos/11441103/pexels-photo-11441103.jpeg?auto=format&fit=crop&w=800&q=80',
     'https://images.pexels.com/photos/17043160/pexels-photo-17043160.jpeg?auto=format&fit=crop&w=800&q=80',
     'https://images.pexels.com/photos/8429081/pexels-photo-8429081.jpeg?auto=format&fit=crop&w=800&q=80',
+    'https://images.pexels.com/photos/33138683/pexels-photo-33138683.jpeg?auto=format&fit=crop&w=800&q=80',
   ];
 }
