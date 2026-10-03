@@ -1,24 +1,18 @@
-const mockMatchMedia = (query: string): MediaQueryList => {
-  const listeners: ((ev: MediaQueryListEvent | Event) => void)[] = [];
-  return {
-    matches: false,
-    media: query,
-    onchange: null,
-    addEventListener: (_type: string, listener: (ev: MediaQueryListEvent | Event) => void) => {
-      listeners.push(listener);
-    },
-    removeEventListener: (_type: string, _listener: (ev: MediaQueryListEvent | Event) => void) => {
-      // noop
-    },
-    addListener: (_listener: (ev: MediaQueryListEvent | Event) => void) => {},
-    removeListener: (_listener: (ev: MediaQueryListEvent | Event) => void) => {},
-    dispatchEvent: () => true,
-  } as unknown as MediaQueryList;
-};
+import { TestBed } from '@angular/core/testing';
+import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
-  value: mockMatchMedia,
+  value: (query: string) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    addListener: () => {},
+    removeListener: () => {},
+    dispatchEvent: () => true,
+  } as unknown as MediaQueryList),
 });
 
 Object.defineProperty(window, 'requestAnimationFrame', {
@@ -42,4 +36,9 @@ class MockResizeObserver implements ResizeObserver {
 Object.defineProperty(window, 'ResizeObserver', {
   writable: true,
   value: MockResizeObserver,
+});
+
+TestBed.initTestEnvironment([BrowserTestingModule], platformBrowserTesting(), {
+  errorOnUnknownElements: true,
+  errorOnUnknownProperties: true,
 });

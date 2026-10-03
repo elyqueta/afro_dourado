@@ -7,6 +7,7 @@ import { BraidsGalleryPreviewComponent } from '@app/sections/braids-gallery-prev
 import { ProductsPreviewComponent } from '@app/sections/products-preview/products-preview.component';
 import { TeamPreviewComponent } from '@app/sections/team-preview/team-preview.component';
 import { ArtigosPreviewComponent } from '@app/sections/artigos-preview/artigos-preview.component';
+import { TestimonialsPreviewComponent } from '@app/sections/testimonials-preview/testimonials-preview.component';
 import { BookingCtaComponent } from '@app/sections/booking-cta/booking-cta.component';
 import { FaqAccordionComponent } from '@app/sections/faq-accordion/faq-accordion.component';
 import { SectionHeadingComponent } from '@app/shared/ui/section-heading/section-heading.component';
@@ -24,6 +25,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
     ProductsPreviewComponent,
     TeamPreviewComponent,
     ArtigosPreviewComponent,
+    TestimonialsPreviewComponent,
     BookingCtaComponent,
     FaqAccordionComponent,
     SectionHeadingComponent,
@@ -80,6 +82,8 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
       <app-team-preview [members]="team" />
 
       <app-artigos-preview [articles]="articles" />
+
+      <app-testimonials-preview [testimonials]="testimonialsData" />
 
       <app-booking-cta headline="Pronto para cuidar do teu cabelo?" />
 
@@ -229,6 +233,36 @@ export class HomePage {
       label: 'A unidade do Huambo oferece exactamente os mesmos serviços de Luanda?',
       content:
         'Sim. Ambas as unidades partilham a mesma equipa técnica, protocolos de avaliação e linha de produtos.',
+    },
+  ];
+
+  readonly testimonialsData = [
+    {
+      name: 'Amara João',
+      role: 'Cliente — Luanda',
+      quote: 'Depois de anos de química, pensei que nunca mais ia ter cabelo saudável. O acompanhamento na Afro Dourado devolveu-me a confiança.',
+      photoBefore:
+        'https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=format&fit=crop&w=600&q=80',
+      photoAfter:
+        'https://images.pexels.com/photos/3998027/pexels-photo-3998027.jpeg?auto=format&fit=crop&w=600&q=80',
+    },
+    {
+      name: 'Fátima Kassule',
+      role: 'Cliente — Huambo',
+      quote: 'As tranças ficaram lindas e o meu cabelo não sofreu nada. Pela primeira vez sinto que estou a cuidar dele de verdade.',
+      photoBefore:
+        'https://images.pexels.com/photos/3998012/pexels-photo-3998012.jpeg?auto=format&fit=crop&w=600&q=80',
+      photoAfter:
+        'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80',
+    },
+    {
+      name: 'Yara Fernandes',
+      role: 'Cliente — Luanda',
+      quote: 'A avaliação tricológica mudou a minha rotina. Hoje sei exactamente o que usar e o que evitar.',
+      photoBefore:
+        'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=format&fit=crop&w=600&q=80',
+      photoAfter:
+        'https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=format&fit=crop&w=600&q=80',
     },
   ];
 }

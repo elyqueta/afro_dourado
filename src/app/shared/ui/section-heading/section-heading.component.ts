@@ -11,12 +11,16 @@ import { EyebrowLabelComponent } from '@app/shared/ui/eyebrow-label/eyebrow-labe
         <app-eyebrow-label [text]="eyebrow()!" [color]="eyebrowColor()" class="eyebrow" />
       }
       <h2 [class]="titleClasses()">
-        @for (part of titleParts(); track part.text) {
-          @if (part.gold) {
-            <span class="gold">{{ part.text }}</span>
-          } @else {
-            {{ part.text }}
+        @if (titleParts().length > 0) {
+          @for (part of titleParts(); track part.text) {
+            @if (part.gold) {
+              <span class="gold">{{ part.text }}</span>
+            } @else {
+              {{ part.text }}
+            }
           }
+        } @else {
+          {{ title() }}
         }
       </h2>
     </div>

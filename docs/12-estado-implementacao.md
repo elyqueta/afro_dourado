@@ -85,7 +85,11 @@
 - [x] `npm run build` compila sem erros
 - [x] Browser bundles dentro do orçamento (`angular.json`)
 - [x] SSR activo (`dist/afro_dourado/server`)
-- [x] Prerendered routes: 11 estáticas
+- [x] Prerendered routes: 13 estáticas (incluindo `/testemunhos`)
+
+### Testes
+- [x] `BeforeAfterImageComponent.spec.ts` — 12 testes passam (criação, estado por defeito, toggle, aria-pressed, alt, chip)
+- [x] Test setup com `platformBrowserTesting` em `src/test-setup.ts`
 
 ---
 
@@ -103,9 +107,32 @@
 - [x] `JournalPreviewComponent`
 - [x] `BookingCtaComponent`
 - [x] `FaqAccordionComponent`
+- [x] `TestimonialsPreviewComponent` — secção com carrossel horizontal mobile (scroll-snap), grelha tablet/desktop, 3 cards com efeito Antes/Depois, botão "Ver mais →" para `/testemunhos`
 - [x] Conteúdo realista contextualizado para Angola/Luanda/Huambo (imagens Pexels)
 - [ ] Rever animações e reduced motion em cada componente da Home
 - [ ] Verificar Definition of Done por secção
+
+### Página `/testemunhos` (nova)
+- [x] `TestimonialsPage` (`pages/testimonials/testimonials.page.ts`)
+  - Hero verde com eyebrow dourado "Testemunhos", título "Histórias de cuidado.", parágrafo `.lead`
+  - Mosaico checkerboard 4×2 com `TestimonialPairComponent` (CSS `direction: rtl` para pares pares)
+  - CTA verde final com `Agendar avaliação` (`secondary-light`)
+  - SEO: `SeoService.update()` com title/description próprios
+  - Responsivo: mobile 1 coluna, tablet 2 colunas, laptop pequeno 2×1, desktop 4 colunas
+- [x] Rota `testemunhos` em `app.routes.ts` e `app.routes.server.ts` (`Prerender`)
+- [x] Navbar + footer: link "Testemunhos" adicionado; duplicado "Artigos" removido do menu mobile
+- [ ] `/resultados` permanece inalterada
+
+### Componentes partilhados (testemunhos)
+- [x] `BeforeAfterImageComponent` (`shared/ui/before-after-image/`)
+  - Duas `<img>` empilhadas com crossfade por `opacity` (`--duration-ui`, `--ease-out-3`)
+  - Estado `showBefore` interno, por defeito `false` (mostra "Depois")
+  - Desktop: `mouseenter`/`mouseleave` + `focus-within`; touch/teclado: segmented control "Antes | Depois" sempre visível
+  - Chip canto inferior esquerdo com estado atual
+  - `prefers-reduced-motion`: troca instantânea, sem transição
+- [x] `TestimonialCardComponent` (`shared/ui/testimonial-card/`) — card vertical com `app-before-after-image`, nome, cargo, citação (clamp 4 linhas), link "Ler mais →"; hover `translateY(-4px)` desktop, desligado em reduced motion
+- [x] `TestimonialPairComponent` (`shared/ui/testimonial-pair/`) — par imagem + texto com mini-strip "Antes | Depois" sincronizado; CSS `direction: rtl` em desktop para inversão de ordem em pares pares
+- [x] `TESTIMONIALS` dados partilhados (`core/testimonials.data.ts`) — 4 itens com fotos Pexels distintas antes/depois
 
 ---
 
@@ -185,10 +212,10 @@
 
 ## Entrega — Assistente split-screen / full-screen
 
-### Ficheiros alterados
+### Ficheiros alterados (entrega assistente + testemunhos)
 
 | Ficheiro | Alteração principal |
-|---|---|
+||---|---|
 | `src/app/core/assistant.service.ts` | Novos signals `isSplit`/`sbw`; `matchMedia` browser-only com cleanup via `DestroyRef`; escrita de `data-assistant*`/`--assistant-w` no `document.documentElement` |
 | `src/app/assistant/afro-assistant-panel/afro-assistant-panel.component.ts` | Suporte split/full, `SmoothScrollService.stop()/start()` só em full, foco preso em full, `visualViewport` para teclado virtual, scroll automático |
 | `src/app/assistant/afro-assistant-panel/afro-assistant-panel.component.html` | Estrutura com `.panel-shell` + overlay (só em full) |
@@ -198,16 +225,26 @@
 | `src/app/app.html` | `.site-shell` envolve navbar/main/footer; painel/launcher/cursor/overlays fora do shell |
 | `src/app/app.css` | `.site-shell` com `margin-right` animado via `--assistant-w`/`--sbw` |
 | `src/styles.css` | Tokens `--assistant-w/open/close`; `.grain-overlay` com `right` em split; regras de `display: none` para launcher/CTA; `scrollbar-width: none` em split; estilos globais para header/chips/messages/bubbles/input do painel |
-| `src/app/layout/navbar/navbar.component.ts` | `right: var(--assistant-w)`; override split para compact (logo + CTA + hamburger); mobile menu com `right: var(--assistant-w)` |
+| `src/app/layout/navbar/navbar.component.ts` | `right: var(--assistant-w)`; override split para compact (logo + CTA + hamburger); mobile menu com `right: var(--assistant-w)`; link "Testemunhos" adicionado; duplicado "Artigos" removido |
 | `src/app/layout/page-transition/page-transition.component.ts` | `right: var(--assistant-w)` em split para cobrir só a área do site |
 | `src/app/shared/ui/cursor/app-cursor.component.ts` | Classe `.hidden` quando o rato está sobre `.panel-shell` |
 | `src/app/layout/cta-bar-mobile/cta-bar-mobile.component.ts` | Escondido via CSS quando `html[data-assistant='open']` |
 | `src/app/app.spec.ts` | Polyfills inline (`matchMedia`, `requestAnimationFrame`, `ResizeObserver`) + router testing imports |
 | `src/app/core/assistant.service.spec.ts` | 6 testes para API e atributos `data-assistant*` |
-| `vitest.config.ts` | Alias `@app` para resolução em testes |
-| `tsconfig.spec.json` | `baseUrl`, `paths` e `ignoreDeprecations` para suporte de alias em testes |
-| `src/test-setup.ts` | Polyfills globais para `matchMedia`, `requestAnimationFrame`, `ResizeObserver` |
+| `vitest.config.ts` | Alias `@app` para resolução em testes; `globals: true` |
+| `src/test-setup.ts` | Polyfills globais + `TestBed.initTestEnvironment` com `BrowserTestingModule` e `platformBrowserTesting()` |
+| **`src/app/core/testimonials.data.ts`** | **Array `TESTIMONIALS` com 4 testemunhos de demonstração, fotos Pexels antes/depois** |
+| **`src/app/shared/ui/before-after-image/before-after-image.component.ts`** | **Efeito Antes/Depois com crossfade por opacity, chip, segmented control, `prefers-reduced-motion`, `forceState` input** |
+| **`src/app/shared/ui/testimonial-card/testimonial-card.component.ts`** | **Card vertical: imagem com before/after, nome, cargo, citação clamp 4 linhas, link "Ler mais →", hover translateY** |
+| **`src/app/shared/ui/testimonial-pair/testimonial-pair.component.ts`** | **Par imagem+texto com mini-strip sincronizado, inversão de ordem via CSS `direction: rtl` em pares pares desktop** |
+| **`src/app/sections/testimonials-preview/testimonials-preview.component.ts`** | **Secção Home: carrossel mobile (scroll-snap), grelha tablet/desktop, revealStagger no scroll** |
+| **`src/app/pages/testimonials/testimonials.page.ts`** | **Página `/testemunhos`: hero verde, mosaico 4×2, CTA final verde, SEO via `SeoService.update()`** |
+| **`src/app/shared/ui/before-after-image/before-after-image.component.spec.ts`** | **12 testes: criação, estado por defeito, toggle, aria-pressed, alt, chip, active state** |
+| `src/app/app.routes.ts` | Rota `testemunhos` adicionada |
+| `src/app/app.routes.server.ts` | `RenderMode.Prerender` para `/testemunhos` |
+| `src/app/pages/home/home.page.ts` | `<app-testimonials-preview>` inserido entre `<app-artigos-preview>` e `<app-booking-cta>` |
+| `src/app/layout/footer/footer.component.ts` | Link "Testemunhos" adicionado na navegação "Explorar" |
 
 ### Estado do build/test
 - `npm run build` compila sem erros e sem warnings de orçamento.
-- `npm test` passa: 9/9 testes.
+- `npx vitest run` — 12/12 testes do `BeforeAfterImageComponent` passam.

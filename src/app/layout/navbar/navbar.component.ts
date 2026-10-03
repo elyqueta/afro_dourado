@@ -28,6 +28,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
           <a routerLink="/servicos" routerLinkActive="active" class="nav-link">Serviços</a>
           <a routerLink="/produtos" routerLinkActive="active" class="nav-link">Produtos</a>
           <a routerLink="/resultados" routerLinkActive="active" class="nav-link">Resultados</a>
+          <a routerLink="/testemunhos" routerLinkActive="active" class="nav-link">Testemunhos</a>
           <a routerLink="/artigos" routerLinkActive="active" class="nav-link">Artigos</a>
           <a routerLink="/contacto" routerLinkActive="active" class="nav-link">Contacto</a>
         </nav>
@@ -64,34 +65,6 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
         </button>
         <nav class="mobile-nav" role="navigation" aria-label="Menu mobile">
           <a
-            routerLink="/"
-            routerLinkActive="active"
-            class="mobile-link"
-            (click)="closeMenu()"
-            >Home</a
-          >
-          <a
-            routerLink="/artigos"
-            routerLinkActive="active"
-            class="mobile-link"
-            (click)="closeMenu()"
-            >Artigos</a
-          >
-          <a
-            routerLink="/servicos"
-            routerLinkActive="active"
-            class="mobile-link"
-            (click)="closeMenu()"
-            >Serviços</a
-          >
-          <a
-            routerLink="/produtos"
-            routerLinkActive="active"
-            class="mobile-link"
-            (click)="closeMenu()"
-            >Produtos</a
-          >
-          <a
             routerLink="/resultados"
             routerLinkActive="active"
             class="mobile-link"
@@ -99,11 +72,18 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
             >Resultados</a
           >
           <a
+            routerLink="/testemunhos"
+            routerLinkActive="active"
+            class="mobile-link"
+            (click)="closeMenu()"
+            >Testemunhos</a
+          >
+          <a
             routerLink="/artigos"
             routerLinkActive="active"
             class="mobile-link"
             (click)="closeMenu()"
-             >Artigos</a
+            >Artigos</a
           >
           <a
             routerLink="/contacto"
