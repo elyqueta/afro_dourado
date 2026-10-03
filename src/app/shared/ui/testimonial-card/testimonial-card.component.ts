@@ -126,7 +126,6 @@ import { BeforeAfterImageComponent } from '@app/shared/ui/before-after-image/bef
       .card.desktop-overlay {
         border: 0;
         border-radius: 1.25rem;
-        box-shadow: 0 20px 60px -34px rgba(14, 59, 49, 0.35);
       }
 
       .card.desktop-featured .photo {
@@ -181,12 +180,18 @@ import { BeforeAfterImageComponent } from '@app/shared/ui/before-after-image/bef
         inset: auto 0 0;
         padding: 2rem 1.5rem 4rem;
         color: var(--color-cream-50);
+        justify-content: flex-end;
         background: linear-gradient(
           180deg,
           transparent 0%,
           rgba(16, 20, 16, 0.24) 30%,
           rgba(16, 20, 16, 0.88) 100%
         );
+      }
+
+      .card.desktop-overlay .role,
+      .card.desktop-overlay .quote {
+        display: none;
       }
 
       .card.desktop-overlay .link {

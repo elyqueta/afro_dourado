@@ -244,7 +244,7 @@ export class HomePage {
       photoBefore:
         'https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=format&fit=crop&w=600&q=80',
       photoAfter:
-        'https://images.pexels.com/photos/3998027/pexels-photo-3998027.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=format&fit=crop&w=600&q=80',
     },
     {
       name: 'Fátima Kassule',
