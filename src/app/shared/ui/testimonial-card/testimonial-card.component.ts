@@ -8,7 +8,15 @@ import { BeforeAfterImageComponent } from '@app/shared/ui/before-after-image/bef
   imports: [RouterLink, BeforeAfterImageComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <a [routerLink]="'/testemunhos'" class="card" [class.horizontal]="horizontal()" aria-label="Ler testemunho de {{ testimonial().name }}">
+    <a
+      [routerLink]="'/testemunhos'"
+      class="card"
+      [class.horizontal]="horizontal()"
+      [class.desktop-featured]="desktopLayout() === 'featured'"
+      [class.desktop-horizontal]="desktopLayout() === 'horizontal'"
+      [class.desktop-overlay]="desktopLayout() === 'overlay'"
+      aria-label="Ler testemunho de {{ testimonial().name }}"
+    >
       <div class="photo">
         <app-before-after-image
           [beforeSrc]="testimonial().photoBefore"
@@ -111,9 +119,84 @@ import { BeforeAfterImageComponent } from '@app/shared/ui/before-after-image/bef
       text-decoration: none;
       letter-spacing: 0.02em;
     }
+
+    @media (min-width: 1024px) {
+      .card.desktop-featured,
+      .card.desktop-horizontal,
+      .card.desktop-overlay {
+        border: 0;
+        border-radius: 1.25rem;
+        box-shadow: 0 20px 60px -34px rgba(14, 59, 49, 0.35);
+      }
+
+      .card.desktop-featured .photo {
+        flex: 1 1 auto;
+        min-height: 0;
+      }
+
+      .card.desktop-featured .photo app-before-after-image,
+      .card.desktop-horizontal .photo app-before-after-image {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: auto !important;
+        border-radius: 0;
+      }
+
+      .card.desktop-featured .text {
+        flex: 0 0 auto;
+      }
+
+      .card.desktop-horizontal {
+        flex-direction: row;
+      }
+
+      .card.desktop-horizontal .photo {
+        flex: 0 0 40%;
+      }
+
+      .card.desktop-horizontal .text {
+        padding: 1.25rem;
+      }
+
+      .card.desktop-overlay {
+        position: relative;
+        display: block;
+      }
+
+      .card.desktop-overlay .photo {
+        position: absolute;
+        inset: 0;
+      }
+
+      .card.desktop-overlay .photo app-before-after-image {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: auto !important;
+        border-radius: 0;
+      }
+
+      .card.desktop-overlay .text {
+        position: absolute;
+        z-index: 3;
+        inset: auto 0 0;
+        padding: 2rem 1.5rem 4rem;
+        color: var(--color-cream-50);
+        background: linear-gradient(
+          180deg,
+          transparent 0%,
+          rgba(16, 20, 16, 0.24) 30%,
+          rgba(16, 20, 16, 0.88) 100%
+        );
+      }
+
+      .card.desktop-overlay .link {
+        color: var(--color-brand-gold-300);
+      }
+    }
   `]
 })
 export class TestimonialCardComponent {
   readonly testimonial = input.required<{ name: string; role: string; quote: string; photoBefore: string; photoAfter: string }>();
   readonly horizontal = input(false);
+  readonly desktopLayout = input<'featured' | 'horizontal' | 'overlay'>('horizontal');
 }

@@ -21,10 +21,14 @@ import { PLATFORM_ID } from '@angular/core';
         />
         <div class="carousel" data-lenis-prevent>
           @for (t of testimonials(); track $index) {
-            <div class="carousel-card">
+            <div
+              class="carousel-card"
+              [class.featured]="$first"
+            >
               <app-testimonial-card
                 [testimonial]="t"
                 [horizontal]="$last"
+                [desktopLayout]="$first ? 'featured' : $last ? 'overlay' : 'horizontal'"
               />
             </div>
           }
@@ -84,16 +88,22 @@ import { PLATFORM_ID } from '@angular/core';
     @media (min-width: 1024px) {
       .carousel {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(2, minmax(0, 1fr));
         overflow-x: visible;
         scroll-snap-type: none;
         gap: 1.5rem;
         align-items: stretch;
+        height: 31rem;
       }
 
       .carousel-card {
         flex: none;
         height: auto;
+      }
+
+      .carousel-card.featured {
+        grid-row: span 2;
       }
     }
 
@@ -103,7 +113,13 @@ import { PLATFORM_ID } from '@angular/core';
 
     @media (min-width: 1024px) {
       :host-context(html[data-assistant='open'][data-assistant-mode='split']) .carousel {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: none;
+        height: auto;
+      }
+
+      :host-context(html[data-assistant='open'][data-assistant-mode='split']) .carousel-card.featured {
+        grid-row: auto;
       }
     }
   `]

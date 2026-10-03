@@ -17,7 +17,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     quote:
       'Depois de anos de química, pensei que nunca mais ia ter cabelo saudável. O acompanhamento na Afro Dourado devolveu-me a confiança.',
     photoBefore:
-      'https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=format&fit=crop&w=800&q=80',
+      'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=format&fit=crop&w=800&q=80',
     photoAfter:
       'https://images.pexels.com/photos/3998027/pexels-photo-3998027.jpeg?auto=format&fit=crop&w=800&q=80',
   },
