@@ -64,7 +64,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
       <app-pillars-sticky [images]="pillarImages" [pillars]="pillars" />
 
       <app-trichology-preview
-        imageSrc="https://images.pexels.com/photos/13733669/pexels-photo-13733669.jpeg?auto=format&fit=crop&w=800&q=80"
+        imageSrc="https://images.pexels.com/photos/33239295/pexels-photo-33239295.jpeg?auto=format&fit=crop&w=800&q=80"
         description="Avaliação tricológica, terapia capilar, microagulhamento e tratamentos específicos para queda, quebra e crescimento."
         [titleParts]="[
           { text: 'Ciência para ', gold: false },
@@ -137,23 +137,23 @@ export class HomePage {
        benefits: 'Hidrata profundamente, reduz quebra e facilita o desembaraço.',
        usage: 'Aplicar no couro cabeludo e comprimentos antes do shampoo.',
        image:
-         'https://images.pexels.com/photos/5885768/pexels-photo-5885768.jpeg?auto=format&fit=crop&w=600&q=80',
-    },
-    {
-      name: 'Shampoo Natural',
-      benefits: 'Limpa suavemente sem ressecar, respeita a oleosidade natural.',
-      usage: 'Massajar no couro cabeludo molhado e enxaguar abundantemente.',
-      image:
-        'https://images.pexels.com/photos/36868177/pexels-photo-36868177.jpeg?auto=format&fit=crop&w=600&q=80',
-    },
-    {
-      name: 'Finalizador',
-      benefits: 'Define cachos e tranças, controla o frizz e protege da humidade.',
-      usage: 'Aplicar uma pequena quantidade nas pontas e moldar com as mãos.',
-      image:
-        'https://images.pexels.com/photos/5885768/pexels-photo-5885768.jpeg?auto=format&fit=crop&w=600&q=80',
-    },
-  ];
+         'https://images.pexels.com/photos/7428099/pexels-photo-7428099.jpeg?auto=format&fit=crop&w=600&q=80',
+     },
+     {
+       name: 'Shampoo Natural',
+       benefits: 'Limpa suavemente sem ressecar, respeita a oleosidade natural.',
+       usage: 'Massajar no couro cabeludo molhado e enxaguar abundantemente.',
+       image:
+         'https://images.pexels.com/photos/16749131/pexels-photo-16749131.jpeg?auto=format&fit=crop&w=600&q=80',
+     },
+     {
+       name: 'Finalizador',
+       benefits: 'Define cachos e tranças, controla o frizz e protege da humidade.',
+       usage: 'Aplicar uma pequena quantidade nas pontas e moldar com as mãos.',
+       image:
+         'https://images.pexels.com/photos/33756903/pexels-photo-33756903.jpeg?auto=format&fit=crop&w=600&q=80',
+     },
+   ];
 
   readonly team = [
     {
