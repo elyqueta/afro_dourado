@@ -27,7 +27,6 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
           <a routerLink="/sobre" routerLinkActive="active" class="nav-link">Sobre</a>
           <a routerLink="/servicos" routerLinkActive="active" class="nav-link">Serviços</a>
           <a routerLink="/produtos" routerLinkActive="active" class="nav-link">Produtos</a>
-          <a routerLink="/resultados" routerLinkActive="active" class="nav-link">Resultados</a>
           <a routerLink="/testemunhos" routerLinkActive="active" class="nav-link">Testemunhos</a>
           <a routerLink="/artigos" routerLinkActive="active" class="nav-link">Artigos</a>
           <a routerLink="/contacto" routerLinkActive="active" class="nav-link">Contacto</a>
@@ -64,13 +63,6 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
           <span class="close-line"></span>
         </button>
         <nav class="mobile-nav" role="navigation" aria-label="Menu mobile">
-          <a
-            routerLink="/resultados"
-            routerLinkActive="active"
-            class="mobile-link"
-            (click)="closeMenu()"
-            >Resultados</a
-          >
           <a
             routerLink="/testemunhos"
             routerLinkActive="active"

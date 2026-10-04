@@ -24,7 +24,6 @@ import { OrganicDividerComponent } from '@app/shared/ui/divider-organic/divider-
               <a routerLink="/sobre" routerLinkActive="active">Sobre</a>
               <a routerLink="/servicos" routerLinkActive="active">Serviços</a>
               <a routerLink="/produtos" routerLinkActive="active">Produtos</a>
-              <a routerLink="/resultados" routerLinkActive="active">Resultados</a>
               <a routerLink="/testemunhos" routerLinkActive="active">Testemunhos</a>
               <a routerLink="/artigos" routerLinkActive="active">Artigos</a>
               <a routerLink="/contacto" routerLinkActive="active">Contacto</a>
