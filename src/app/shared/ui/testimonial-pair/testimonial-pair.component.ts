@@ -60,7 +60,7 @@ import { BeforeAfterImageComponent } from '@app/shared/ui/before-after-image/bef
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.4rem;
+      gap: 0;
       padding: clamp(1rem, 1.5vw, 1.5rem);
       border-radius: 0.75rem;
       text-align: left;
@@ -86,6 +86,7 @@ import { BeforeAfterImageComponent } from '@app/shared/ui/before-after-image/bef
       font-size: var(--text-small);
       margin: 0;
       opacity: 0.7;
+      margin-top: 0.3rem;
     }
 
     .text-inner.inverted .role {
@@ -93,16 +94,18 @@ import { BeforeAfterImageComponent } from '@app/shared/ui/before-after-image/bef
     }
 
     .quote {
-      font-size: clamp(0.8rem, 0.9vw, 0.95rem);
-      line-height: 1.55;
+      font-size: var(--text-body);
+      line-height: 1.7;
       margin: 0;
+      margin-top: 1rem;
       flex: 1;
     }
 
     @media (min-width: 768px) {
       .pair {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        grid-template-rows: minmax(16rem, 19rem);
+        grid-template-rows: minmax(19rem, max-content);
+        height: auto;
       }
 
       .image-cell {
@@ -123,6 +126,13 @@ import { BeforeAfterImageComponent } from '@app/shared/ui/before-after-image/bef
       }
     }
 
+    @media (min-width: 1024px) {
+      .quote {
+        font-size: 1.25rem;
+        margin-top: 3rem;
+      }
+    }
+
     @media (max-width: 767px) {
       .image-cell {
         aspect-ratio: 16 / 10;
@@ -139,7 +149,8 @@ import { BeforeAfterImageComponent } from '@app/shared/ui/before-after-image/bef
       }
 
       .quote {
-        font-size: var(--text-small);
+        font-size: clamp(1.125rem, 1.25vw, 1.25rem);
+        margin-top: 1.75rem;
       }
     }
 
