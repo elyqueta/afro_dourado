@@ -247,7 +247,7 @@ export class TrichologyPage {
       id: '01',
       name: 'Avaliação Tricológica',
       description: 'Consulta inicial com análise do couro cabeludo e haste capilar para diagnóstico personalizado.',
-      image: 'https://images.pexels.com/photos/3735643/pexels-photo-3735643.jpeg?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80',
       details: {
         problema: 'Necessidade de diagnóstico preciso do couro cabeludo e haste capilar para identificar alterações.',
         abordagem: 'Análise visual e tecnológica para identificar causas de queda, quebra ou outras alterações capilares.',

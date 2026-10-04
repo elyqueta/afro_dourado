@@ -37,7 +37,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
     <main>
       <app-hero
         videoSrc="https://videos.pexels.com/video-files/6698744/6698744-uhd_2732_1440_25fps.mp4"
-        posterSrc="https://images.pexels.com/photos/935985/pexels-photo-935985.jpeg?auto=format&fit=crop&w=1920&q=80"
+        posterSrc="https://images.pexels.com/photos/33138684/pexels-photo-33138684.jpeg?auto=format&fit=crop&w=1920&q=80"
         eyebrow="Afro Dourado"
         headline="Natural é vida."
         description="Cuidado especializado para a saúde, beleza e identidade do cabelo afro em Luanda e Huambo."
@@ -58,7 +58,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
 
       <app-brand-story-reveal
         text="O teu cabelo conta uma história. Nós ajudamos a escrevê-la com ciência, técnica e produtos naturais."
-        imageSrc="https://images.pexels.com/photos/3190174/pexels-photo-3190174.jpeg?auto=format&fit=crop&w=800&q=80"
+        imageSrc="https://images.pexels.com/photos/33138684/pexels-photo-33138684.jpeg?auto=format&fit=crop&w=800&q=80"
       />
 
       <app-pillars-sticky [images]="pillarImages" [pillars]="pillars" />
@@ -114,7 +114,7 @@ export class HomePage {
   readonly pillarImages = [
     'https://images.pexels.com/photos/3115708/pexels-photo-3115708.jpeg?auto=format&fit=crop&w=600&q=80',
     'https://images.pexels.com/photos/8429081/pexels-photo-8429081.jpeg?auto=format&fit=crop&w=600&q=80',
-    'https://images.pexels.com/photos/897314/pexels-photo-897314.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/30878881/pexels-photo-30878881.jpeg?auto=format&fit=crop&w=600&q=80',
   ];
 
   readonly pillars = [
@@ -131,13 +131,13 @@ export class HomePage {
     'https://images.pexels.com/photos/33138683/pexels-photo-33138683.jpeg?auto=format&fit=crop&w=600&q=80',
   ];
 
-  readonly products = [
-    {
-      name: 'Óleo Capilar Nutritivo',
-      benefits: 'Hidrata profundamente, reduz quebra e facilita o desembaraço.',
-      usage: 'Aplicar no couro cabeludo e comprimentos antes do shampoo.',
-      image:
-        'https://images.pexels.com/photos/3735643/pexels-photo-3735643.jpeg?auto=format&fit=crop&w=600&q=80',
+   readonly products = [
+     {
+       name: 'Óleo Capilar Nutritivo',
+       benefits: 'Hidrata profundamente, reduz quebra e facilita o desembaraço.',
+       usage: 'Aplicar no couro cabeludo e comprimentos antes do shampoo.',
+       image:
+         'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80',
     },
     {
       name: 'Shampoo Natural',
@@ -175,7 +175,7 @@ export class HomePage {
       role: 'Terapeuta Capilar',
       bio: 'Focada em hidratação profunda e recuperação de danos.',
       photo:
-        'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/33239299/pexels-photo-33239299.jpeg?auto=format&fit=crop&w=600&q=80',
     },
   ];
 
@@ -184,7 +184,7 @@ export class HomePage {
       title: 'Queda capilar: quando procurar ajuda',
       excerpt: 'Entenda os sinais que indicam a necessidade de uma avaliação tricológica.',
       image:
-        'https://images.pexels.com/photos/3735643/pexels-photo-3735643.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80',
       slug: 'queda-capilar',
     },
     {
@@ -244,7 +244,7 @@ export class HomePage {
       photoBefore:
         'https://images.pexels.com/photos/34943686/pexels-photo-34943686.jpeg?auto=format&fit=crop&w=600&q=80',
       photoAfter:
-        'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/30148032/pexels-photo-30148032.jpeg?auto=format&fit=crop&w=600&q=80',
     },
     {
       name: 'Fátima Kassule',
@@ -260,9 +260,9 @@ export class HomePage {
       role: 'Cliente — Luanda',
       quote: 'A avaliação tricológica mudou a minha rotina. Hoje sei exactamente o que usar e o que evitar.',
       photoBefore:
-        'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/33138685/pexels-photo-33138685.jpeg?auto=format&fit=crop&w=600&q=80',
       photoAfter:
-        'https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/33239295/pexels-photo-33239295.jpeg?auto=format&fit=crop&w=600&q=80',
     },
   ];
 }

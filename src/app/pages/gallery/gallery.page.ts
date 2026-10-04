@@ -230,7 +230,7 @@ export class GalleryPage {
       category: 'trancas',
     },
     {
-      src: 'https://images.pexels.com/photos/935985/pexels-photo-935985.jpeg?auto=format&fit=crop&w=900&q=80',
+      src: 'https://images.pexels.com/photos/30878881/pexels-photo-30878881.jpeg?auto=format&fit=crop&w=900&q=80',
       alt: 'Cabelo afro natural em destaque',
       category: 'cabelo',
     },

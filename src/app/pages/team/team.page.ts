@@ -121,13 +121,13 @@ export class TeamPage {
       name: 'Joana António',
       role: 'Esteticista',
       bio: 'Especialista em cuidados faciais e corporais integrados com a rotina capilar.',
-      photo: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=format&fit=crop&w=600&q=80',
+      photo: 'https://images.pexels.com/photos/30148032/pexels-photo-30148032.jpeg?auto=format&fit=crop&w=600&q=80',
     },
     {
       name: 'Paulo Mendes',
       role: 'Barbeiro',
       bio: 'Focado em cortes e design para cabelo afro, com técnicas de acabamento natural.',
-      photo: 'https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=format&fit=crop&w=600&q=80',
+      photo: 'https://images.pexels.com/photos/33239295/pexels-photo-33239295.jpeg?auto=format&fit=crop&w=600&q=80',
     },
   ];
 }

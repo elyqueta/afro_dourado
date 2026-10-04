@@ -84,8 +84,8 @@ export const TESTIMONIALS: readonly Testimonial[] = [
       'As tranças foram feitas com todo o cuidado. O resultado ficou leve e o meu cabelo não sofreu absolutamente nada.',
     photoBefore:
       'https://images.pexels.com/photos/5885768/pexels-photo-5885768.jpeg?auto=format&fit=crop&w=800&q=80',
-    photoAfter:
-      'https://images.pexels.com/photos/935985/pexels-photo-935985.jpeg?auto=format&fit=crop&w=800&q=80',
+      photoAfter:
+        'https://images.pexels.com/photos/30878881/pexels-photo-30878881.jpeg?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 't8',
