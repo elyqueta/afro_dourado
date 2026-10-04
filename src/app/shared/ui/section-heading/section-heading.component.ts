@@ -20,7 +20,7 @@ import { EyebrowLabelComponent } from '@app/shared/ui/eyebrow-label/eyebrow-labe
             }
           }
         } @else {
-          {{ title() }}
+          <span [innerHTML]="title()"></span>
         }
       </h2>
     </div>
