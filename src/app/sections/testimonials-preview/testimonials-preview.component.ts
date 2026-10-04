@@ -27,7 +27,6 @@ import { PLATFORM_ID } from '@angular/core';
             >
               <app-testimonial-card
                 [testimonial]="t"
-                [horizontal]="$last"
                 [desktopLayout]="$first ? 'featured' : $last ? 'overlay' : 'horizontal'"
               />
             </div>

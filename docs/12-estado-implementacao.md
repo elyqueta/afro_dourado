@@ -129,6 +129,7 @@
   - Estado `showBefore` interno, por defeito `false` (mostra "Depois")
   - Desktop: `mouseenter`/`mouseleave` + `focus-within`; touch/teclado: segmented control "Antes | Depois" sempre visível
   - Modo comparação nos testemunhos: slider divisório arrastável, com suporte a toque/teclado e etiquetas persistentes
+  - Etiqueta "Imagens ilustrativas" posicionada separadamente no canto inferior para não se sobrepor a "Antes"
   - Chip canto inferior esquerdo com estado atual
   - `prefers-reduced-motion`: troca instantânea, sem transição
 - [x] `TestimonialCardComponent` (`shared/ui/testimonial-card/`) — card vertical com `app-before-after-image`, nome, cargo, citação (clamp 4 linhas), link "Ler mais →"; hover `translateY(-4px)` desktop, desligado em reduced motion

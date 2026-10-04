@@ -11,6 +11,7 @@ import { Component, signal, ChangeDetectionStrategy, OnInit } from '@angular/cor
   template: `
     <div
       class="wrapper"
+      [class.comparison-mode]="comparisonMode"
       (mouseenter)="onHover(true)"
       (mouseleave)="onMouseLeave()"
       (focus-within)="onHover(true)"
@@ -29,7 +30,7 @@ import { Component, signal, ChangeDetectionStrategy, OnInit } from '@angular/cor
         [style.clip-path]="comparisonMode ? 'inset(0 ' + (100 - sliderPosition()) + '% 0 0)' : null"
       />
 
-      <span class="illustrative-label" aria-hidden="true">Ilustrativo</span>
+      <span class="illustrative-label" aria-hidden="true">Imagens ilustrativas</span>
 
       @if (comparisonMode) {
         <span class="comparison-label before-label" aria-hidden="true">Antes</span>
@@ -152,6 +153,11 @@ import { Component, signal, ChangeDetectionStrategy, OnInit } from '@angular/cor
       text-transform: uppercase;
       pointer-events: none;
       user-select: none;
+    }
+
+    .wrapper.comparison-mode .illustrative-label {
+      top: auto;
+      bottom: 0.75rem;
     }
 
     .comparison-label {

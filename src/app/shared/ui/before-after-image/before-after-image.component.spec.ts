@@ -147,6 +147,8 @@ describe('BeforeAfterImageComponent', () => {
     expect(slider?.getAttribute('aria-label')).toContain('antes');
     expect(slider?.value).toBe('50');
     expect(native.querySelector('.segmented-control')).toBeNull();
+    expect(native.querySelector('.wrapper')?.classList.contains('comparison-mode')).toBe(true);
+    expect(native.querySelector('.illustrative-label')?.textContent?.trim()).toBe('Imagens ilustrativas');
   });
 
   it('should update the comparison split when the slider moves', () => {
