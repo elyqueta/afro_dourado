@@ -144,7 +144,7 @@ export class HomePage {
       benefits: 'Limpa suavemente sem ressecar, respeita a oleosidade natural.',
       usage: 'Massajar no couro cabeludo molhado e enxaguar abundantemente.',
       image:
-        'https://images.pexels.com/photos/3998012/pexels-photo-3998012.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/3190174/pexels-photo-3190174.jpeg?auto=format&fit=crop&w=600&q=80',
     },
     {
       name: 'Finalizador',
@@ -161,14 +161,14 @@ export class HomePage {
       role: 'Tricologista',
       bio: 'Especialista em avaliação capilar e tratamentos personalizados.',
       photo:
-        'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/34943686/pexels-photo-34943686.jpeg?auto=format&fit=crop&w=600&q=80',
     },
     {
       name: 'Carlos Eduardo',
       role: 'Especialista em Tranças',
       bio: 'Técnico em penteados protectivos e tranças Nagô.',
       photo:
-        'https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/17556066/pexels-photo-17556066.jpeg?auto=format&fit=crop&w=600&q=80',
     },
     {
       name: 'Mariana Costa',
@@ -191,7 +191,7 @@ export class HomePage {
       title: 'Rotina de cuidados para cabelo afro no dia a dia',
       excerpt: 'Dicas práticas para manter a hidratação e definição entre consultas.',
       image:
-        'https://images.pexels.com/photos/3998012/pexels-photo-3998012.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/8429081/pexels-photo-8429081.jpeg?auto=format&fit=crop&w=600&q=80',
       slug: 'cuidados-cabelo-afro',
     },
     {
@@ -242,7 +242,7 @@ export class HomePage {
       role: 'Cliente — Luanda',
       quote: 'Depois de anos de química, pensei que nunca mais ia ter cabelo saudável. O acompanhamento na Afro Dourado devolveu-me a confiança.',
       photoBefore:
-        'https://images.pexels.com/photos/3065171/pexels-photo-3065171.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/34943686/pexels-photo-34943686.jpeg?auto=format&fit=crop&w=600&q=80',
       photoAfter:
         'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=format&fit=crop&w=600&q=80',
     },
@@ -251,7 +251,7 @@ export class HomePage {
       role: 'Cliente — Huambo',
       quote: 'As tranças ficaram lindas e o meu cabelo não sofreu nada. Pela primeira vez sinto que estou a cuidar dele de verdade.',
       photoBefore:
-        'https://images.pexels.com/photos/3998012/pexels-photo-3998012.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/8421990/pexels-photo-8421990.jpeg?auto=format&fit=crop&w=600&q=80',
       photoAfter:
         'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80',
     },

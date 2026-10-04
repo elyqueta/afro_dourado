@@ -103,13 +103,13 @@ export class TeamPage {
       name: 'Ana Luísa Mendes',
       role: 'Tricologista',
       bio: 'Especialista em avaliação capilar e tratamentos personalizados para queda, quebra e crescimento.',
-      photo: 'https://images.pexels.com/photos/3997979/pexels-photo-3997979.jpeg?auto=format&fit=crop&w=600&q=80',
+      photo: 'https://images.pexels.com/photos/34943686/pexels-photo-34943686.jpeg?auto=format&fit=crop&w=600&q=80',
     },
     {
       name: 'Carlos Eduardo',
       role: 'Especialista em Tranças',
       bio: 'Técnico em penteados protectivos, tranças Nagô e estética capilar.',
-      photo: 'https://images.pexels.com/photos/3997991/pexels-photo-3997991.jpeg?auto=format&fit=crop&w=600&q=80',
+      photo: 'https://images.pexels.com/photos/17556066/pexels-photo-17556066.jpeg?auto=format&fit=crop&w=600&q=80',
     },
     {
       name: 'Mariana Costa',

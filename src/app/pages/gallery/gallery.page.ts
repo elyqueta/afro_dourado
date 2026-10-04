@@ -245,7 +245,7 @@ export class GalleryPage {
       category: 'cuidado',
     },
     {
-      src: 'https://images.pexels.com/photos/3998012/pexels-photo-3998012.jpeg?auto=format&fit=crop&w=900&q=80',
+      src: 'https://images.pexels.com/photos/3190174/pexels-photo-3190174.jpeg?auto=format&fit=crop&w=900&q=80',
       alt: 'Rotina de cuidado para cabelo com textura',
       category: 'cuidado',
     },

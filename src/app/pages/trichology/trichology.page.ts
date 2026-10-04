@@ -262,7 +262,7 @@ export class TrichologyPage {
       id: '02',
       name: 'Terapia Capilar',
       description: 'Tratamento intensivo para queda, quebra e danos químicos, com protocolo personalizado.',
-      image: 'https://images.pexels.com/photos/3998012/pexels-photo-3998012.jpeg?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.pexels.com/photos/3190174/pexels-photo-3190174.jpeg?auto=format&fit=crop&w=600&q=80',
       details: {
         problema: 'Queda, quebra ou danos químicos que necessitam de intervenção especializada e contínua.',
         abordagem: 'Protocolo personalizado com produtos e técnicas adequadas ao tipo de cabelo e diagnóstico.',
@@ -292,7 +292,7 @@ export class TrichologyPage {
       id: '04',
       name: 'Tratamentos Específicos',
       description: 'Protocolos personalizados conforme diagnóstico: hidratação, controlo de oleosidade, anti-queda.',
-      image: 'https://images.pexels.com/photos/3997979/pexels-photo-3997979.jpeg?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.pexels.com/photos/3115708/pexels-photo-3115708.jpeg?auto=format&fit=crop&w=600&q=80',
       details: {
         problema: 'Necessidade de protocolos direcionados para hidratação, controlo de oleosidade ou queda.',
         abordagem: 'Diagnóstico prévio e seleção de técnicas e produtos específicos para cada caso.',
