@@ -115,7 +115,7 @@ export class TeamPage {
       name: 'Mariana Costa',
       role: 'Terapeuta Capilar',
       bio: 'Focada em hidratação profunda, recuperação de danos e rotinas de cuidado em casa.',
-      photo: 'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80',
+      photo: 'https://images.pexels.com/photos/5885768/pexels-photo-5885768.jpeg?auto=format&fit=crop&w=600&q=80',
     },
     {
       name: 'Joana António',

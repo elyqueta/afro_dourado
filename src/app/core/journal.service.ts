@@ -15,14 +15,14 @@ export class JournalService {
       title: 'Queda capilar: quando procurar ajuda',
       excerpt: 'Entenda os sinais que indicam a necessidade de uma avaliação tricológica.',
       body: 'A queda capilar é uma preocupação comum entre pessoas com cabelo afro. É normal perder entre 50 e 100 fios por dia, mas quando a quantidade aumenta de forma visível, é importante procurar orientação profissional.\n\nNa Afro Dourado, a avaliação tricológica começa por um exame detalhado do couro cabeludo e da haste capilar. A partir daí, identificamos causas possíveis, como stress, défices nutricionais, tratamentos químicos ou factores genéticos.\n\nOs tratamentos podem incluir terapias capilares personalizadas, microagulhamento e recomendações de rotina em casa. O importante é não esperar: quanto mais cedo a avaliação, melhores as chances de preservar o cabelo existente e estimular o crescimento saudável.\n\nSe estás a notar mais fios no travesseiro, na escova ou no ralo, marca a tua consulta em Luanda ou Huambo. A primeira consulta é o primeiro passo para compreender o que está a acontecer e definir um plano de cuidado.',
-      image: 'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=1200&q=80',
+      image: 'https://images.pexels.com/photos/5885768/pexels-photo-5885768.jpeg?auto=format&fit=crop&w=1200&q=80',
       slug: 'queda-capilar',
     },
     {
       title: 'Rotina de cuidados para cabelo afro no dia a dia',
       excerpt: 'Dicas práticas para manter a hidratação e definição entre consultas.',
       body: 'Manter o cabelo afro hidratado e definido no dia a dia depende de rotina e de produtos adequados. Cada tipo de cabelo tem necessidades diferentes, mas existem cuidados universais que fazem diferença.\n\nComece pela limpeza: prefira shampoos sem sulfatos agressivos e lave com água morna, nunca quente. O condicionador deve ser aplicado nos comprimentos e pontas, evitando o couro cabeludo se for oleoso.\n\nA hidratação é o passo mais importante. Use máscaras ou óleos capilares 1–2 vezes por semana, dependendo da textura do cabelo. Para cabelos muito secos, a protecção nocturna com touca de seda ou fronha ajuda a manter a humidade durante a noite.\n\nNa Afro Dourado, indicamos os produtos mais adequados para o seu tipo de cabelo durante a consulta. O objectivo é construir uma rotina simples, realista e eficaz.',
-      image: 'https://images.pexels.com/photos/3190174/pexels-photo-3190174.jpeg?auto=format&fit=crop&w=1200&q=80',
+      image: 'https://images.pexels.com/photos/36868177/pexels-photo-36868177.jpeg?auto=format&fit=crop&w=1200&q=80',
       slug: 'cuidados-cabelo-afro',
     },
     {

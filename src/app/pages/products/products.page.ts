@@ -173,13 +173,13 @@ export class ProductsPage {
       name: 'Shampoo Natural',
       benefits: 'Limpa suavemente sem ressecar. Respeita a oleosidade natural do cabelo afro.',
       usage: 'Massajar no couro cabeludo molhado e enxaguar abundantemente.',
-      image: 'https://images.pexels.com/photos/3190174/pexels-photo-3190174.jpeg?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.pexels.com/photos/36868177/pexels-photo-36868177.jpeg?auto=format&fit=crop&w=600&q=80',
     },
     {
       name: 'Finalizador',
       benefits: 'Define cachos e tranças, controla o frizz e protege da humidade tropical.',
       usage: 'Aplicar uma pequena quantidade nas pontas e moldar com as mãos.',
-      image: 'https://images.pexels.com/photos/8429081/pexels-photo-8429081.jpeg?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.pexels.com/photos/33756903/pexels-photo-33756903.jpeg?auto=format&fit=crop&w=600&q=80',
     },
   ];
 

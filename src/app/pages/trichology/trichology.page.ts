@@ -15,7 +15,7 @@ import { VideoBackgroundComponent } from '@app/shared/ui/video-background/video-
       <section class="hero">
         <app-video-background
           videoSrc="https://videos.pexels.com/video-files/6698744/6698744-uhd_2732_1440_25fps.mp4"
-          posterSrc="https://images.pexels.com/photos/3115708/pexels-photo-3115708.jpeg?auto=format&fit=crop&w=1920&q=80"
+           posterSrc="https://images.pexels.com/photos/13733669/pexels-photo-13733669.jpeg?auto=format&fit=crop&w=1920&q=80"
         />
         <div class="overlay"></div>
         <div class="content container-max">
@@ -247,7 +247,7 @@ export class TrichologyPage {
       id: '01',
       name: 'Avaliação Tricológica',
       description: 'Consulta inicial com análise do couro cabeludo e haste capilar para diagnóstico personalizado.',
-      image: 'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.pexels.com/photos/5885768/pexels-photo-5885768.jpeg?auto=format&fit=crop&w=600&q=80',
       details: {
         problema: 'Necessidade de diagnóstico preciso do couro cabeludo e haste capilar para identificar alterações.',
         abordagem: 'Análise visual e tecnológica para identificar causas de queda, quebra ou outras alterações capilares.',
@@ -262,7 +262,7 @@ export class TrichologyPage {
       id: '02',
       name: 'Terapia Capilar',
       description: 'Tratamento intensivo para queda, quebra e danos químicos, com protocolo personalizado.',
-      image: 'https://images.pexels.com/photos/3190174/pexels-photo-3190174.jpeg?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.pexels.com/photos/36868177/pexels-photo-36868177.jpeg?auto=format&fit=crop&w=600&q=80',
       details: {
         problema: 'Queda, quebra ou danos químicos que necessitam de intervenção especializada e contínua.',
         abordagem: 'Protocolo personalizado com produtos e técnicas adequadas ao tipo de cabelo e diagnóstico.',
@@ -277,7 +277,7 @@ export class TrichologyPage {
       id: '03',
       name: 'Microagulhamento',
       description: 'Procedimento minimamente invasivo para estimular a regeneração do couro cabeludo.',
-      image: 'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.pexels.com/photos/5885768/pexels-photo-5885768.jpeg?auto=format&fit=crop&w=600&q=80',
       details: {
         problema: 'Necessidade de estimular a regeneração e melhorar a absorção de ativos no couro cabeludo.',
         abordagem: 'Procedimento com agulhas finas para criar microcanais e estimular a produção natural de colagénio.',
@@ -292,7 +292,7 @@ export class TrichologyPage {
       id: '04',
       name: 'Tratamentos Específicos',
       description: 'Protocolos personalizados conforme diagnóstico: hidratação, controlo de oleosidade, anti-queda.',
-      image: 'https://images.pexels.com/photos/3115708/pexels-photo-3115708.jpeg?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.pexels.com/photos/13733669/pexels-photo-13733669.jpeg?auto=format&fit=crop&w=600&q=80',
       details: {
         problema: 'Necessidade de protocolos direcionados para hidratação, controlo de oleosidade ou queda.',
         abordagem: 'Diagnóstico prévio e seleção de técnicas e produtos específicos para cada caso.',

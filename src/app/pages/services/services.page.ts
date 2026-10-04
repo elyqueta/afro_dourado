@@ -30,7 +30,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
           <div class="service">
             <div class="media">
               <app-smart-image
-                src="https://images.pexels.com/photos/3115708/pexels-photo-3115708.jpeg?auto=format&fit=crop&w=800&q=80"
+                src="https://images.pexels.com/photos/13733669/pexels-photo-13733669.jpeg?auto=format&fit=crop&w=800&q=80"
                 alt="Fotografia macro de cabelo — Tricologia Afro Dourado"
                 aspectRatio="4 / 5"
               />

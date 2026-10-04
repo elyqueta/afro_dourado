@@ -64,7 +64,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
       <app-pillars-sticky [images]="pillarImages" [pillars]="pillars" />
 
       <app-trichology-preview
-        imageSrc="https://images.pexels.com/photos/3115708/pexels-photo-3115708.jpeg?auto=format&fit=crop&w=800&q=80"
+        imageSrc="https://images.pexels.com/photos/13733669/pexels-photo-13733669.jpeg?auto=format&fit=crop&w=800&q=80"
         description="Avaliação tricológica, terapia capilar, microagulhamento e tratamentos específicos para queda, quebra e crescimento."
         [titleParts]="[
           { text: 'Ciência para ', gold: false },
@@ -112,8 +112,8 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
 })
 export class HomePage {
   readonly pillarImages = [
-    'https://images.pexels.com/photos/3115708/pexels-photo-3115708.jpeg?auto=format&fit=crop&w=600&q=80',
-    'https://images.pexels.com/photos/8429081/pexels-photo-8429081.jpeg?auto=format&fit=crop&w=600&q=80',
+    'https://images.pexels.com/photos/13733669/pexels-photo-13733669.jpeg?auto=format&fit=crop&w=600&q=80',
+    'https://images.pexels.com/photos/33756903/pexels-photo-33756903.jpeg?auto=format&fit=crop&w=600&q=80',
         'https://images.pexels.com/photos/30878881/pexels-photo-30878881.jpeg?auto=format&fit=crop&w=600&q=80',
   ];
 
@@ -137,21 +137,21 @@ export class HomePage {
        benefits: 'Hidrata profundamente, reduz quebra e facilita o desembaraço.',
        usage: 'Aplicar no couro cabeludo e comprimentos antes do shampoo.',
        image:
-         'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80',
+         'https://images.pexels.com/photos/5885768/pexels-photo-5885768.jpeg?auto=format&fit=crop&w=600&q=80',
     },
     {
       name: 'Shampoo Natural',
       benefits: 'Limpa suavemente sem ressecar, respeita a oleosidade natural.',
       usage: 'Massajar no couro cabeludo molhado e enxaguar abundantemente.',
       image:
-        'https://images.pexels.com/photos/3190174/pexels-photo-3190174.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/36868177/pexels-photo-36868177.jpeg?auto=format&fit=crop&w=600&q=80',
     },
     {
       name: 'Finalizador',
       benefits: 'Define cachos e tranças, controla o frizz e protege da humidade.',
       usage: 'Aplicar uma pequena quantidade nas pontas e moldar com as mãos.',
       image:
-        'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/5885768/pexels-photo-5885768.jpeg?auto=format&fit=crop&w=600&q=80',
     },
   ];
 
@@ -184,14 +184,14 @@ export class HomePage {
       title: 'Queda capilar: quando procurar ajuda',
       excerpt: 'Entenda os sinais que indicam a necessidade de uma avaliação tricológica.',
       image:
-        'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/5885768/pexels-photo-5885768.jpeg?auto=format&fit=crop&w=600&q=80',
       slug: 'queda-capilar',
     },
     {
       title: 'Rotina de cuidados para cabelo afro no dia a dia',
       excerpt: 'Dicas práticas para manter a hidratação e definição entre consultas.',
       image:
-        'https://images.pexels.com/photos/8429081/pexels-photo-8429081.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/33756903/pexels-photo-33756903.jpeg?auto=format&fit=crop&w=600&q=80',
       slug: 'cuidados-cabelo-afro',
     },
     {
@@ -253,7 +253,7 @@ export class HomePage {
       photoBefore:
         'https://images.pexels.com/photos/8421990/pexels-photo-8421990.jpeg?auto=format&fit=crop&w=600&q=80',
       photoAfter:
-        'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=600&q=80',
+        'https://images.pexels.com/photos/5885768/pexels-photo-5885768.jpeg?auto=format&fit=crop&w=600&q=80',
     },
     {
       name: 'Yara Fernandes',

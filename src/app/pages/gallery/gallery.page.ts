@@ -235,17 +235,17 @@ export class GalleryPage {
       category: 'cabelo',
     },
     {
-      src: 'https://images.pexels.com/photos/3190174/pexels-photo-3190174.jpeg?auto=format&fit=crop&w=900&q=80',
+      src: 'https://images.pexels.com/photos/36868177/pexels-photo-36868177.jpeg?auto=format&fit=crop&w=900&q=80',
       alt: 'Textura e movimento do cabelo natural',
       category: 'cabelo',
     },
     {
-      src: 'https://images.pexels.com/photos/3115708/pexels-photo-3115708.jpeg?auto=format&fit=crop&w=900&q=80',
+      src: 'https://images.pexels.com/photos/13733669/pexels-photo-13733669.jpeg?auto=format&fit=crop&w=900&q=80',
       alt: 'Momento de cuidado capilar',
       category: 'cuidado',
     },
     {
-      src: 'https://images.pexels.com/photos/3190174/pexels-photo-3190174.jpeg?auto=format&fit=crop&w=900&q=80',
+      src: 'https://images.pexels.com/photos/36868177/pexels-photo-36868177.jpeg?auto=format&fit=crop&w=900&q=80',
       alt: 'Rotina de cuidado para cabelo com textura',
       category: 'cuidado',
     },
@@ -255,7 +255,7 @@ export class GalleryPage {
       category: 'trancas',
     },
     {
-      src: 'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=900&q=80',
+      src: 'https://images.pexels.com/photos/5885768/pexels-photo-5885768.jpeg?auto=format&fit=crop&w=900&q=80',
       alt: 'Cuidado e bem-estar em ambiente tranquilo',
       category: 'cuidado',
     },

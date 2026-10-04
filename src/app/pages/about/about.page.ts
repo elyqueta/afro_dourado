@@ -30,7 +30,7 @@ import { PillButtonComponent } from '@app/shared/ui/button/pill-button.component
         <div class="container-max grid">
           <div class="media">
             <app-smart-image
-              src="https://images.pexels.com/photos/6925914/pexels-photo-6925914.jpeg?auto=format&fit=crop&w=800&q=80"
+              src="https://images.pexels.com/photos/28040818/pexels-photo-28040818.jpeg?auto=format&fit=crop&w=800&q=80"
               alt="Espaço Afro Dourado — ambiente de cuidado capilar"
               aspectRatio="4 / 5"
             />

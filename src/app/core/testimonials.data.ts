@@ -30,7 +30,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     photoBefore:
       'https://images.pexels.com/photos/8421990/pexels-photo-8421990.jpeg?auto=format&fit=crop&w=800&q=80',
     photoAfter:
-      'https://images.pexels.com/photos/6625874/pexels-photo-6625874.jpeg?auto=format&fit=crop&w=800&q=80',
+       'https://images.pexels.com/photos/5885768/pexels-photo-5885768.jpeg?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 't3',

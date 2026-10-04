@@ -245,7 +245,7 @@ export class BraidsPage {
     'https://images.pexels.com/photos/16089262/pexels-photo-16089262.jpeg?auto=format&fit=crop&w=800&q=80',
     'https://images.pexels.com/photos/11441103/pexels-photo-11441103.jpeg?auto=format&fit=crop&w=800&q=80',
     'https://images.pexels.com/photos/17043160/pexels-photo-17043160.jpeg?auto=format&fit=crop&w=800&q=80',
-    'https://images.pexels.com/photos/8429081/pexels-photo-8429081.jpeg?auto=format&fit=crop&w=800&q=80',
+    'https://images.pexels.com/photos/33756903/pexels-photo-33756903.jpeg?auto=format&fit=crop&w=800&q=80',
     'https://images.pexels.com/photos/33138683/pexels-photo-33138683.jpeg?auto=format&fit=crop&w=800&q=80',
   ];
 }
