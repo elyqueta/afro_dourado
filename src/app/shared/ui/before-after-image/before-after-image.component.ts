@@ -4,7 +4,7 @@ import { Component, signal, ChangeDetectionStrategy, OnInit } from '@angular/cor
   selector: 'app-before-after-image',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  inputs: ['beforeSrc', 'afterSrc', 'altBefore', 'altAfter', 'forceState', 'aspectRatio'],
+  inputs: ['beforeSrc', 'afterSrc', 'altBefore', 'altAfter', 'forceState', 'aspectRatio', 'comparisonMode'],
   host: {
     '[style.aspectRatio]': 'aspectRatio',
   },
@@ -19,39 +19,62 @@ import { Component, signal, ChangeDetectionStrategy, OnInit } from '@angular/cor
         class="layer layer-after"
         [src]="afterSrc"
         alt="Depois — {{ altAfter }}"
-        [class.visible]="!showBefore()"
+        [class.visible]="comparisonMode || !showBefore()"
       />
       <img
         class="layer layer-before"
         [src]="beforeSrc"
         alt="Antes — {{ altBefore }}"
-        [class.visible]="showBefore()"
+        [class.visible]="comparisonMode || showBefore()"
+        [style.clip-path]="comparisonMode ? 'inset(0 ' + (100 - sliderPosition()) + '% 0 0)' : null"
       />
-
-      <span class="chip" aria-hidden="true">{{ showBefore() ? 'Antes' : 'Depois' }}</span>
 
       <span class="illustrative-label" aria-hidden="true">Ilustrativo</span>
 
-      <div class="segmented-control" role="group" aria-label="Ver antes ou depois">
-        <button
-          type="button"
-          class="seg-btn"
-          [class.active]="showBefore()"
-          [attr.aria-pressed]="showBefore()"
-          (click)="setState(true)"
-        >
-          Antes
-        </button>
-        <button
-          type="button"
-          class="seg-btn"
-          [class.active]="!showBefore()"
-          [attr.aria-pressed]="!showBefore()"
-          (click)="setState(false)"
-        >
-          Depois
-        </button>
-      </div>
+      @if (comparisonMode) {
+        <span class="comparison-label before-label" aria-hidden="true">Antes</span>
+        <span class="comparison-label after-label" aria-hidden="true">Depois</span>
+        <span class="comparison-divider" [style.left.%]="sliderPosition()" aria-hidden="true">
+          <span class="comparison-handle">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="m8 7-5 5 5 5M16 7l5 5-5 5" />
+            </svg>
+          </span>
+        </span>
+        <input
+          class="comparison-slider"
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          [value]="sliderPosition()"
+          [attr.aria-label]="'Comparar antes e depois — ' + altBefore"
+          [attr.aria-valuetext]="sliderValueText()"
+          (input)="updateSlider($event)"
+        />
+      } @else {
+        <span class="chip" aria-hidden="true">{{ showBefore() ? 'Antes' : 'Depois' }}</span>
+        <div class="segmented-control" role="group" aria-label="Ver antes ou depois">
+          <button
+            type="button"
+            class="seg-btn"
+            [class.active]="showBefore()"
+            [attr.aria-pressed]="showBefore()"
+            (click)="setState(true)"
+          >
+            Antes
+          </button>
+          <button
+            type="button"
+            class="seg-btn"
+            [class.active]="!showBefore()"
+            [attr.aria-pressed]="!showBefore()"
+            (click)="setState(false)"
+          >
+            Depois
+          </button>
+        </div>
+      }
     </div>
   `,
   styles: [`
@@ -131,6 +154,113 @@ import { Component, signal, ChangeDetectionStrategy, OnInit } from '@angular/cor
       user-select: none;
     }
 
+    .comparison-label {
+      position: absolute;
+      top: 0.75rem;
+      z-index: 10;
+      padding: 0.3rem 0.55rem;
+      border: 1px solid rgba(247, 243, 236, 0.3);
+      border-radius: var(--radius-pill);
+      background: rgba(14, 59, 49, 0.72);
+      color: var(--color-cream-50);
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      line-height: 1;
+      text-transform: uppercase;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .before-label {
+      left: 0.75rem;
+    }
+
+    .after-label {
+      right: 0.75rem;
+    }
+
+    .comparison-divider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 4;
+      width: 2px;
+      background: var(--color-cream-50);
+      box-shadow: 0 0 8px rgba(16, 20, 16, 0.3);
+      pointer-events: none;
+      transform: translateX(-50%);
+    }
+
+    .comparison-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: grid;
+      width: 2.25rem;
+      height: 2.25rem;
+      place-items: center;
+      border: 1px solid rgba(247, 243, 236, 0.8);
+      border-radius: 50%;
+      background: var(--color-brand-green-900);
+      color: var(--color-cream-50);
+      transform: translate(-50%, -50%);
+    }
+
+    .comparison-handle svg {
+      width: 1rem;
+      height: 1rem;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.75;
+    }
+
+    .comparison-slider {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      appearance: none;
+      background: transparent;
+      cursor: ew-resize;
+      touch-action: pan-y;
+    }
+
+    .comparison-slider::-webkit-slider-runnable-track {
+      height: 100%;
+      background: transparent;
+    }
+
+    .comparison-slider::-webkit-slider-thumb {
+      width: 2.75rem;
+      height: 100%;
+      appearance: none;
+      background: transparent;
+    }
+
+    .comparison-slider::-moz-range-track {
+      height: 100%;
+      background: transparent;
+    }
+
+    .comparison-slider::-moz-range-thumb {
+      width: 2.75rem;
+      height: 100%;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .comparison-slider:focus-visible {
+      outline: 2px solid var(--color-brand-gold-300);
+      outline-offset: -4px;
+    }
+
     .segmented-control {
       position: absolute;
       bottom: 0.75rem;
@@ -183,6 +313,10 @@ import { Component, signal, ChangeDetectionStrategy, OnInit } from '@angular/cor
     }
 
     @media (hover: none) {
+      .chip {
+        display: none;
+      }
+
       .segmented-control {
         display: flex;
       }
@@ -190,6 +324,10 @@ import { Component, signal, ChangeDetectionStrategy, OnInit } from '@angular/cor
 
     @media (prefers-reduced-motion: reduce) {
       .layer {
+        transition: none;
+      }
+
+      .comparison-divider {
         transition: none;
       }
     }
@@ -203,9 +341,11 @@ export class BeforeAfterImageComponent implements OnInit {
   altAfter = '';
   forceState: boolean | null = null;
   aspectRatio = '4 / 3';
+  comparisonMode = false;
 
   // Internal state
   readonly showBefore = signal(false);
+  readonly sliderPosition = signal(50);
 
   ngOnInit(): void {
     if (this.forceState !== null) {
@@ -225,5 +365,13 @@ export class BeforeAfterImageComponent implements OnInit {
 
   setState(value: boolean): void {
     this.showBefore.set(value);
+  }
+
+  updateSlider(event: Event): void {
+    this.sliderPosition.set(Number((event.target as HTMLInputElement).value));
+  }
+
+  sliderValueText(): string {
+    return `${this.sliderPosition()}% Antes, ${100 - this.sliderPosition()}% Depois`;
   }
 }

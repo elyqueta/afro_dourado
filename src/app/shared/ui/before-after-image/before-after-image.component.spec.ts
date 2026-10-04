@@ -11,12 +11,14 @@ import { BeforeAfterImageComponent } from './before-after-image.component';
       [afterSrc]="afterSrc"
       altBefore="antes"
       altAfter="depois"
+      [comparisonMode]="comparisonMode"
     />
   `,
 })
 class TestHostComponent {
   @Input() beforeSrc = 'https://example.com/before.jpg';
   @Input() afterSrc = 'https://example.com/after.jpg';
+  @Input() comparisonMode = false;
 }
 
 describe('BeforeAfterImageComponent', () => {
@@ -57,8 +59,8 @@ describe('BeforeAfterImageComponent', () => {
   it('should show "Depois" by default (showBefore=false)', () => {
     const imgBefore = native.querySelector('.layer-before');
     const imgAfter = native.querySelector('.layer-after');
-    expect(imgBefore.classList.contains('visible')).toBe(false);
-    expect(imgAfter.classList.contains('visible')).toBe(true);
+    expect(imgBefore!.classList.contains('visible')).toBe(false);
+    expect(imgAfter!.classList.contains('visible')).toBe(true);
     expect(native.querySelector('.chip')?.textContent).toContain('Depois');
     // Depois button (index 1) should be active when showBefore=false
     const buttons = native.querySelectorAll('.seg-btn');
@@ -71,8 +73,8 @@ describe('BeforeAfterImageComponent', () => {
     fixture.detectChanges();
     const imgBefore = native.querySelector('.layer-before');
     const imgAfter = native.querySelector('.layer-after');
-    expect(imgBefore.classList.contains('visible')).toBe(true);
-    expect(imgAfter.classList.contains('visible')).toBe(false);
+    expect(imgBefore!.classList.contains('visible')).toBe(true);
+    expect(imgAfter!.classList.contains('visible')).toBe(false);
     expect(native.querySelector('.chip')?.textContent).toContain('Antes');
     // Antes button (index 0) should be active when showBefore=true
     const buttons = native.querySelectorAll('.seg-btn');
@@ -86,8 +88,8 @@ describe('BeforeAfterImageComponent', () => {
     fixture.detectChanges();
     const imgBefore = native.querySelector('.layer-before');
     const imgAfter = native.querySelector('.layer-after');
-    expect(imgBefore.classList.contains('visible')).toBe(false);
-    expect(imgAfter.classList.contains('visible')).toBe(true);
+    expect(imgBefore!.classList.contains('visible')).toBe(false);
+    expect(imgAfter!.classList.contains('visible')).toBe(true);
     // Depois button (index 1) should be active when showBefore=false
     const buttons = native.querySelectorAll('.seg-btn');
     expect(buttons[1].classList.contains('active')).toBe(true);
@@ -131,5 +133,33 @@ describe('BeforeAfterImageComponent', () => {
     fixture.detectChanges();
     const layers = native.querySelectorAll('.layer');
     expect(layers.length).toBe(2);
+  });
+
+  it('should display both images with a keyboard-accessible comparison slider', () => {
+    fixture.componentRef.setInput('comparisonMode', true);
+    fixture.detectChanges();
+
+    const images = native.querySelectorAll<HTMLImageElement>('.layer');
+    const slider = native.querySelector<HTMLInputElement>('.comparison-slider');
+
+    expect(images[0].classList.contains('visible')).toBe(true);
+    expect(images[1].classList.contains('visible')).toBe(true);
+    expect(slider?.getAttribute('aria-label')).toContain('antes');
+    expect(slider?.value).toBe('50');
+    expect(native.querySelector('.segmented-control')).toBeNull();
+  });
+
+  it('should update the comparison split when the slider moves', () => {
+    fixture.componentRef.setInput('comparisonMode', true);
+    fixture.detectChanges();
+
+    const slider = native.querySelector<HTMLInputElement>('.comparison-slider');
+    slider!.value = '70';
+    slider!.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    expect(slider?.getAttribute('aria-valuetext')).toBe('70% Antes, 30% Depois');
+    expect(native.querySelector('.comparison-divider')?.getAttribute('style')).toContain('left: 70%');
+    expect(native.querySelector('.layer-before')?.getAttribute('style')).toContain('inset(0 30% 0 0)');
   });
 });

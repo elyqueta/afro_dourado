@@ -34,7 +34,7 @@ import { isPlatformBrowser } from '@angular/common';
             @for (t of TESTIMONIALS; track $index) {
               <app-testimonial-pair
                 [testimonial]="t"
-                layout="image-first"
+                [layout]="$odd ? 'text-first' : 'image-first'"
               />
             }
           </div>
@@ -86,60 +86,16 @@ import { isPlatformBrowser } from '@angular/common';
 
     .mosaic-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 1rem;
+      padding: clamp(0.75rem, 1.5vw, 1.5rem);
+      border-radius: 1.5rem;
+      background-color: var(--color-white);
     }
 
-    /* Mobile: 1 coluna, unified cards */
-    @media (max-width: 767px) {
-      .mosaic-grid {
-        gap: 1.25rem;
-      }
-    }
-
-    /* Tablet small: 2 cols, unified cards */
-    @media (min-width: 768px) and (max-width: 1023px) {
-      .mosaic-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-    }
-
-    /* Laptop small: 2 cols, each pair on one row alternating order */
-    @media (min-width: 1024px) and (max-width: 1279px) {
-      .mosaic-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-
-      app-testimonial-pair {
-        grid-column: 1 / -1;
-      }
-    }
-
-    /* Desktop: 4-col checkerboard */
     @media (min-width: 1280px) {
       .mosaic-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1rem;
-      }
-
-      /* Even-indexed pairs: swap via CSS (no template logic needed) */
-      app-testimonial-pair:nth-child(even) {
-        direction: rtl;
-      }
-
-      app-testimonial-pair:nth-child(even) > .pair {
-        direction: ltr;
-      }
-
-      app-testimonial-pair:nth-child(even) .text-inner {
-        background-color: var(--color-brand-green-900);
-        color: var(--color-cream-50);
-      }
-
-      app-testimonial-pair:nth-child(even) .role {
-        opacity: 0.75;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -152,9 +108,8 @@ import { isPlatformBrowser } from '@angular/common';
       margin-bottom: 1.5rem;
     }
 
-    /* Split assistant: treat as tablet */
     :host-context(html[data-assistant='open'][data-assistant-mode='split']) .mosaic-grid {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: minmax(0, 1fr);
     }
 
     :host-context(html[data-assistant='open'][data-assistant-mode='split']) app-testimonial-pair {

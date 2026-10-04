@@ -115,10 +115,10 @@
 ### Página `/testemunhos` (nova)
 - [x] `TestimonialsPage` (`pages/testimonials/testimonials.page.ts`)
   - Hero verde com eyebrow dourado "Testemunhos", título "Histórias de cuidado.", parágrafo `.lead`
-  - Mosaico checkerboard 4×2 com `TestimonialPairComponent` (CSS `direction: rtl` para pares pares)
+  - Mosaico editorial em duas colunas de pares; cada par combina tiles quadrados de imagem e texto, alternando a ordem
   - CTA verde final com `Agendar avaliação` (`secondary-light`)
   - SEO: `SeoService.update()` com title/description próprios
-  - Responsivo: mobile 1 coluna, tablet 2 colunas, laptop pequeno 2×1, desktop 4 colunas
+  - Responsivo: mobile e modo split com imagem horizontal sobre o texto; desktop com quatro tiles por fila através de dois pares lado a lado
 - [x] Rota `testemunhos` em `app.routes.ts` e `app.routes.server.ts` (`Prerender`)
 - [x] Navbar + footer: link "Testemunhos" adicionado; duplicado "Artigos" removido do menu mobile
 - [ ] `/resultados` permanece inalterada
@@ -128,10 +128,11 @@
   - Duas `<img>` empilhadas com crossfade por `opacity` (`--duration-ui`, `--ease-out-3`)
   - Estado `showBefore` interno, por defeito `false` (mostra "Depois")
   - Desktop: `mouseenter`/`mouseleave` + `focus-within`; touch/teclado: segmented control "Antes | Depois" sempre visível
+  - Modo comparação nos testemunhos: slider divisório arrastável, com suporte a toque/teclado e etiquetas persistentes
   - Chip canto inferior esquerdo com estado atual
   - `prefers-reduced-motion`: troca instantânea, sem transição
 - [x] `TestimonialCardComponent` (`shared/ui/testimonial-card/`) — card vertical com `app-before-after-image`, nome, cargo, citação (clamp 4 linhas), link "Ler mais →"; hover `translateY(-4px)` desktop, desligado em reduced motion
-- [x] `TestimonialPairComponent` (`shared/ui/testimonial-pair/`) — par imagem + texto com mini-strip "Antes | Depois" sincronizado; CSS `direction: rtl` em desktop para inversão de ordem em pares pares
+- [x] `TestimonialPairComponent` (`shared/ui/testimonial-pair/`) — tiles de imagem e texto com mini-strip "Antes | Depois"; alternância de ordem por input de layout
 - [x] `TESTIMONIALS` dados partilhados (`core/testimonials.data.ts`) — 4 itens com fotos Pexels distintas antes/depois
 
 ---
